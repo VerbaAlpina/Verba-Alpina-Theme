@@ -1,0 +1,77 @@
+<?php 
+/*
+ * This is the page users will see logged in. 
+ * You can edit this, but for upgrade safety you should copy and modify this file into your template folder.
+ * The location from within your template folder is plugins/login-with-ajax/ (create these directories if they don't exist)
+*/
+?>
+<style type="text/css">
+
+
+
+#wp-logout-icon:hover{
+    opacity: 0.75;
+    cursor: pointer;
+}
+
+</style>
+
+<div class="lwa" style="padding-top:5px; padding-right:5px;">
+	<?php 
+		$user = wp_get_current_user();
+	?>
+	<!--<span class="lwa-title-sub" style="display:none"><?php echo __( 'Hi', 'login-with-ajax' ) . " " . $user->display_name  ?></span>-->
+	<!--<table>
+		<tr>-->
+			<!--<td class="avatar lwa-avatar">
+				<?php //echo get_avatar( $user->ID, $size = '50' );  ?>
+			</td>-->
+			<td class="lwa-info">
+
+				<?php
+					//Admin URL
+					if ( $lwa_data['profile_link'] == '1' ) {
+						if( function_exists('bp_loggedin_user_link') ){
+							?>
+							<a href="<?php bp_loggedin_user_link(); ?>"><?php esc_html_e('Profile','login-with-ajax') ?></a><br/>
+							<?php	
+						}else{
+							?>
+							<a href="<?php echo trailingslashit(get_admin_url()); ?>profile.php"><?php esc_html_e('Profile','login-with-ajax') ?></a><br/>
+							<?php	
+						}
+					}
+					//Logout URL
+					?>
+					<!-- class="btn btn-outline-secondary btn-sm"  role="button" -->
+					<!-- <i class="fa fa-camera-retro fa-lg"></i> -->
+					<label style="color:white;font-family: 'Roboto Slab';font-size=1.2em "><?php echo wp_get_current_user()->user_login; ?></label>
+					<a  style="color: white;" id="wp-logout" href="<?php echo wp_logout_url() ?>"><!-- <i style="padding-right:5px;" class="fa fa-user-circle-o fa-2x" aria-hidden="true"></i> --><i id="wp-logout-icon" style="padding-right:5px;" class="fa fa-sign-out fa-2x"  aria-hidden="true"></i></a><br />
+					<!---->
+					<!-- <?php //esc_html_e( 'Log Out' ,'login-with-ajax') ?> -->
+					<!-- <a href="#" id="firstButton" class="btn btn-primary" rel="popover" data-message="Message">Click Me (Working)</a>
+					<script type="text/javascript">
+					jQuery(function () {	
+					    jQuery('#firstButton').popover({
+					      container: "body",
+					      html: true,
+					      content: function () {
+					        return '<div class="popover-message">' + jQuery(this).data("message") + '</div>';
+					      }
+					    });
+					 })   
+					</script> -->
+
+					<!---->
+					<?php
+					//Blog Admin
+					if( current_user_can('list_users') ) {
+						?>
+						<a href="<?php echo get_admin_url(); ?>"><?php esc_html_e("blog admin", 'login-with-ajax'); ?></a>
+						<?php
+					}
+				?>
+			</td>
+		<!--</tr>
+	</table>-->
+</div>

@@ -1,0 +1,19 @@
+/*
+ Theme Name:   Verba Alpina
+ Theme URI:    
+ Description:  
+ Author:       fz
+ Author URI:   
+ Template:     twentytwelve
+ Version:      0.0.1
+ License:      GNU General Public License v2 or later
+ License URI:  http://www.gnu.org/licenses/gpl-2.0.html
+ Tags:         
+ Text Domain:  twenty-twelve-child
+*/
+
+/*Halber Zeilenabstand nach Überschrift*/
+.entry-content h1, .entry-content h2,.entry-content h3, .entry-content h4, .entry-content h5, .entry-content h6 {margin-bottom: 0.5em}
+
+
+
