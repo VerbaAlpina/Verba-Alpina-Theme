@@ -10,14 +10,14 @@
 
 		
 <!-- data-toggle="popover" data-content="And here's some amazing content. It's very engaging. Right?" -->
-		<a role="button"  id="open_login_modal" style="color: white;" data-toggle="modal" data-target="#register_modal" href="<?php echo esc_attr(LoginWithAjax::$url_login); ?>" ><!-- <i class="fa fa-sign-in fa-lg" aria-hidden="true"></i> --><i id="icon_login" class="fa fa-user-circle-o fa-2x" aria-hidden="true"></i><?php// esc_html_e('Log In','login-with-ajax') ?></a>
+		<a role="button"  id="open_login_modal" style="color: white;" data-toggle="modal" data-target="#register_modal" href="<?php echo esc_attr(LoginWithAjax::$url_login); ?>" ><!-- <i class="fa fa-sign-in fa-lg" aria-hidden="true"></i> --><span  id="icon_login" class="fa-stack"><i class="fa fa-user-o fa-stack-1x login_child" aria-hidden="true"></i><i class="fa fa-user fa-stack-1x login_child" style="opacity: 0.8; color: #2b2b2b;" aria-hidden="true"></i></span></a>
 <!-- class="lwa-links-modal btn btn-default btn-xs" -->
 
 
 		<?php 
 		//FOOTER - once the page loads, this will be moved automatically to the bottom of the document.
 		?>
-		<div class=" modal fade in"  id="register_modal" style="display:none;"><!--lwa-modal-->
+		<div class="modal fade"  id="register_modal" style="display:none;"><!--lwa-modal-->
 			<div class="modal-dialog" role="document">
 				<div class="modal-content">
 
@@ -42,34 +42,40 @@
 	            <table>
 	                <tr class="lwa-username">
 	                    <td class="username_label">
-	                        <label>Username<?php// esc_html_e( 'Username','login-with-ajax' ) ?></label>
+	                        <label>Username</label>
 	                    </td>
 	                    <td class="username_input">
-	                       <div> <input type="text"  name="log" id="lwa_user_login"  class="input form-control"/> </div>
+	                       <div> <input type="text"  name="log" id="lwa_user_login" style="background-color:white;" class="input form-control"/> </div>
 	                    </td>
 	                </tr>
 	                <tr class="lwa-password">
 	                    <td class="password_label">
-	                        <label>Password<?php// esc_html_e( 'Password','login-with-ajax' ) ?></label>
+	                        <label>Password</label>
 	                    </td>
 	                    <td class="password_input">
 	                        <input type="password" name="pwd" id="lwa_user_pass" class="input form-control" value="" />
 	                    </td>
 	                </tr>
-                	<tr><td colspan="2"><?php do_action('login_form'); ?></td></tr>
+<!-- 
+                	<tr>
+                	<td colspan="2">
+                	<?php do_action('login_form'); ?>
+                	</td>
+                	</tr> -->
+
 	                <tr class="lwa-submit">
 	                    <td class="lwa-submit-button">
-	                        <button type="submit" name="wp-submit" class="lwa-wp-submit btn btn-primary " value="<?php esc_attr_e('Log In','login-with-ajax'); ?>" tabindex="100">Log In<?php //esc_attr_e('Log In','login-with-ajax'); ?></button>
+	                        <button type="submit" name="wp-submit" class="lwa-wp-submit btn btn-primary " value="<?php esc_attr_e('Log In','login-with-ajax'); ?>" tabindex="100"><i class="fa fa-sign-in" aria-hidden="true"></i> Login<?php //esc_attr_e('Log In','login-with-ajax'); ?></button>
 	                        <input type="hidden" name="lwa_profile_link" value="<?php echo !empty($lwa_data['profile_link']) ? 1:0 ?>" />
                         	<input type="hidden" name="login-with-ajax" value="login" />
 							<?php if( !empty($lwa_data['redirect']) ): ?>
 							<input type="hidden" name="redirect_to" value="<?php echo esc_url($lwa_data['redirect']); ?>" />
 							<?php endif; ?>
 	                    </td>
-	                    <td class="lwa-links">
-	                        <input name="rememberme" type="checkbox" id="lwa_rememberme" value="forever"/> <label>Remember Me<?php// esc_html_e( 'Remember Me','login-with-ajax' ) ?></label>
+	                    <!-- <td class="lwa-links">
+	                        <input name="rememberme" type="checkbox" id="lwa_rememberme" value="forever"/> <label>Remember Me</label>
 	                        <br />			
-	                    </td>
+	                    </td> -->
 	                </tr>
 	            </table>
 	        </form>
@@ -82,13 +88,13 @@
 	        <div id="remember_slide" class="carousel-item">
         	<?php if( !empty($lwa_data['remember']) && $lwa_data['remember'] == 1 ): ?>
 	        <form style="display:block;" name="lwa-remember" class="lwa-remember" action="<?php echo esc_attr(LoginWithAjax::$url_remember); ?>" method="post" style="display:none;">
-	        	<span class="lwa-status"></span>
 	            <table>
 	                <tr>
 	                    <td>
-	                        <strong>Forgotten Password<?php //esc_html_e("Forgotten Password", 'login-with-ajax'); ?></strong>         
+	                     <i class="fa fa-question" aria-hidden="true" style="color: white;"></i><strong class="slides_reg"> Forgot Password<?php //esc_html_e("Forgotten Password", 'login-with-ajax'); ?></strong>         
 	                    </td>
 	                </tr>
+	                <tr style="min-height: 3px"><td><span class="lwa-status"></span></td></tr>
 	                <tr class="lwa-remember-email">	                    
 	                	<td>
 	                		<div>
@@ -100,7 +106,7 @@
 	                </tr>
 	                <tr>
 	                    <td>
-	                        <button type="submit" class="btn btn-primary " value="<?php esc_attr_e("Get New Password", 'login-with-ajax'); ?>">Get New Password<?php //esc_attr_e("Get New Password", 'login-with-ajax'); ?></button>
+	                        <button type="submit" class="btn btn-primary " value="<?php esc_attr_e("Get New Password", 'login-with-ajax'); ?>"> <i class="fa fa-envelope" aria-hidden="true"></i> Get New Password<?php //esc_attr_e("Get New Password", 'login-with-ajax'); ?></button>
 	                        <input type="hidden" name="login-with-ajax" value="remember" />
 	                    </td>	                
 	                </tr>
@@ -114,7 +120,7 @@
  			<div id="register_slide" class="carousel-item">
 		    <?php if ( get_option('users_can_register') && !empty($lwa_data['registration']) && $lwa_data['registration'] == 1 ) : //Taken from wp-login.php ?>
 		    <div class="lwa-register" style="display:block;">
-		    <strong>Register For This Site<?php //esc_html_e('Register For This Site','login-with-ajax') ?></strong> 
+		    <i class="fa fa-plus" aria-hidden="true" style="color: white;"></i><strong class="slides_reg"> New Account<?php //esc_html_e('Register For This Site','login-with-ajax') ?></strong> 
 				<form name="lwa-register"  action="<?php echo esc_attr(LoginWithAjax::$url_register); ?>" method="post">
 	        		<span class="lwa-status"></span>
 					<table class="table-sm">
@@ -126,50 +132,41 @@
 		                <tr class="lwa-username">
 		                    <td>  
 		                    	<div>
-		                        <?php $msg = Username /*__('Username','login-with-ajax')*/; ?>
-		                        <input type="text" class="form-control" style="width:100%" name="user_login" id="user_login"  value="<?php echo esc_attr($msg); ?>" onfocus="if(this.value == '<?php echo esc_attr($msg); ?>'){this.value = '';}" onblur="if(this.value == ''){this.value = '<?php echo esc_attr($msg); ?>'}" />
+		                        <?php $msg = __('Username','login-with-ajax');//'Username'; ?>
+		                        <input type="text" class="form-control" name="user_login" id="user_login"  value="<?php echo esc_attr($msg); ?>" onfocus="if(this.value == '<?php echo esc_attr($msg); ?>'){this.value = '';}" onblur="if(this.value == ''){this.value = '<?php echo esc_attr($msg); ?>'}" />
 		                        </div> 
 		                    </td>
-		                    <td><!--pass emailed to you-->
-		                    A password will be e-mailed to you.
-		                    	<?php //esc_html_e('A password will be e-mailed to you.', 'login-with-ajax'); ?><br />
-		                    </td>
+		             <!--        <td>
+		       
+		                    	<?php esc_html_e('A password will be e-mailed to you.', 'login-with-ajax'); ?><br />
+		                    </td> -->
 		                </tr>
 		                <tr class="lwa-email">
 		                    <td>
 		                    	<div>
 		                        <?php $msg = __('E-mail','login-with-ajax') ?>
-		                        <input type="text" class="form-control" style="width:100%" name="user_email" id="user_email"  value="<?php echo esc_attr($msg); ?>" onfocus="if(this.value == '<?php echo esc_attr($msg); ?>'){this.value = '';}" onblur="if(this.value == ''){this.value = '<?php echo esc_attr($msg); ?>'}"/>
+		                        <input type="text" class="form-control" name="user_email" id="user_email"  value="<?php echo esc_attr($msg); ?>" onfocus="if(this.value == '<?php echo esc_attr($msg); ?>'){this.value = '';}" onblur="if(this.value == ''){this.value = '<?php echo esc_attr($msg); ?>'}"/>
 		                        </div>
 		                    </td>
-		                    <td><!--register button-->
-		                    	<button type="submit" class="btn btn-primary " value="<?php esc_attr_e('Register','login-with-ajax'); ?>" tabindex="100">Register<?php// esc_attr_e('Register','login-with-ajax'); ?></button>
-		                    </td>
+		                 <!--    <td> -->
+		                    	<!-- <button type="submit" class="btn btn-primary " value="<?php esc_attr_e('Register','login-with-ajax'); ?>" tabindex="100">Register</button> -->
+
+		                 <!--    </td> -->
 		                </tr>
 		                <tr>
-		                    <td>
+		          <!--           <td>
 								<?php
 								//If you want other plugins to play nice, you need this: 
 								do_action('register_form'); 
 							?>
+		                    </td> -->
+		    
+		                    <td>
+		                        <?php //esc_html_e('A password will be e-mailed to you.', 'login-with-ajax'); ?>
+								<button class="register_btn btn" type="submit" value="<?php esc_attr_e('Register','login-with-ajax'); ?>" tabindex="100" /><i class="fa fa-check" aria-hidden="true"></i> Register</button>
+								<input type="hidden" name="login-with-ajax" value="register" />
 		                    </td>
 		                </tr>
-		                <!-- <tr>
-		                	<td>
-		                	<p>
-					            <label style="display:block;" for="array_data"><?php _e( 'Array_data', 'mydomain' ) ?><br />
-					                <input type="text" name="array_data" id="array_data" class="input" value="<?php echo esc_attr( wp_unslash( $array_data ) ); ?>" size="25" /></label>
-					        </p>
-		                	</td>
-		                </tr> -->
-		                <!-- <tr>
-		                    <td>
-		                        <?php esc_html_e('A password will be e-mailed to you.', 'login-with-ajax'); ?><br />
-								<button type="submit" class="btn btn-primary btn-lg" value="<?php esc_attr_e('Register','login-with-ajax'); ?>" tabindex="100"><?php esc_attr_e('Register','login-with-ajax'); ?></button>
-								<!-- <a href="#" class="lwa-links-register-inline-cancel"><?php esc_html_e("Cancel",'login-with-ajax'); ?></a> -->
-								<!--<input type="hidden" name="login-with-ajax" value="register" />
-		                    </td>
-		                </tr> -->
 		            </table>
 				</form>
 			</div>
@@ -187,9 +184,10 @@
 			<button type="button" class="btn btn-primary" data-target="#login_slider" data-slide-to="1">Forgot Password</button>
 			<button type="button" class="btn btn-primary" data-target="#login_slider" data-slide-to="2">Register</button>
 			 -->
-			 <button type="button" class="btn btn-secondary btn-sm" onclick="showSlide('login');">Login</button>
-			<button type="button" class="btn btn-secondary btn-sm" onclick="showSlide('remember');">Forgot Password</button>
-			<button type="button" class="btn btn-secondary btn-sm" onclick="showSlide('register');">Register</button>
+			<button type="button" class="btn btn-secondary btn-sm active_tab" onclick="showSlide('login');"><i class="fa fa-sign-in" aria-hidden="true"></i> Login</button>
+			<button type="button" class="btn btn-secondary btn-sm" onclick="showSlide('remember');"><i class="fa fa-question" aria-hidden="true"></i> Forgot Password</button>
+			<button type="button" class="btn btn-secondary btn-sm" onclick="showSlide('register');"><i class="fa fa-plus" aria-hidden="true"></i> New Account</button>
+			<button type="button" class="btn btn-secondary btn-sm" onclick="refresh_page();" ><i class="fa fa-refresh" aria-hidden="true"></i> Reset</button>
 			
       	</div>
 

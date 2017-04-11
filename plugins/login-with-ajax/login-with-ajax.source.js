@@ -18,7 +18,19 @@ jQuery(document).ready( function($) {
  	$('form.lwa-form, form.lwa-remember, div.lwa-register form').submit(function(event){
 		//Stop event, add loading pic...
  		event.preventDefault();
- 		var form = $(this);
+
+		var form = $(this);
+
+ 		/**/
+ 		if($('#register_slide').hasClass('active')){
+			var re = /[ ]/gi;
+			var user_mail = form.find('#user_email').val().replace(re,'');
+			$('input[name="user_email"]').val(user_mail);
+		}
+		/**/
+
+
+ 		//var form = $(this);
  		var statusElement = form.find('.lwa-status');
  		if( statusElement.length == 0 ){
  			statusElement = $('<span class="lwa-status"></span>');
@@ -33,20 +45,37 @@ jQuery(document).ready( function($) {
 		//Make Ajax Call
 		var form_action = form.attr('action');
 		if( typeof LWA !== 'undefined' ) form_action = LWA.ajaxurl;
+
+		var user_entry = form.find('#user_login').val();
+		if (user_entry!=null && form.attr('name')=="lwa-register")form.find('#user_login').val(user_entry.toLowerCase());
+		
+		/**/
+		if($('#register_slide').hasClass('active')){
+			var form_n = $('form[name="lwa-register"]');
+		}else{
+			var form_n = form;
+		}
+		/**/
+		
 		$.ajax({
 			type : 'POST',
 			url : form_action,
-			data : form.serialize(),
+			data : form_n.serialize(),
 			success : function(data){
 				lwaAjax( data, statusElement );
 				$(document).trigger('lwa_' + data.action, [data, form]);
+				if(form.attr('name')=="lwa-register" && data.result==true){userRegisterDone(form.find('#user_login').val());}
 			},
-			error : function(){ lwaAjax({}, statusElement); },
+			error : function(){ lwaAjax({}, statusElement);},
 			dataType : 'jsonp'
 		});
 		//trigger event
 	});
  	
+ 	
+
+
+
  	//Catch login actions
  	$(document).on('lwa_login', function(event, data, form){
 		if(data.result === true){

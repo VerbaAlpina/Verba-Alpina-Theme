@@ -44,4 +44,37 @@ function filter_menu_items( $args ) {
     return $args;
 }
 add_filter( 'wp_nav_menu_args', 'filter_menu_items' );
+
+function va_combine_footnotes (&$fields, &$combined_footnotes, $prefix){
+
+	$combined_footnotes = '<ol class="footnotes">';
+	$number_footnote = 1;
+
+	foreach ($fields as &$field){
+		$footnotes = strstr_after($field, '<hr class="footnotes">', false);
+		if($footnotes !== false){
+			//Fußnoten-Bereich anpassen
+			preg_match_all('/<li id="fn([0-9]*)-([^"]*)">(.*)<\/li>/sU', $field, $matches, PREG_SET_ORDER);
+				
+			foreach ($matches as $index => $match){
+				$inner_content = preg_replace('/Jump back to footnote [0-9]* in the text/', 'Jump back to footnote ' . ($number_footnote + $index) . ' in the text' , $match[3]);
+				$inner_content = preg_replace('/href="#rf[0-9]*-([^"]*)"/', 'href=#' . $prefix . '_rf' . ($number_footnote + $index) . '-$1', $inner_content);
+				$combined_footnotes .= '<li id="' . $prefix . '_fn' . ($number_footnote + $index) . '-' . $match[2] . '">' . $inner_content . '</li>';
+			}
+				
+			//Text-Bereich anpassen
+			$field = strstr($field, '<hr class="footnotes">', true);
+				
+			$index = 0;
+			$field = preg_replace_callback('/<sup id="rf[0-9]*-([^"]*)">(.*)href="#fn[0-9]*-([^"]*)"([^>]*)>[0-9]*<\/a>/sU', function ($matches) use (&$index, $number_footnote, $prefix){
+				return '<sup id="' . $prefix . '_rf' . ($number_footnote + $index) . '-' . $matches[1] . '">' . $matches[2] . 'href="#' . $prefix . '_fn' . ($number_footnote + $index) . '-' . $matches[3] .'"' . $matches[4] . '>' . ($number_footnote + $index++) . '</a>';
+			}, $field);
+					
+				$number_footnote += count($matches);
+		}
+	}
+
+	$combined_footnotes .= '</ol>';
+}
+
 ?>

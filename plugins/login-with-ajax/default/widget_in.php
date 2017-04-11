@@ -45,8 +45,12 @@
 					?>
 					<!-- class="btn btn-outline-secondary btn-sm"  role="button" -->
 					<!-- <i class="fa fa-camera-retro fa-lg"></i> -->
-					<label style="color:white;font-family: 'Roboto Slab';font-size=1.2em "><?php echo wp_get_current_user()->user_login; ?></label>
-					<a  style="color: white;" id="wp-logout" href="<?php echo wp_logout_url() ?>"><!-- <i style="padding-right:5px;" class="fa fa-user-circle-o fa-2x" aria-hidden="true"></i> --><i id="wp-logout-icon" style="padding-right:5px;" class="fa fa-sign-out fa-2x"  aria-hidden="true"></i></a><br />
+					<a  style="color: white;  text-decoration: none;" id="wp-logout" href="<?php echo wp_logout_url() ?>">
+
+					<i id="wp-logout-icon" class="fa fa-times"  aria-hidden="true"></i>
+					<div id="user_profile"><?php echo wp_get_current_user()->user_login; ?></div>
+
+					<!-- <i style="padding-right:5px;" class="fa fa-user-circle-o fa-2x" aria-hidden="true"></i> --></a><br />
 					<!---->
 					<!-- <?php //esc_html_e( 'Log Out' ,'login-with-ajax') ?> -->
 					<!-- <a href="#" id="firstButton" class="btn btn-primary" rel="popover" data-message="Message">Click Me (Working)</a>
