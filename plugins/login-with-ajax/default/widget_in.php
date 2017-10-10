@@ -69,11 +69,11 @@
 					<!---->
 					<?php
 					//Blog Admin
-					if( current_user_can('list_users') ) {
+					/*if( current_user_can('list_users') ) {
 						?>
 						<a href="<?php echo get_admin_url(); ?>"><?php esc_html_e("blog admin", 'login-with-ajax'); ?></a>
 						<?php
-					}
+					}*/
 				?>
 			</td>
 		<!--</tr>

@@ -22,9 +22,11 @@
 <title><?php wp_title( '|', true, 'left' ); ?></title>
 <link rel="profile" href="http://gmpg.org/xfn/11" />
 <link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>" />
+
 <link rel="stylesheet"  href="<?php echo $url?>/wp-content/plugins/plugin_va-crowd/assets/css/bootstrap.min.css"/>
 <link rel="stylesheet"  href="<?php echo $url?>/wp-content/plugins/plugin_va-crowd/style.css"/>
 <link rel="stylesheet"  href="<?php echo $url?>/wp-content/plugins/plugin_va-crowd/assets/css/font-awesome.min.css"/>
+
 
 <?php // Loads HTML5 JavaScript file to add support for HTML5 elements in older IE versions. ?>
 <!--[if lt IE 9]>
@@ -34,19 +36,22 @@
 	remove_action('wp_head', 'wp_print_styles', 8);
 ?>
 <?php wp_head(); ?>
-
-<!---
-WINTER: /wp-content/uploads/DSC_02793.jpg	
-->
-
-<!-- BACKGROUND IMAGE -->
 <style type="text/css">
-html { 
-  background: url(<?php echo get_site_url(1);?>/wp-content/uploads/20161023_134744_edited.jpg) no-repeat center center fixed; 
+
+html{
+	width: 100%;
+	height: 100%;
+}
+
+body { 
+
+  background: url(<?php echo get_site_url(1);?>/wp-content/uploads/gs_2168_edited_smaller.jpg) no-repeat center center fixed; 
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
+  width: 100%;
+  height: 100%;
 }
 
 a:link {color: white}
@@ -88,20 +93,18 @@ cursor:pointer;
 	display: none;
 }
 
-
 #flyer_modal .slogan_wrapper{
 width: 100%;
 }
 
 #flyer_modal .flyer_custom_close{
-    margin-top: -22px;
-    margin-right: -19px;
+      margin-top: -21px;
+    margin-right: -16px;;
     cursor: pointer;
     color: #fff;
     position: absolute;
     right: 0;
     z-index: 10000;
-
   }
 
  .flyer_custom_close .fa-stack{
@@ -116,10 +119,6 @@ width: 100%;
      margin-top: -10px;
   }
 
-
-/*.flyer_custom_close:before {
-    content: "×";
-}*/
 
 #flyer_modal .flyer_custom_close:hover{
   color: #ccc;
@@ -156,6 +155,109 @@ width: 100%;
  color:white;
 }
 
+
+.flag_img {
+	width: 35px;
+	height: 35px;
+	margin-right: 3px;
+	filter: grayscale(0.6);
+    margin-top: -3px;
+}
+
+
+.lang_container{
+	display: inline-block;
+	margin-bottom: 15px;
+	margin-right: 15px;
+	font-size: 0.5em;
+}
+
+.lang_container a{
+
+	text-decoration: none;
+}
+
+
+
+.lang_container:hover .flag_img{
+	filter: initial;
+}
+
+.outerlangcontainer{
+	position: fixed;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    background: rgba(41, 41, 41, 0.45);
+    padding-top: 0.5em;
+	padding-bottom: 0.5em;
+	padding-left:10px;
+	padding-right: 10px;
+};
+
+#version_tag{
+     display: none; 
+    color: black;
+  /*  font-size: calc(8px + (0.4vw + 0.1vh));*/
+    text-align: right;
+    margin-top: -50px;
+  
+}
+
+#version_tag .fa-stack{
+
+
+
+} 
+
+#version_tag i{
+/*	position: absolute;
+    display: inline-block;
+    font-size: 43px;
+    float: right;*/
+}
+
+#tag_text{
+	position: relative;
+    color: white;
+    font-size: 13px;
+    float: left;
+    z-index: 1000;
+    margin-left: 13px;
+}
+
+@media screen and (min-width: 1068px) {
+
+	.outerlangcontainer{
+	    padding-bottom: 2em;
+	    padding-top: 2em;
+
+	}
+
+}
+
+
+@media screen and (max-width: 533px) {
+
+	.lang_container{
+		display: block;
+	}
+
+
+	.flag_img {
+	width: 30px;
+	height: 30px;
+	margin-right: 3px;
+    }
+
+	.outerlangcontainer{
+	  text-align: left;
+	   padding-top: 1em;
+	   padding-bottom: 0.6em;
+	   padding-left: 1.2em;
+	}
+
+}
 
 @media screen and (max-width: 628px) {
 
@@ -230,6 +332,10 @@ width: 100%;
     width: 47%;
 	}
 
+    .lang_container{
+		font-size: 16px;
+	}
+
 }
 
 .social_icon_container{
@@ -249,22 +355,56 @@ width: 100%;
    opacity: 0.85;
 }
 
+#contribute_logo{
+    position: absolute;
+    width: calc(20vw + 25vh);
+    top: 0;
+    padding-left: 5px;
+    padding-right: 16px;
+ /*   min-width: 250px;*/
+    max-width: 464px;
+    z-index: 100;
+}
+
+#contribute_logo img{
+	width: 100%;
+}
+
+
+
+#contribute_logo:hover{
+opacity: 0.85;
+}
+
+.gradient_overlay{
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	top:0px;
+/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ffffff+0,ffffff+43&0.7+0,0+43 */
+background: -moz-linear-gradient(top, rgba(255,255,255,0.7) 0%, rgba(255,255,255,0) 43%); 
+background: -webkit-linear-gradient(top, rgba(255,255,255,0.7) 0%,rgba(255,255,255,0) 43%); 
+background: linear-gradient(to bottom, rgba(255,255,255,0.7) 0%,rgba(255,255,255,0) 43%); 
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b3ffffff', endColorstr='#00ffffff',GradientType=0 ); 
+}
 
 </style>
 
 <script type="text/javascript">
 
-	var image_w = 3264;
-	var image_h = 1836;
+	var image_w = 2255;
+	var image_h = 1899;
 	
-	var right_dist = 0.05;
-	var top_dist = 0.05;
+	var right_dist = 0.01;
+	var top_dist = 0.005;
 	
 	var logo_w = 80;
 	var logo_h = 40;
 	
-	var percX = 0.25;
-	var percY = image_w * percX / logo_w * logo_h / image_h;
+	// change logo size
+	var percX = 0.32;
+
+	var percY = image_w * percX / (logo_w * image_h) * logo_h;
 	
 	
 	var resImage = parseFloat(image_w) / image_h;
@@ -272,9 +412,11 @@ width: 100%;
 
 	var urlEN = "<?php echo get_site_url(8);?>";
 	var page_id = "<?php 
-		switch_to_blog(8);
+		if(is_multisite())
+			switch_to_blog(8);
 		echo get_page_by_title("Crowdsourcing")->ID;
-		restore_current_blog();
+		if(is_multisite())
+			restore_current_blog();
 	?>";
 	
 	var start_slogan_texts = ["Parlons la langue des Alpes!","Parliamo la lingua delle Alpi!","Govori jezik Alp!","Sprich die Sprache der Alpen!"];
@@ -314,6 +456,12 @@ width: 100%;
  		jQuery('#flyer_modal #facebook_icon').on('click',function(e){
       	 jQuery('#flyer_modal .modal-content').off();
       	 window.location = "https://www.facebook.com/verbaalpina/";
+      })
+
+
+       jQuery('#flyer_modal #youtube_icon').on('click',function(e){
+      	 jQuery('#flyer_modal .modal-content').off();
+      	 window.location = "https://www.youtube.com/watch?v=hxbtXzxa5LY";
       })	
 
 
@@ -352,7 +500,7 @@ width: 100%;
 
 
 
-	jQuery('#flyer_modal').modal('show');
+	// jQuery('#flyer_modal').modal('show');
 
 
 
@@ -364,21 +512,7 @@ width: 100%;
 
 	});
 
-	function adjustSizesRelativeToImage (){
-		var widthW = jQuery(window).width();
-		var heightW = jQuery(window).height();
-		var resBG = parseFloat(widthW) /  heightW;
-		
-		var prop = parseFloat(resImage) / resBG;
-		
-		if(prop <= 1){ //Adjust to browser width
-			jQuery("#logoSVG").css({"width": (percX * widthW), "height" : (percX * widthW * logo_h / logo_w), "right": (right_dist * widthW), "top": (((top_dist - ((1 - prop) / 2)) / prop) * heightW)});
-		}
-		else { //Adjust to browser height
-			prop = 1 / prop;
-			jQuery("#logoSVG").css({"width": (percY * heightW * logo_w / logo_h) , "height": (percY * heightW), "top": (top_dist * heightW), "right": (((right_dist - ((1 - prop) / 2)) / prop) * widthW)});
-		}
-	}
+
 	
 	function adjustSizesRelativeToWindow (){
 		var widthW = jQuery(window).width();

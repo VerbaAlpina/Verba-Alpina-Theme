@@ -8,39 +8,72 @@
  $url = get_site_url(1);
 ?>
 
+<div class="gradient_overlay"></div>
+
 <div id="logoSVG" style="position: absolute;">
-	<object type="image/svg+xml" width="100%" height="100%" data="<?php echo $url?>/wp-content/uploads/VA_logo.svg">
+	<object type="image/svg+xml" width="100%" height="100%" data="<?php echo $url?>/wp-content/themes/verba-alpina/images/VA_logo_17_2.svg">
 	</object>
+ <!--  <div id="version_tag"><span id="tag_text">Version: <b>17/1</b></span></div> -->
 </div>
 
-<!--<div style="position: fixed; bottom: 8%; width:100%; text-align: center"> WINTER-->
-<div style="position: fixed; top: 80%; left: 10%; width: 80%; text-align: center">
-	<h1 style="font-size: 2.5vh">
-		<span style="white-space: nowrap;">
-			<img src="<?php echo $url?>/wp-content/plugins/multilingual-press/assets/images/flags/de.gif" />
-			<a href="<?php echo get_site_url(1) . '?page_id=162'; ?>">Deutsch</a>
-		</span>
-		
-		<span style="white-space: nowrap;">
-			<img src="<?php echo $url?>/wp-content/plugins/multilingual-press/assets/images/flags/fr.gif" />
-			<a href="<?php echo get_site_url(1) . '/fr/?page_id=4'; ?>">Français</a>
-		</span>
+<div id="contribute_logo"><a href="<?php echo get_site_url(8);?>?page_id=<?php 
+if(is_multisite())
+	switch_to_blog(8); 
+echo get_page_by_title("Crowdsourcing")->ID; 
+if(is_multisite())
+	restore_current_blog();?>"><img src="<?php echo $url?>/wp-content/uploads/mitmachen.png"></a></div>
 
+<div class = "outerlangcontainer">
+<!--<div style="position: fixed; bottom: 8%; width:100%; text-align: center"> WINTER-->
+<div>
+	<h1>
+    <div class="lang_container">
 		<span style="white-space: nowrap;">
-			<img src="<?php echo $url?>/wp-content/plugins/multilingual-press/assets/images/flags/it.gif" />
-			<a href="<?php echo get_site_url(1) . '/it/?page_id=10'; ?>">Italiano</a>
+      <a href="<?php echo get_site_url(1) . '?page_id=162'; ?>">
+			<img class="flag_img" src="<?php echo $url?>/wp-content/themes/verba-alpina/images/svg_flags/germany_svg_round.png" />
+	   	Deutsch</a>
 		</span>
-		
+		</div>
+
+   <div class="lang_container">
 		<span style="white-space: nowrap;">
-			<img src="<?php echo $url?>/wp-content/plugins/verba-alpina/images/rg.jpg" />
-			<a href="<?php echo get_site_url(1) . '/rg/?page_id=162'; ?>">Rumantsch&nbsp;Grischun</a>
+      <a href="<?php echo get_site_url(1) . '/fr/?page_id=4'; ?>">
+			<img class="flag_img" src="<?php echo $url?>/wp-content/themes/verba-alpina/images/svg_flags/france_svg_round.png" />
+			Français</a>
 		</span>
-		
+   </div>
+
+   <div class="lang_container">
 		<span style="white-space: nowrap;">
-			<img src="<?php echo $url?>/wp-content/plugins/multilingual-press/assets/images/flags/si.gif" />
-			<a href="<?php echo get_site_url(1) . '/si/?page_id=5'; ?>">Slovenščina</a>
+      <a href="<?php echo get_site_url(1) . '/it/?page_id=10'; ?>">
+			<img class="flag_img" src="<?php echo $url?>/wp-content/themes/verba-alpina/images/svg_flags/italy_svg_round.png" />
+			Italiano</a>
 		</span>
+  </div>
+	
+  <div style ="white-space: nowrap; display: inline-block;"> 
+
+    <div class="lang_container">
+  		<span style="white-space: nowrap;">
+        <a href="<?php echo get_site_url(1) . '/rg/?page_id=162'; ?>">
+  			<img class="flag_img" src="<?php echo $url?>/wp-content/themes/verba-alpina/images/svg_flags/canton_svg_round.png" />
+  			Rumantsch&nbsp;Grischun</a>
+  		</span>
+    </div>
+  		
+    <div class="lang_container">
+  		<span style="white-space: nowrap;">
+      <a href="<?php echo get_site_url(1) . '/si/?page_id=5'; ?>">
+  			<img class="flag_img" src="<?php echo $url?>/wp-content/themes/verba-alpina/images/svg_flags/slovenia_svg_round.png" />
+  			Slovenščina</a>
+  		</span>
+    </div>
+
+  </div>
+
 	</h1>
+</div>
+
 </div>
 
 <div class="modal fade" id="flyer_modal">
@@ -51,6 +84,7 @@
             <div class="social_icon_container">
             <i id="facebook_icon" class="social_icon fa fa-facebook-official" aria-hidden="true"></i>
             <i id="twitter_icon" class="social_icon fa fa-twitter-square" aria-hidden="true"></i>
+            <i id="youtube_icon" class="social_icon fa fa-youtube-square" aria-hidden="true"></i>
             </div>
 
      <div class="flyer_custom_close"><span class="fa-stack"><i style="font-size: 27px;" class="fa fa-circle fa-stack-1x" aria-hidden="true"></i><i style="color:#3f84c5" class="fa fa-times-circle fa-stack-1x" aria-hidden="true"></i></span></div>
@@ -93,14 +127,9 @@
   </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->  
 
-
-
-<!-- <script src="<?php echo $url?>/wp-content/plugins/plugin_va-crowd/assets/js/jquery.js" type="text/javascript"></script> -->
-<script src="<?php echo $url?>/wp-content/plugins/plugin_va-crowd/assets/js/tether.min.js" type="text/javascript"></script>
-<script src="<?php echo $url?>/wp-content/plugins/plugin_va-crowd/assets/js/bootstrap.min.js" type="text/javascript"></script>
-
-
-
 <?php
  get_footer('start');
  ?>
+ 
+ <script src="<?php echo $url?>/wp-content/plugins/plugin_va-crowd/assets/js/tether.min.js" type="text/javascript"></script>
+<script src="<?php echo $url?>/wp-content/plugins/plugin_va-crowd/assets/js/bootstrap.min.js" type="text/javascript"></script>

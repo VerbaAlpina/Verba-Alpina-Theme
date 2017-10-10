@@ -9,8 +9,8 @@
 	<div id="login_div" style="position:absolute;top:0;right:0; padding-top:5px; padding-right:5px;" class="lwa lwa-template-modal"><?php //class must be here, and if this is a template, class name should be that of template directory ?>
 
 		
-<!-- data-toggle="popover" data-content="And here's some amazing content. It's very engaging. Right?" -->
-		<a role="button"  id="open_login_modal" style="color: white;" data-toggle="modal" data-target="#register_modal" href="<?php echo esc_attr(LoginWithAjax::$url_login); ?>" ><!-- <i class="fa fa-sign-in fa-lg" aria-hidden="true"></i> --><span  id="icon_login" class="fa-stack"><i class="fa fa-user-o fa-stack-1x login_child" aria-hidden="true"></i><i class="fa fa-user fa-stack-1x login_child" style="opacity: 0.8; color: #2b2b2b;" aria-hidden="true"></i></span></a>
+<!-- data-toggle="popover" data-content="And here's some amazing content. It's very engaging. Right?" --> <!--  -->
+		<a role="button"  id="open_login_modal" style="color: white;"  ><!--data-toggle="modal" data-target="#register_modal" href="<?php echo esc_attr(LoginWithAjax::$url_login); ?>"  <i class="fa fa-sign-in fa-lg" aria-hidden="true"></i> --><span  id="icon_login" class="fa-stack"><i class="fa fa-user-o fa-stack-1x login_child" aria-hidden="true"></i><i class="fa fa-user fa-stack-1x login_child" style="opacity: 0.8; color: #2b2b2b;" aria-hidden="true"></i></span></a>
 <!-- class="lwa-links-modal btn btn-default btn-xs" -->
 
 
