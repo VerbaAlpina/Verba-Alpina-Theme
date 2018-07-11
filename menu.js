@@ -14,51 +14,114 @@ var currentURL;
 
 function addClickBehaviorToNav(){
 
+var prevent_click = false;
+
 	jQuery('.menu-toggle').on('click',function(){
 	
 	   performMenuClick(jQuery(this))
 	
 	  })
 	
-	jQuery('.tb_lang_menu').on('click',function(){
-		if(VA_THEME["has_translations"] == "1")
-			jQuery('.language_modal_main').modal();
+	jQuery('.tb_lang_menu').on('click',function(e){
+
+	    e.preventDefault();
+
+		if(!prevent_click){
+
+			if(VA_THEME["has_translations"] == "1")
+				if(!jQuery('.language_modal_main').hasClass('in')) jQuery('.language_modal_main').modal();
+				else  jQuery('.language_modal_main').modal('hide');
+		}
 	})
 	
-	jQuery('.tb_share_menu').on('click', function(){
-		if(ajax_object.page_title == "KARTE"){
-			categoryManager.produceMapURL(function (link){
-				currentURL = link;
-				jQuery('.share_modal_main').modal();
-			});
-		}
-		else {
-			currentURL = window.location.href;
-			jQuery('.share_modal_main').modal();
+	jQuery('.tb_share_menu').on('click', function(e){
+
+		  e.preventDefault();
+
+		if(!prevent_click){
+
+			if(ajax_object.page_title == "KARTE" && (ajax_object.db != "xxx" || ajax_object.va_staff == "1")){
+				categoryManager.produceMapURL(function (link){
+					currentURL = link;
+					if(!jQuery('.share_modal_main').hasClass('in')) jQuery('.share_modal_main').modal();
+					else  jQuery('.share_modal_main').modal('hide');
+				});
+			}
+			else {
+				currentURL = window.location.href;
+				if(!jQuery('.share_modal_main').hasClass('in'))  jQuery('.share_modal_main').modal();
+				else jQuery('.share_modal_main').modal('hide');
+			}
+
 		}
 	});
 	
 	
-	jQuery('.tb_login_menu').on('click',function(){
-		if(ajax_object.user != "")
-			jQuery('.backend_modal_main').modal();
+	jQuery('.tb_login_menu').on('click',function(e){
+
+			if(!prevent_click){
+
+				if(ajax_object.user != "" && !jQuery('.backend_modal_main').hasClass('in'))
+					jQuery('.backend_modal_main').modal();
+				 else jQuery('.backend_modal_main').modal('hide');
+		 }
 	 });
 	
-	jQuery('.tb_db_menu').on('click',function(){
-	   jQuery('.db_select_main').modal();
-	 })
+	jQuery('.tb_db_menu').on('click',function(e){
 
-	jQuery('.version_tag_hover').on('click',function(){
-	   jQuery('.db_select_main').modal();
+		if(!jQuery(this).hasClass("pencil")){
+			e.preventDefault();
+
+			if(!prevent_click){
+				if(!jQuery('.db_select_main').hasClass('in'))
+					jQuery('.db_select_main').modal();
+				else 
+					jQuery('.db_select_main').modal('hide');
+			}
+		}
+	 });
+
+	jQuery('.version_tag_hover').on('click',function(e){
+
+	     e.preventDefault();
+
+		if(!prevent_click){
+
+			if(!jQuery('.db_select_main').hasClass('in'))
+				jQuery('.db_select_main').modal();
+			else jQuery('.db_select_main').modal('hide');
+
+		}
 	 })		
 	 
 	 jQuery(".db_select_main").on("shown.bs.modal", function (){
 		jQuery("#va_version_select").off();
 		jQuery("#va_version_select").change(function (){
-			reloadPageWithParam("db", this.value);
+			reloadPageWithParam(["db", "tk"], [this.value, undefined]); //Explicitly unset tk since synoptic maps are dependant on the version
 		}); 
 	 });
 
+
+
+   jQuery(".top_menu_modal").on("show.bs.modal", function (){
+	   	if(jQuery(".top_menu_modal").hasClass('in')){
+	   			jQuery(".top_menu_modal").modal('hide');
+	   	}
+
+   	 	if(jQuery('#IM_filter_popup_div').hasClass('in') || jQuery('.im_search_modal').hasClass('in')){
+	      	jQuery(".top_menu_modal").css('z-index','1501');
+	      	jQuery('.modal-backdrop').css('z-index','1500');
+      	}
+
+   });
+
+   jQuery(".top_menu_modal").on("shown.bs.modal", function (){
+   		prevent_click = false;
+   });
+
+    jQuery(".top_menu_modal").on("hidden.bs.modal", function (){
+   		prevent_click = false;
+   });
 
    jQuery(".share_modal_main").on("shown.bs.modal", function (){
 	   jQuery(this).find('.fb_link').attr('href','https://www.facebook.com/sharer/sharer.php?u='+currentURL);	
@@ -67,7 +130,15 @@ function addClickBehaviorToNav(){
 	   jQuery(this).find('.mail_link').attr('href','mailto:?body='+currentURL);
 	   jQuery(this).find('#share_url_text').val(currentURL);	
 
+
 	});
+
+    jQuery(".top_menu_modal").on("hide.bs.modal", function (){
+		 prevent_click = true;
+    	jQuery('.modal-backdrop').css('z-index','');
+    });
+
+
 }
 
 function performMenuClick(_this){
@@ -404,21 +475,32 @@ function checkNavBar(){
 		if(ajax_object.page_title =="KARTE"){
 
 		    if(window_width<=470){
-		    	jQuery('.toolbarcontainer').css('background','white');
-		    	jQuery('.upperbg').show();
+			    	jQuery('.toolbarcontainer').css('background','white');
+			    	jQuery('.upperbg').show();
 
-		    	var otherhelpsymbol = jQuery('.chosen-container-single').next('.helpsymbol').first();
-		    	var otherhelpsymbol_offset = otherhelpsymbol.offset();
+			    	if(jQuery('#leftTable .menu_grp').first().find('.menu_collapse').is(':visible')){
 
-		    	if(otherhelpsymbol_offset!=null){
-		          var i_width = otherhelpsymbol.width();
-		    	  var right = window_width - (otherhelpsymbol_offset.left + (i_width/2) + 8);
-		    	  jQuery('.map_mode_selection').css('right',right+"px");
-		    	}
-		    }
+				    	var otherhelpsymbol = jQuery('.chosen-container-single').next('.helpsymbol').first();
+				    	var otherhelpsymbol_offset = otherhelpsymbol.offset();
+
+				    	if(otherhelpsymbol_offset!=null){
+				          var i_width = otherhelpsymbol.width();
+				    	  var right = window_width - (otherhelpsymbol_offset.left + (i_width/2) + 8);
+				    	  jQuery('.map_mode_selection').css('right',right+"px");
+				    	}
+
+			    	}
+
+		    	    else{
+		    			jQuery('.map_mode_selection').css('right', "9px");
+		    		}
+			    }
+
+
+
 		    else{
 		    	 jQuery('.upperbg').hide();
-    	  	     jQuery('.map_mode_selection').css('right', "12px");
+    	  	     jQuery('.map_mode_selection').css('right', "9px");
 		    }
 		}
 

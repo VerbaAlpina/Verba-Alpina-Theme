@@ -21,7 +21,7 @@ if(is_multisite())
 	switch_to_blog(8); 
 echo get_page_by_title("Crowdsourcing")->ID; 
 if(is_multisite())
-	restore_current_blog();?>"><img src="<?php echo $url?>/wp-content/uploads/mitmachen.png"></a></div>
+	restore_current_blog();?>"><img src="<?php echo $url?>/wp-content/uploads/mitmachen_neu.png"></a></div>
 
 <div class = "outerlangcontainer">
 <!--<div style="position: fixed; bottom: 8%; width:100%; text-align: center"> WINTER-->
@@ -82,9 +82,9 @@ if(is_multisite())
      <div class="modal-body">
 
             <div class="social_icon_container">
-            <i id="facebook_icon" class="social_icon fa fa-facebook-official" aria-hidden="true"></i>
-            <i id="twitter_icon" class="social_icon fa fa-twitter-square" aria-hidden="true"></i>
-            <i id="youtube_icon" class="social_icon fa fa-youtube-square" aria-hidden="true"></i>
+            <i id="facebook_icon" class="social_icon fab fa-facebook-square" aria-hidden="true"></i>
+            <i id="twitter_icon" class="social_icon fab fa-twitter-square" aria-hidden="true"></i>
+            <i id="youtube_icon" class="social_icon fab fa-youtube-square" aria-hidden="true"></i>
             </div>
 
      <div class="flyer_custom_close"><span class="fa-stack"><i style="font-size: 27px;" class="fa fa-circle fa-stack-1x" aria-hidden="true"></i><i style="color:#3f84c5" class="fa fa-times-circle fa-stack-1x" aria-hidden="true"></i></span></div>

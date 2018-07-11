@@ -38,7 +38,7 @@
 
 
 #masthead{
-    z-index: 100;
+    z-index: 2000;
     width: 100%;
     padding: 0;
     position: fixed;
@@ -135,8 +135,12 @@ global $Ue;
 
 <?php 
 global $post;
-$version_pages = array('KARTE', 'METHODOLOGIE', 'KOMMENTARE');
-$show_db_logo = $post && in_array($post->post_title, $version_pages);
+global $admin;
+$version_pages = array('KARTE', 'METHODOLOGIE', 'KOMMENTARE', 'WISS_PUBLIKATIONEN');
+$single_post = $post && $post->post_type == 'post' && is_single();
+$show_edit_post = ($single_post && current_user_can('edit_post', $post->ID)) || ($admin && $post->post_type == 'page');
+$show_db_logo = ($post && $post->post_type == 'page' && in_array($post->post_title, $version_pages)) || $single_post;
+
 $translated_version = function_exists('mlp_get_available_languages');
 if($translated_version){
 	$current_flag = mlp_get_language_flag(get_current_blog_id());
@@ -147,7 +151,7 @@ else {
 
 ?>
 
-<div class="modal fade language_modal_main" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+<div class="modal fade language_modal_main top_menu_modal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-sm">
     <div class="modal-content">
 
@@ -161,23 +165,17 @@ else {
            		$langs = mlp_get_available_languages_titles();
           		$links = mlp_get_interlinked_permalinks();
           		if(!empty($links)){
-	          		foreach ($langs as $key => $clang){
-	          			
-	          			if(isset($links[$key])){
-	          				$link = $links[$key]['permalink'];
-	          				?>
-	          				<div class="modal_lang_cont">
-	          					<a href="<?php echo $link; ?>"><img src="<?php echo $links[$key]['flag'];?>" /><span><?php echo $clang;?></span></a>
-	          				</div>
-	          				<?php
-	          			}
-	          			else {
-	          				?>
-	          				<div class="modal_lang_cont active">
-	         					<img src="<?php echo $current_flag;?>" /><span><?php echo $clang;?></span>
-	         				</div>
-	          				<?php
-	          			}
+          			$divs = [];
+	          		foreach ($links as $key => $details){
+	          		    $link = $details['permalink'];
+	          		    $divs[$key] = '<div class="modal_lang_cont"><a href="' . $link. '"><img src="' . $details['flag'] .'" /><span>' . $langs[$key] . '</span></a></div>';
+	          		}
+	          		$divs[get_current_blog_id()] = '<div class="modal_lang_cont active"><img src="' . $current_flag .'" /><span>' . $langs[get_current_blog_id()] . '</span></div>';
+	          		
+	          		ksort($divs);
+	          		
+	          		foreach ($divs as $div){
+	          			echo $div;
 	          		}
         		}
 			}
@@ -192,7 +190,7 @@ else {
 </div>
 
 
-<div class="modal fade share_modal_main" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+<div class="modal fade share_modal_main top_menu_modal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-sm">
     <div class="modal-content">
 
@@ -215,22 +213,23 @@ else {
            <div class="social_icon_container">
 
 
+
                   <a class="fb_link" href="https://www.facebook.com/verbaalpina/">
                     <div>
-                        <i class="fa fa-facebook-official" aria-hidden="true"></i><span>Facebook</span>
+                        <i class="fab fa-facebook-square" aria-hidden="true"></i><span>Facebook</span>
                     </div>
                   </a>
 
                   <a class="twitter_link" href="https://twitter.com/VerbaAlpina">
                     <div>
-                        <i class="fa fa-twitter-square" aria-hidden="true"></i><span>Twitter</span>             
+                        <i class="fab fa-twitter-square" aria-hidden="true"></i><span>Twitter</span>             
                     </div>
                   </a>
 
 
                   <a class="google_link" href="">
                     <div>
-                        <i class="fa fa-google-plus-official" aria-hidden="true"></i><span>Google Plus</span>             
+                        <i class="fab fa-google-plus-square" aria-hidden="true"></i><span>Google Plus</span>             
                     </div>
                   </a>
 
@@ -243,7 +242,7 @@ else {
                    
                 <a class="youtube_link" href="https://www.youtube.com/watch?v=hxbtXzxa5LY"> 
                     <div>
-                        <i class="fa fa-youtube-play" aria-hidden="true"></i><span>YouTube</span>         
+                        <i class="fab fa-youtube-square" aria-hidden="true"></i><span>YouTube</span>         
                     </div>
                   </a>
 
@@ -257,12 +256,12 @@ else {
 
 <?php if (is_user_logged_in()) {?>
 
-<div class="modal fade backend_modal_main" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+<div class="modal fade backend_modal_main top_menu_modal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-sm">
     <div class="modal-content">
 
      <div class="modal-header">
-        <h5 class="modal-title"> <i class="fa fa-user-o" aria-hidden="true"></i> <span><?php echo wp_get_current_user()->user_login; ?></span></h5>
+        <h5 class="modal-title"> <i class="far fa-user" aria-hidden="true"></i> <span><?php echo wp_get_current_user()->user_login; ?></span></h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -294,13 +293,22 @@ else {
 						$list[] = 'Datenbank-Dokumentation';
 						$list[] = 'CSGRAPH';
 					}
+					
+					if(isDevTester()){
+    					$user_key = get_user_meta(get_current_user_id(), 'va_kuerzel', true);
+    					if ($user_key == 'FZ'){
+    					    $list[] = 'Todos';
+    					}
+					}
                }
 				
 				if(!empty($list)){
 					echo '<h2 style="font-weight: bold;font-size: 14px; margin-bottom:5px;margin-top: 5px;">Interne Seiten: </h2><ul>';
 				
 					foreach ($list as $entry){
-						echo '<li><a href="' . get_page_link(get_page_by_title($entry)) . '">' . $entry . '</a></li>';
+						$page = get_page_by_title($entry);
+						if($page)
+							echo '<li><a href="' . get_page_link($page) . '">' . $entry . '</a></li>';
 					}
 					
 					echo '</ul>';
@@ -312,7 +320,7 @@ else {
              </div>
               
               <div style="margin-top: 10px">             
-                  <a href="<?php echo admin_url(); ?>"><button type="button" class="back_m_btn" style="color:green;border:1px solid green;"><i class="fa fa-window-restore" aria-hidden="true"></i> Backend</button></a>
+                  <a href="<?php echo get_admin_url(1); ?>"><button type="button" class="back_m_btn" style="color:green;border:1px solid green;"><i class="fa fa-window-restore" aria-hidden="true"></i> Backend</button></a>
                   <a href="<?php echo wp_logout_url(); ?>"><button style="float:right; color:red; border:1px solid red;" type="button" class="back_m_btn"><i class="fa fa-times" aria-hidden="true"></i> <?php _e('Log out'); ?></button></a>
                </div>
           </div> 
@@ -328,7 +336,7 @@ else {
 
 <?php if($show_db_logo){ ?>
 
-<div class="modal fade db_select_main" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+<div class="modal fade db_select_main top_menu_modal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-sm">
     <div class="modal-content">
 
@@ -343,7 +351,7 @@ else {
           <div class="db_select_head"> <?php echo ucfirst($Ue['DATENBANK_VERSION']);?>:</div>
 
             <select id="va_version_select">
-              <?php va_get_version_options(); ?>
+              <?php va_get_version_options($post? $post->post_date: null); ?>
             </select>
 
           </div>
@@ -388,7 +396,7 @@ else {
 		</nav><!-- #site-navigation -->
 
     <div class="toolbar" style="width: <?php 
-    	if($show_db_logo){
+    	if($show_db_logo || $show_edit_post){
     		echo '198px';
     	}
     	else {
@@ -434,7 +442,7 @@ else {
 
             </div>
             <?php 
-            if ($show_db_logo){
+            if ($show_db_logo && !$show_edit_post){
             ?>
             <div class="tb_i_container tb_db_menu">
             	<i class="tb_icon fa fa-database" aria-hidden="true"></i>
@@ -442,9 +450,19 @@ else {
             <?php 
             }
             ?>
-            <div class="tb_i_container tb_share_menu">
+            <div class="tb_i_container tb_share_menu" title="<?php echo ucfirst($Ue['SHARE_TEXT']);?>">
             	<i class="tb_icon fa fa-share-alt" aria-hidden="true"></i>
             </div>
+
+            <?php 
+            if ($show_edit_post){
+            ?>
+              <div class="tb_i_container tb_db_menu pencil">
+                <a href="<?php echo get_edit_post_link($post->ID) ?>"> <i class="tb_icon fas fa-pencil-alt" aria-hidden="true" ></i> </a>
+              </div>
+            <?php 
+            } ?>
+
         </div>   
 
         <div class="toolbar_section toolbar_right"></div>

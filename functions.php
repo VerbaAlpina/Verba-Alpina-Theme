@@ -9,7 +9,7 @@ function va_theme_enqueue_scripts() {
     
     global $va_page_has_translations;
     
-	if(is_page_template($templates)){
+    if((!isset($_REQUEST['format']) || $_REQUEST['format'] != 'iframe') && is_page_template($templates)){
     	wp_enqueue_script('va-menu-script', get_stylesheet_directory_uri() . '/menu.js', array('jquery'));
     	
     	if(function_exists('mlp_get_interlinked_permalinks'))
@@ -29,6 +29,7 @@ function mh_footer_info() {
 		$impressum = get_page_by_title('IMPRESSUM');
 		$datenschutz = get_page_by_title('DATENSCHUTZ');
 		$kontakt = get_page_by_title('KONTAKT');
+		$license = va_get_glossary_link_and_title(41);
 		
 		$output = '<div id="fusszeile" style="float: right">';
 		
@@ -42,6 +43,11 @@ function mh_footer_info() {
 		
 		if($kontakt)
 			$link_list[] .= '<a href="' . get_permalink($kontakt).'">' . $Ue['KONTAKT'] . '</a>';
+		
+		if($license[0])
+			$link_list[] .= '<a href="' . $license[0] .'">' . $license[1] . '</a>';
+		
+		
 
 		$bottom_dfg_logo = '
 		<a href="http://gepris.dfg.de/gepris/projekt/253900505" target="_blank"><img class="bottom_logo_dfg" src="'.get_stylesheet_directory_uri().'/images/dfg_logo_blau_4c.svg" /></a>
@@ -108,7 +114,7 @@ function va_combine_footnotes (&$fields, &$combined_footnotes, $prefix){
 	$combined_footnotes .= '</ol>';
 }
 
-function va_get_version_options (){
+function va_get_version_options ($fromDate = null){
 	global $va_current_db_name;
 	global $va_xxx;
 	global $Ue;
@@ -122,19 +128,28 @@ function va_get_version_options (){
 	
 	echo '<option value="xxx" style="background: ' . $col_current . '" ' . ('va_xxx' == $va_current_db_name? 'selected ': '') . '>' .$xxx_name . '</option>';
 
-	$versionen = $va_xxx->get_col('SELECT Nummer from Versionen WHERE Website ORDER BY Nummer DESC');
+	$versionen = $va_xxx->get_results('SELECT Nummer, Erstellt_Am from Versionen WHERE Website ORDER BY Nummer DESC', ARRAY_A);
 	
 	$first = true;
 	foreach ($versionen as $version){
-		$html = va_format_version_number($version);
+		$html = va_format_version_number($version['Nummer']);
 	
+		$options = '';
+		if('va_' . $version['Nummer'] == $va_current_db_name){
+			$options .= ' selected';
+		}
+
+		if($fromDate > $version['Erstellt_Am']){
+			$options .= ' disabled';
+		}
+		
 		if($first){
 			$html .= ' (' . $Ue['ZITIERVERSION'] . ')';
-			echo '<option value="' . $version .'" style="background: ' . $col_last . '" ' . ('va_' . $version == $va_current_db_name? 'selected ': '') . '>' . $html . '</option>';
+			echo '<option value="' . $version['Nummer'] .'" style="background: ' . $col_last . '" ' . $options . '>' . $html . '</option>';
 			$first = false;
 		}
 		else {
-			echo '<option value="' . $version .'" style="background: ' . $col_old . '" ' . ('va_' . $version == $va_current_db_name? 'selected ': '') . '>' . $html . '</option>';
+			echo '<option value="' . $version['Nummer'] .'" style="background: ' . $col_old . '" ' . $options . '>' . $html . '</option>';
 		}
 	}
 }

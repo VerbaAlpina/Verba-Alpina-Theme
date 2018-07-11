@@ -47,10 +47,10 @@
 					<!-- <i class="fa fa-camera-retro fa-lg"></i> -->
 					<a  style="color: white;  text-decoration: none;" id="wp-logout" href="<?php echo wp_logout_url() ?>">
 
-					<i id="wp-logout-icon" class="fa fa-times"  aria-hidden="true"></i>
+					<i id="wp-logout-icon" class="fa fa-times"  aria-hidden="true"></i></a>
 					<div id="user_profile"><?php echo wp_get_current_user()->user_login; ?></div>
 
-					<!-- <i style="padding-right:5px;" class="fa fa-user-circle-o fa-2x" aria-hidden="true"></i> --></a><br />
+					<!-- <i style="padding-right:5px;" class="fa fa-user-circle-o fa-2x" aria-hidden="true"></i> --><br />
 					<!---->
 					<!-- <?php //esc_html_e( 'Log Out' ,'login-with-ajax') ?> -->
 					<!-- <a href="#" id="firstButton" class="btn btn-primary" rel="popover" data-message="Message">Click Me (Working)</a>
