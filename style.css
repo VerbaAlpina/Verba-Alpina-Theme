@@ -29,6 +29,13 @@
        url('fonts/quicksand-v7-latin-regular.svg#Quicksand') format('svg'); /* Legacy iOS */
 }
 
+/*@font-face {
+  font-family: 'Kabel';
+  font-style: normal;
+  font-weight: 400;
+  src: url('fonts/Kabel_Regular.ttf') format('truetype');
+}*/
+
 
 html{
 	overflow-y:auto !important;
@@ -142,8 +149,7 @@ body{
     box-shadow: 6px 6px 12px rgba(0,0,0,0.15);
     text-align: initial;
     background: rgba(251, 251, 251, 1.0);
-    height: 45px;
- 
+    height: 45px; 
 }
 
 
@@ -376,6 +382,17 @@ width: 80%;
 	opacity: 1.0;
 }
 
+.select_export_popup .modal-header h5 {
+    display: inline-block;
+    font-size: 16px;
+}
+
+.export_list_popup .modal-header h5 {
+    display: inline-block;
+    font-size: 16px;
+}
+
+
 .select_hex_popup .modal-header h5 {
     display: inline-block;
     font-size: 16px;
@@ -385,6 +402,12 @@ width: 80%;
     display: inline-block;
     font-size: 16px;
 }
+
+#cite_modal .modal-header h5 {
+    display: inline-block;
+    font-size: 16px;
+}
+
 
 #share_url_text{
 	width: 100%;

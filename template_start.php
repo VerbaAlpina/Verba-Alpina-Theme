@@ -8,74 +8,54 @@
  $url = get_site_url(1);
 ?>
 
-<div class="gradient_overlay"></div>
+<div class="version_div"> <object type="image/svg+xml" width="35px" data="<?php echo $url?>/wp-content/themes/verba-alpina/images/VA_Version.svg"></object></div>
 
-<div id="logoSVG" style="position: absolute;">
-	<object type="image/svg+xml" width="100%" height="100%" data="<?php echo $url?>/wp-content/themes/verba-alpina/images/VA_logo_17_2.svg">
-	</object>
- <!--  <div id="version_tag"><span id="tag_text">Version: <b>17/1</b></span></div> -->
+<div class="gradient_overlay"></div>
+<div class="lmu_signum"><img src="<?php echo $url?>/wp-content/themes/verba-alpina/images/Sigillum_Universitatis_Ludovico-Maximilianeae_white.svg"></div>
+
+<div class="logo_container_outer">
+
+  <div id="logoSVG" style="position: relative;">
+
+    <div class="logo_container">
+
+      	<object id="svg_object" type="image/svg+xml" width="100%" data="<?php echo $url?>/wp-content/themes/verba-alpina/images/VA_LOGO_SVG_triangles.svg"></object>
+
+       <div class="circle_container">
+          <img title="Deutsch" data-link="<?php echo get_site_url(1) . '?page_id=162'; ?>" class="lang_circle" src="<?php echo $url?>/wp-content/themes/verba-alpina/images/circle_de.svg.png">
+          <img title="Français" data-link="<?php echo get_site_url(1) . '/fr/?page_id=4'; ?>" class="lang_circle" src="<?php echo $url?>/wp-content/themes/verba-alpina/images/circle_fr.svg.png">
+          <img title="Italiano" data-link="<?php echo get_site_url(1) . '/it/?page_id=10'; ?>" class="lang_circle" src="<?php echo $url?>/wp-content/themes/verba-alpina/images/circle_it.svg.png">
+          <img title="Slovenščina" data-link="<?php echo get_site_url(1) . '/si/?page_id=5'; ?>" class="lang_circle" src="<?php echo $url?>/wp-content/themes/verba-alpina/images/circle_sl.svg.png">
+          <img title="Rumantsch Grischun" data-link="<?php echo get_site_url(1) . '/rg/?page_id=162'; ?>" class="lang_circle" src="<?php echo $url?>/wp-content/themes/verba-alpina/images/circle_rg.svg.png">
+      
+        </div>
+
+    </div>
+
+  </div>
 </div>
 
-<div id="contribute_logo"><a href="<?php echo get_site_url(8);?>?page_id=<?php 
+<div class="contribute_container">
+<a href="<?php echo get_site_url(8);?>?page_id=<?php 
+
 if(is_multisite())
-	switch_to_blog(8); 
+  switch_to_blog(8); 
 echo get_page_by_title("Crowdsourcing")->ID; 
 if(is_multisite())
-	restore_current_blog();?>"><img src="<?php echo $url?>/wp-content/uploads/mitmachen_neu.png"></a></div>
-
-<div class = "outerlangcontainer">
-<!--<div style="position: fixed; bottom: 8%; width:100%; text-align: center"> WINTER-->
-<div>
-	<h1>
-    <div class="lang_container">
-		<span style="white-space: nowrap;">
-      <a href="<?php echo get_site_url(1) . '?page_id=162'; ?>">
-			<img class="flag_img" src="<?php echo $url?>/wp-content/themes/verba-alpina/images/svg_flags/germany_svg_round.png" />
-	   	Deutsch</a>
-		</span>
-		</div>
-
-   <div class="lang_container">
-		<span style="white-space: nowrap;">
-      <a href="<?php echo get_site_url(1) . '/fr/?page_id=4'; ?>">
-			<img class="flag_img" src="<?php echo $url?>/wp-content/themes/verba-alpina/images/svg_flags/france_svg_round.png" />
-			Français</a>
-		</span>
-   </div>
-
-   <div class="lang_container">
-		<span style="white-space: nowrap;">
-      <a href="<?php echo get_site_url(1) . '/it/?page_id=10'; ?>">
-			<img class="flag_img" src="<?php echo $url?>/wp-content/themes/verba-alpina/images/svg_flags/italy_svg_round.png" />
-			Italiano</a>
-		</span>
-  </div>
-	
-  <div style ="white-space: nowrap; display: inline-block;"> 
-
-    <div class="lang_container">
-  		<span style="white-space: nowrap;">
-        <a href="<?php echo get_site_url(1) . '/rg/?page_id=162'; ?>">
-  			<img class="flag_img" src="<?php echo $url?>/wp-content/themes/verba-alpina/images/svg_flags/canton_svg_round.png" />
-  			Rumantsch&nbsp;Grischun</a>
-  		</span>
+  restore_current_blog();?>">
+  <span style="display: block;">
+    <div>
+          <img class="active" id="svg_img"  src="<?php echo $url?>/wp-content/themes/verba-alpina/images/contribute_de.svg">
+          <img style="display: none" id="svg_img"  src="<?php echo $url?>/wp-content/themes/verba-alpina/images/contribute_fr.svg">
+          <img style="display: none" id="svg_img"  src="<?php echo $url?>/wp-content/themes/verba-alpina/images/contribute_it.svg">
+          <img style="display: none" id="svg_img"  src="<?php echo $url?>/wp-content/themes/verba-alpina/images/contribute_sl.svg">
     </div>
-  		
-    <div class="lang_container">
-  		<span style="white-space: nowrap;">
-      <a href="<?php echo get_site_url(1) . '/si/?page_id=5'; ?>">
-  			<img class="flag_img" src="<?php echo $url?>/wp-content/themes/verba-alpina/images/svg_flags/slovenia_svg_round.png" />
-  			Slovenščina</a>
-  		</span>
-    </div>
-
-  </div>
-
-	</h1>
+   </span>
+</a>  
 </div>
 
-</div>
 
+<!-- 
 <div class="modal fade" id="flyer_modal">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -92,8 +72,8 @@ if(is_multisite())
        <div class="slogan_wrapper">
         <div class="slogan_div">Sprich die Sprache der Alpen!</div>   
  
- <!-- 
-         <div class = "custom_header"><img src="<?php echo plugins_url('assets/images/',__FILE__)?>favicon_bw.png"></img>Verba Alpina </div>  -->
+
+         <div class = "custom_header"><img src="<?php echo plugins_url('assets/images/',__FILE__)?>favicon_bw.png"></img>Verba Alpina </div>  
 
       
         <img style="width:100%; padding-top: 22px;" src="<?php echo get_site_url(1);?>/wp-content/themes/verba-alpina/images/fyler_a5_cut_n.jpg">
@@ -121,11 +101,11 @@ if(is_multisite())
           </div>
 
         </div>
-      </div><!-- /.modal-body -->
+      </div>
       <div class="modal-footer customfooter"></div>
-    </div><!-- /.modal-content -->
-  </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->  
+    </div>
+  </div>
+</div> -->
 
 <?php
  get_footer('start');

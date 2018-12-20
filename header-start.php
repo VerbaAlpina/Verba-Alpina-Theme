@@ -45,13 +45,38 @@ html{
 
 body { 
 
-  background: url(<?php echo get_site_url(1);?>/wp-content/uploads/gs_2168_edited_smaller.jpg) no-repeat center center fixed; 
+  background: url(<?php echo get_site_url(1);?>/wp-content/uploads/gs_2108_test.jpg) no-repeat center center fixed; 
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
   width: 100%;
   height: 100%;
+}
+
+
+.lmu_signum{
+
+	position: relative;
+	height: 100%;
+ 	width: 100%;
+	 top: 0;
+	 opacity: 0.12;
+
+}
+
+.lmu_signum > img{
+     height: 120%;
+     top: -10%;
+      transform: translateX(-58%);
+     position: absolute;
+}
+
+.version_div{
+	position: absolute;
+	top: 15px;
+	right: 15px;
+	z-index: 1;
 }
 
 a:link {color: white}
@@ -382,10 +407,213 @@ opacity: 0.85;
 	height: 100%;
 	top:0px;
 /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ffffff+0,ffffff+43&0.7+0,0+43 */
-background: -moz-linear-gradient(top, rgba(255,255,255,0.7) 0%, rgba(255,255,255,0) 43%); 
+/*background: -moz-linear-gradient(top, rgba(255,255,255,0.7) 0%, rgba(255,255,255,0) 43%); 
 background: -webkit-linear-gradient(top, rgba(255,255,255,0.7) 0%,rgba(255,255,255,0) 43%); 
 background: linear-gradient(to bottom, rgba(255,255,255,0.7) 0%,rgba(255,255,255,0) 43%); 
-filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b3ffffff', endColorstr='#00ffffff',GradientType=0 ); 
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b3ffffff', endColorstr='#00ffffff',GradientType=0 ); */
+background: black;
+opacity: 0.55;
+}
+
+.circle_container{
+  padding-top: 10px;
+  padding-left: 8px;
+  padding-right: 8px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.circle_container img{
+	width: 65px;
+	height: 65px;
+/*	width: 10%;
+	height: 10%;*/
+	position: relative;
+	transition: all .1s ease-in-out; 
+}
+
+.circle_container img:last-child{
+	margin-right: 0px;
+}
+
+.circle_container img:hover{
+	/*opacity: 0.85;*/
+	cursor: pointer;
+	transform: scale(1.12);
+}
+
+
+#logoSVG{
+	text-align: center;
+	width: 100%;
+	position: relative;
+	top: 50%;
+	transform: translateY(-50%);
+	margin-top: -40px;
+}
+
+#logoSVG > img{
+width: 100%;
+height: auto;
+}
+
+.logo_container_outer{
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 0;
+}
+
+.logo_container{
+    margin: 0 auto;
+   	padding-left: 50px;
+    padding-right: 50px;
+}
+
+
+.contribute_container{
+	position: absolute;
+	bottom: 0px;
+	width: 100%;
+	text-align: center;
+	background-color: rgba(0,0,0,0.66);
+	padding-top: 22px;
+	padding-bottom: 25px;
+}
+
+
+
+.contribute_container img{
+	max-height: 34px;
+	width: auto;
+}
+
+
+@media screen and (min-width: 768px){
+
+	.logo_container{
+		max-width: 780px;
+	}
+
+}
+@media screen and (max-width: 767px){
+	.circle_container img{
+
+		width: 60px;
+		height: 60px;
+		/*margin-right: 22px;*/
+	}
+
+}
+
+
+@media screen and (max-width: 500px){
+
+
+	.logo_container{
+		padding-left: 15px;
+	    padding-right: 15px;
+	}
+
+
+	.contribute_container img{
+		max-height: 28px;
+        margin-left: -12.5px;
+	}
+
+	.contribute_container{
+		padding-top: 16px;
+		padding-bottom: 19px;
+	}
+
+	 .version_div > object{
+	 	width: 25px;
+    }
+
+   .circle_container img{
+   		width: 50px;
+		height: 50px;
+   }
+
+}
+
+@media screen and (max-width: 628px){
+
+	  .circle_container img{
+   		width: 56px;
+		height: 56px;
+   }
+}
+
+@media screen and (max-width: 400px){
+
+
+
+	.contribute_container{
+		padding-top: 13px;
+		padding-bottom: 16px;
+	}
+
+	.contribute_container img{
+		margin-left: 0px;
+	}
+
+
+}
+
+@media screen and (min-width: 1500px){
+
+	.logo_container{
+		max-width: 950px;
+	}
+
+	.circle_container img{
+		width: 80px;
+		height: 80px;
+	}
+
+}
+
+@media screen and (max-width: 387px){
+
+		.circle_container img{
+
+		width: 45px;
+		height: 45px;
+		margin-right: 0px;
+		margin-top: -4px;
+	}
+
+	#logoSVG{
+		 margin-left: 2px;
+	}
+}
+
+@media screen and (max-height: 350px){
+
+	#logoSVG{
+		 margin-top: 0px;
+	}
+
+
+.contribute_container{
+	background-color: rgba(0,0,0,0.85);
+}
+
+}
+
+@media screen and (max-width: 300px){
+
+	.contribute_container img{
+		/*margin-left: -25px;*/
+		max-height: 22px;
+	}
+}
+
+@media (max-height: 260px) and (max-width: 500px) {
+    .version_div{
+    	display: none;
+    }
 }
 
 </style>
@@ -424,9 +652,10 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b3ffffff', e
 
 	jQuery(document).ready(function (){
 
-		
-    adjustSizesRelativeToWindow();
-
+		jQuery('.circle_container img').on('click',function(){
+			var data = jQuery(this).data();
+			window.location = data.link;
+		});
 
 
     jQuery('#flyer_modal').on('show.bs.modal', function (e) {
@@ -500,34 +729,83 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b3ffffff', e
 
 
 
-	// jQuery('#flyer_modal').modal('show');
+
+	jQuery('#svg_object')[0].addEventListener('load', function() {
+
+		
+			var last = 0; // timestamp of the last render() call
+			var delay = 1600;
+
+			function render(now) {
+
+			    if(now - last >= delay) {
+			        last = now;
+			        performSwitch();
+			    }
+			    requestAnimationFrame(render);
+			};
+
+			setTimeout(function() {
+				render();
+			}, delay);
+			
 
 
+		    adjustSizesRelativeToWindow();   
+	}, true);
 
-	});
+});
+
 	
-	jQuery(window).resize(function (){
-		adjustSizesRelativeToWindow();
-		adjustSlogan();
+jQuery(window).resize(function (){
+	 adjustSizesRelativeToWindow();
+});
 
-	});
 
+function performSwitch(){
+
+	var old = jQuery('.contribute_container .active');
+	var _new = old.next();
+
+	if(_new.length==0)_new =  jQuery('.contribute_container img:first-child');
+
+	old.fadeOut(800,function(){
+		_new.fadeIn(800,function(){
+			_new.addClass('active');
+			old.removeClass('active');
+		});
+	})
+
+}
 
 	
 	function adjustSizesRelativeToWindow (){
-		var widthW = jQuery(window).width();
-		var heightW = jQuery(window).height();
+		var widthW = window.innerWidth;
+		var heightW = window.innerHeight;
 		var resBG = parseFloat(widthW) /  heightW;
+
 		
-		var prop = parseFloat(resImage) / resBG;
+				var trans_val= -58 + (widthW-1200)*0.05;
+				if( trans_val<-78) trans_val = -78;
+				if(trans_val>-52) trans_val = -52;
+
+				jQuery('.lmu_signum > img').css('transform','translateX('+trans_val+'%)')
 		
-		if(prop <= 1){ //Adjust to browser width
-			jQuery("#logoSVG").css({"width": (percX * widthW), "height" : (percX * widthW * logo_h / logo_w), "right": (right_dist * widthW), "top": (top_dist * heightW)});
-		}
-		else { //Adjust to browser height
-			prop = 1 / prop;
-			jQuery("#logoSVG").css({"width": (percY * heightW * logo_w / logo_h) , "height": (percY * heightW), "top": (top_dist * heightW), "right": (right_dist * widthW)});
-		}
+
+				// var a = document.getElementById("svg_object");
+				// var svgDoc = a.contentDocument;
+				// var svgItem = svgDoc.getElementById("va_slogan");
+
+
+				// if(widthW<=500){
+				// 		svgItem.setAttribute("visibility", "hidden");
+				// }
+
+				// else{
+				// 	svgItem.setAttribute("visibility", "visible");
+
+				// }
+
 	}
 
 

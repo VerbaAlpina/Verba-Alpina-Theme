@@ -64,7 +64,7 @@ jQuery(document).ready( function($) {
 			success : function(data){
 				lwaAjax( data, statusElement );
 				$(document).trigger('lwa_' + data.action, [data, form]);
-				if(form.attr('name')=="lwa-register" && data.result==true){userRegisterDone(form.find('#user_login').val());}
+				if(form.attr('name')=="lwa-register" && data.result==true){userRegisterDone(form.find('#user_login').val(),form.find('#user_age').val(),false);}
 			},
 			error : function(){ lwaAjax({}, statusElement);},
 			dataType : 'jsonp'

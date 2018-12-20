@@ -116,9 +116,53 @@ box-shadow: 0px 1px 12px 5px rgba(0,0,0,0.15);
 
 }
 
+.bg_image{
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	background: url(<?php echo get_site_url(1);?>/wp-content/uploads/gs_2108_test.jpg) no-repeat center center fixed; 
+	opacity: 0.1;
+	z-index: -2;
+}
+
+.lmu_signum_bg{
+	position: fixed;
+	opacity: 0.20;
+	z-index: -1;
+	height: 100%;
+    width: 100%;
+    top: 0;
+}
+
+.lmu_signum_bg > img {
+    height: 80%;
+    display: flex;
+    transform: translateX(-58%);
+    position: absolute;
+    flex-direction: column;
+  justify-content: center;
+}
+
+@media screen and (min-width: 1400px){
+
+	.lmu_signum_bg > img {
+		  height: 100%;
+	}
+}
+
+@media screen and (min-width: 1600px){
+
+	.lmu_signum_bg > img {
+		  height: 120%;
+	}
+}
 
 
 </style>
+
+
+
 
 
 <?php // Loads HTML5 JavaScript file to add support for HTML5 elements in older IE versions. ?>
@@ -133,13 +177,36 @@ global $Ue;
 
 <body <?php body_class(); ?>>
 
+
 <?php 
 global $post;
 global $admin;
-$version_pages = array('KARTE', 'METHODOLOGIE', 'KOMMENTARE', 'WISS_PUBLIKATIONEN');
-$single_post = $post && $post->post_type == 'post' && is_single();
-$show_edit_post = ($single_post && current_user_can('edit_post', $post->ID)) || ($admin && $post->post_type == 'page');
-$show_db_logo = ($post && $post->post_type == 'page' && in_array($post->post_title, $version_pages)) || $single_post;
+
+
+if($post){
+	if($post->post_title !="KARTE"){
+		?>
+			<div class="bg_image"></div>
+			<div class="lmu_signum_bg"><img src="<?php echo $url?>/wp-content/themes/verba-alpina/images/Sigillum_Universitatis_Ludovico-Maximilianeae.svg"></div>
+		<?php 
+	}
+}	
+
+
+
+if($post){
+	$version_pages = array('KARTE', 'METHODOLOGIE', 'KOMMENTARE', 'WISS_PUBLIKATIONEN');
+	$single_post = $post && $post->post_type == 'post' && is_single();
+	$show_edit_post = ($single_post && current_user_can('edit_post', $post->ID)) || ($admin && $post->post_type == 'page');
+	$show_db_logo = ($post && $post->post_type == 'page' && in_array($post->post_title, $version_pages)) || $single_post;
+}
+else {
+	$version_pages = false;
+	$single_post = false;
+	$show_edit_post = false;
+	$show_db_logo = false;
+}
+
 
 $translated_version = function_exists('mlp_get_available_languages');
 if($translated_version){
@@ -292,6 +359,7 @@ else {
 					if ($admin || $va_mitarbeiter){
 						$list[] = 'Datenbank-Dokumentation';
 						$list[] = 'CSGRAPH';
+						$list[] = 'DizMT Eingabe';
 					}
 					
 					if(isDevTester()){
@@ -497,5 +565,43 @@ else {
 		</a>
 		<?php endif; ?>
 	</header><!-- #masthead -->
+
+<script type="text/javascript">
+
+		jQuery(document).ready(function (){ 
+
+			adjustSizesRelativeToWindow();
+
+			jQuery(window).resize(function (){
+				 adjustSizesRelativeToWindow();
+			});
+
+		});
+
+	function adjustSizesRelativeToWindow (){
+		var widthW = window.innerWidth;
+		var heightW = window.innerHeight;
+		
+				var trans_val= -58 + (widthW-1200)*0.05;
+				if( trans_val<-78) trans_val = -78;
+				if(trans_val>-52) trans_val = -52;
+
+				var top = heightW/2 - jQuery('.lmu_signum_bg > img').height()/2;
+
+				jQuery('.lmu_signum_bg > img').css('transform','translateX('+trans_val+'%)');
+				jQuery('.lmu_signum_bg > img').css('top',top+"px");
+
+				if(widthW < 1050) {
+					jQuery('.bg_image').hide();
+					jQuery('.lmu_signum_bg').hide();
+				}
+				else{
+					jQuery('.bg_image').show();
+					jQuery('.lmu_signum_bg').show();
+				}
+
+	}
+</script>	
+
 <div id="page" class="hfeed site">
 	<div id="main" class="wrapper">

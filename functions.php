@@ -9,7 +9,7 @@ function va_theme_enqueue_scripts() {
     
     global $va_page_has_translations;
     
-    if((!isset($_REQUEST['format']) || $_REQUEST['format'] != 'iframe') && is_page_template($templates)){
+    if((!isset($_REQUEST['format']) || $_REQUEST['format'] != 'iframe') && is_page_template($templates) && get_post_type() != 'fragebogen'){
     	wp_enqueue_script('va-menu-script', get_stylesheet_directory_uri() . '/menu.js', array('jquery'));
     	
     	if(function_exists('mlp_get_interlinked_permalinks'))
@@ -158,12 +158,14 @@ function va_nav_menu (){
 	global $Ue;
 	echo '<div class="nav-menu va-menu-list"><ul>';
 	
-	$pages = get_pages ();
+	$pages = get_pages ([
+		'sort_column' => 'menu_order'
+	]);
 	
 	$pages = array_filter($pages, function ($val){
-		return $val != null; //TODO
+		return $val != null; //TODO needed e.g. for rg language. why?
 	});
-	
+
 	$children = array();
 	$item_list = array();
 	
@@ -178,7 +180,12 @@ function va_nav_menu (){
 			if(!isset($children[$page->post_parent])){
 				$children[$page->post_parent] = array();
 			}
-			$children[$page->post_parent][$page->menu_order] = $page;
+			
+			$num = $page->menu_order;
+			while(isset($children[$page->post_parent][$num])){
+				$num++;
+			}
+			$children[$page->post_parent][$num] = $page;
 		}
 	}
 
@@ -188,7 +195,15 @@ function va_nav_menu (){
 		
 		$has_children = isset($children[$page->ID]);	
 			
-		$curr_page = '<li class="page_item page_item-' . $page->ID . ($has_children? ' page_item_has_children': '') . '"><a href="' . get_page_link($page->ID) . '">' . get_the_title($page->ID) . '</a>';
+		if ($page->post_title == 'CS_MITMACHEN'){
+			$cslink = add_query_arg('page_id', '1741', get_site_url(8));
+			$link = $cslink;
+		}
+		else {
+			$link = get_page_link($page->ID);
+		}
+		
+		$curr_page = '<li class="page_item page_item-' . $page->ID . ($has_children? ' page_item_has_children': '') . '"><a href="' . $link . '">' . get_the_title($page->ID) . '</a>';
 		
 		if($has_children){
 			ksort($children[$page->ID]);
@@ -197,8 +212,14 @@ function va_nav_menu (){
 			foreach ($children[$page->ID] as $child){
 				$curr_page .= '<li class="page_item page_item-' . $child->ID . '"><a href="' . get_page_link($child->ID) . '">' . get_the_title($child->ID) . '</a></li>';
 			}
+			
+			if ($page->post_title == 'CS_MITMACHEN'){
+				//Crowdsourcing
+				$curr_page .= '<li class="page_item"><a href="' . $cslink . '">' . 'Crowdsourcing' . '</a></li>';
+			}
 			$curr_page .= '</ul>';
 		}
+		
 		$curr_page .= '</li>';
 		
 		$item_list[] = $curr_page;
@@ -207,10 +228,7 @@ function va_nav_menu (){
 			$person_index = count($item_list) - 1;
 		}
 	}
-	
-	//Crowdsourcing
-	$item_list[] = '<li><a href="' . add_query_arg('page_id', '1741', get_site_url(8)) . '">' . $Ue["CS_MITMACHEN"] . '</a></li>';
-	
+
 	$person_item = $item_list[$person_index];
 	unset($item_list[$person_index]);
 	
@@ -222,5 +240,77 @@ function va_nav_menu (){
 	}
 	
 	echo '</ul></div>';
+}
+
+function va_questionnaire_sub_page ($num_page, $post_id = NULL){
+
+	echo '<div class="entry-content">';
+	
+	$pages = get_field('fb_seite', $post_id);
+	$num_pages = count($pages);
+	
+	if($num_page == $num_pages){
+		echo get_field('field_finished_text', $post_id);
+	}
+	else {
+	
+		if($num_page == 0){
+			echo do_shortcode(get_post($post_id)->post_content) . '<br /><br />';
+		}
+		
+		$num_map = 0;
+		$num_radio = 0;
+		
+		foreach ($pages[$num_page]['fb_frage'] as $question){
+			
+			if($question['fb_details']['fb_necessary']){
+				echo '<span style="color: red; display: inline-block; margin-right: 5px; vertical-align: top; margin-top: 30px;">*</span>';
+			}
+			
+			echo '<div style="display: inline-block">' . $question['fb_uberschrift'] . '</div><br />';
+
+			switch ($question['fb_typ']){
+				
+				case 'Text':
+					echo '<input type="text" class="fb_question' . ($question['fb_details']['fb_necessary']? ' fb_necessary' : '') . '" autocomplete="off" />';
+					break;
+					
+				case 'Auswahl':
+					$options = explode(PHP_EOL, $question['fb_details']['fb_cb_optionen']);
+					if(count($options) <= 15){
+						echo '<input type="hidden" class="fb_question fb_pseudo' . ($question['fb_details']['fb_necessary']? ' fb_necessary' : '') . '" value="fb_radio' . $num_radio . '" />';
+						foreach ($options as $option){
+							echo '<input type="radio" data-text="' . htmlentities(trim($option)) . '" style="margin-right: 5px;" autocomplete="off" name="fb_radio' . $num_radio . '" />' . $option . '<br />';
+						}
+						$num_radio++;
+					}
+					else {
+						echo '<select class="va_fb_select fb_question' . ($question['fb_details']['fb_necessary']? ' fb_necessary' : '') . '" autocomplete="off"><option value="###EMPTY###" />';
+						foreach ($options as $option){
+							echo '<option>' . htmlentities($option) . '</option>';
+						}
+						echo '</select>';
+					}
+					break;
+					
+				case 'Karte':
+					$details = $question['fb_details'];
+					echo ' <div class="fb_map fb_question' . ($question['fb_details']['fb_necessary']? ' fb_necessary' : '') . '" id="fb_map' . $num_map++ . '" style="height: 500px;" data-zoom="' . $details['fb_map_zoom'] . '" data-lat="' . $details['fb_map_center']['fb_map_lat'] . '" data-lng="' . $details['fb_map_center']['fb_map_lng'] . '"></div>';
+					break;
+			}
+			
+			echo '<br /><br />';
+	
+		}
+		
+		if($num_page == $num_pages - 1){
+			echo '<input type="button" value="' . get_field('fb_finish_button', $post_id) . '" id="fb_submit_button" />';
+		}
+		else {
+			echo '<input type="button" value="' . get_field('fb_continue_button', $post_id) . '" id="fb_submit_button" />';
+		}
+	}
+	
+	echo '</div>';
 }
 ?>
