@@ -207,7 +207,7 @@ if($lehre){
 }
 
 $mitglied = get_field('mitgliedschaften', $post_id);
-if($lehre){
+if($mitglied){
 	echo '<div id="mitglied" style="border-top: 2px solid #ededed;">';
 
 	echo '<h2><a href="javascript:void(0);" onClick="openSection(' . "'#mitgliedColl'" . ')">' . $Ue['MITGLIEDSCHAFTEN'] . '</a></h2><div id="mitgliedColl" style="display: none">';

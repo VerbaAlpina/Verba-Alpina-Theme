@@ -17,7 +17,7 @@ function addClickBehaviorToNav(){
 var prevent_click = false;
 
 	jQuery('.menu-toggle').on('click',function(){
-	
+		jQuery('.modal.in').modal('hide');
 	   performMenuClick(jQuery(this))
 	
 	  })
@@ -31,6 +31,12 @@ var prevent_click = false;
 			if(VA_THEME["has_translations"] == "1")
 				if(!jQuery('.language_modal_main').hasClass('in')) jQuery('.language_modal_main').modal();
 				else  jQuery('.language_modal_main').modal('hide');
+
+				 if(jQuery('#togglebtn').hasClass('toggled-on')){
+				 	 		
+				    	var button = document.getElementById('togglebtn');
+				    	button.click(); //USE JS TO TRIGGER
+				 }
 		}
 	})
 	
@@ -51,7 +57,19 @@ var prevent_click = false;
 				currentURL = window.location.href;
 				if(!jQuery('.share_modal_main').hasClass('in'))  jQuery('.share_modal_main').modal();
 				else jQuery('.share_modal_main').modal('hide');
+
+				if(ajax_object.page_title == "KARTE"){
+					jQuery('#share_url_text').attr("disabled","disabled");
+					jQuery('.non_login_warning').remove();
+					jQuery('.share_url_container').append(jQuery('<div class="non_login_warning">Share-Links in der Arbeitsversion nicht möglich. Bitte auf eine Zitierversion wechseln.</div>'));
+				}
 			}
+
+			 if(jQuery('#togglebtn').hasClass('toggled-on')){
+				 	 		
+				    	var button = document.getElementById('togglebtn');
+				    	button.click(); //USE JS TO TRIGGER
+				 }
 
 		}
 	});
@@ -64,6 +82,12 @@ var prevent_click = false;
 				if(ajax_object.user != "" && !jQuery('.backend_modal_main').hasClass('in'))
 					jQuery('.backend_modal_main').modal();
 				 else jQuery('.backend_modal_main').modal('hide');
+
+				 if(jQuery('#togglebtn').hasClass('toggled-on')){
+				 	 		
+				    	var button = document.getElementById('togglebtn');
+				    	button.click(); //USE JS TO TRIGGER
+				 }
 		 }
 	 });
 	
@@ -77,6 +101,12 @@ var prevent_click = false;
 					jQuery('.db_select_main').modal();
 				else 
 					jQuery('.db_select_main').modal('hide');
+
+				 if(jQuery('#togglebtn').hasClass('toggled-on')){
+				 	 		
+				    	var button = document.getElementById('togglebtn');
+				    	button.click(); //USE JS TO TRIGGER
+				 }
 			}
 		}
 	 });

@@ -24,11 +24,11 @@
 			<?php if ( is_single() ) : ?>
 			<h1 class="entry-title"><?php 
 				the_title();
-				global $va_current_db_name;
-				if($va_current_db_name != 'va_xxx'){
-					global $Ue;
-					echo ' <span style="font-size: 50%; cursor : pointer; color : grey;">(' . $Ue['ZITIEREN'] . ')</span>';
-				}
+				// global $va_current_db_name;
+				// if($va_current_db_name != 'va_xxx'){
+					// global $Ue;
+					// echo ' <span style="font-size: 50%; cursor : pointer; color : grey;">(' . $Ue['ZITIEREN'] . ')</span>';
+				// }
 				
 				?></h1>
 			<?php else : ?>
@@ -36,6 +36,15 @@
 				<a href="<?php the_permalink(); ?>" rel="bookmark"><?php the_title(); ?></a>
 			</h1>
 			<?php endif; // is_single() ?>
+			
+			<br />
+			
+			<?php 
+			//$content = get_the_content(); Hier fehlen Zeilenumbrüche im Gegensatz zu the_content !!
+// 			global $Ue;
+// 			$num_words = va_count_words($content);
+// 			echo '(' . $num_words . ' ' . ($num_words == 1? $Ue['WORT'] : $Ue['WOERTER']) . ')';?>
+			
 			<?php if ( comments_open() ) : ?>
 				<div class="comments-link">
 					<?php comments_popup_link( '<span class="leave-reply">' . __( 'Leave a reply', 'twentytwelve' ) . '</span>', __( '1 Reply', 'twentytwelve' ), __( '% Replies', 'twentytwelve' ) ); ?>
@@ -50,7 +59,7 @@
 		<?php else : ?>
 		<div class="entry-content">
 			<div class="updatableContent">
-				<?php the_content( __( 'Continue reading <span class="meta-nav">&rarr;</span>', 'twentytwelve' ) ); ?>
+				<?php the_content(); ?>
 			</div>
 			<?php wp_link_pages( array( 'before' => '<div class="page-links">' . __( 'Pages:', 'twentytwelve' ), 'after' => '</div>' ) ); ?>
 		</div><!-- .entry-content -->

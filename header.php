@@ -121,7 +121,7 @@ box-shadow: 0px 1px 12px 5px rgba(0,0,0,0.15);
 	width: 100%;
 	height: 100%;
 	top: 0;
-	background: url(<?php echo get_site_url(1);?>/wp-content/uploads/gs_2108_test.jpg) no-repeat center center fixed; 
+	background: url(<?php echo get_site_url(1);?>/wp-content/uploads/19_1_titel.jpg) no-repeat center center fixed; 
 	opacity: 0.1;
 	z-index: -2;
 }
@@ -360,6 +360,7 @@ else {
 						$list[] = 'Datenbank-Dokumentation';
 						$list[] = 'CSGRAPH';
 						$list[] = 'DizMT Eingabe';
+						$list[] = 'Statistik';
 					}
 					
 					if(isDevTester()){

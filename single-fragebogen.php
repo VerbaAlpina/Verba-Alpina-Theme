@@ -93,7 +93,17 @@ wp_head();
 				}
 			}
 			else if (jQuery(this).hasClass("fb_pseudo")){ //Used for radio buttons
-				value = jQuery("input[type=radio][name=" + jQuery(this).val() + "]:checked").data("text");
+				value = [];
+				jQuery("input[name=" + jQuery(this).val() + "]:checked").each(function (){
+					value.push(jQuery(this).data("text"));
+				});
+
+				if (value.length == 0){
+					value = "";
+				}
+				else if (value.length == 1){
+					value = value[0];
+				}
 			}
 			else {
 				value = jQuery(this).val();

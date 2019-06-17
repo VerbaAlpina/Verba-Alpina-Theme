@@ -408,11 +408,20 @@ width: 80%;
     font-size: 16px;
 }
 
+.non_login_warning{
+	font-size: 12px;
+	padding: 5px;
+	color: red;
+	border: 1px solid;
+	border-radius: 5px;
+	margin-top: 10px;
+}
+
 
 #share_url_text{
 	width: 100%;
 	font-size: 12px;
-	resize: none;
+	resize: vertical;
 }
 
 .share_modal_main {
@@ -603,6 +612,11 @@ width: 80%;
 }
 
 
+.entry-content li.select2-selection__choice {
+	margin: 0;
+}
 
 
-
+#lebenslauf table tr td:first-child {
+	width: 120px !important;
+}

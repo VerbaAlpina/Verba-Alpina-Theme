@@ -45,7 +45,7 @@ html{
 
 body { 
 
-  background: url(<?php echo get_site_url(1);?>/wp-content/uploads/gs_2108_test.jpg) no-repeat center center fixed; 
+  background: url(<?php echo get_site_url(1);?>/wp-content/uploads/19_1_titel.jpg) no-repeat center center fixed; 
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -412,7 +412,7 @@ background: -webkit-linear-gradient(top, rgba(255,255,255,0.7) 0%,rgba(255,255,2
 background: linear-gradient(to bottom, rgba(255,255,255,0.7) 0%,rgba(255,255,255,0) 43%); 
 filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b3ffffff', endColorstr='#00ffffff',GradientType=0 ); */
 background: black;
-opacity: 0.55;
+opacity: 0.45;
 }
 
 .circle_container{
@@ -443,13 +443,13 @@ opacity: 0.55;
 }
 
 
-#logoSVG{
-	text-align: center;
-	width: 100%;
-	position: relative;
-	top: 50%;
-	transform: translateY(-50%);
-	margin-top: -40px;
+
+#logoSVG {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-top: -83px;
 }
 
 #logoSVG > img{
@@ -457,16 +457,17 @@ width: 100%;
 height: auto;
 }
 
-.logo_container_outer{
-	width: 100%;
-	height: 100%;
-	position: absolute;
-	top: 0;
+.logo_container_outer {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    display: flex;
+    align-items: center;
 }
 
-.logo_container{
-    margin: 0 auto;
-   	padding-left: 50px;
+.logo_container {
+    padding-left: 50px;
     padding-right: 50px;
 }
 
@@ -492,7 +493,7 @@ height: auto;
 @media screen and (min-width: 768px){
 
 	.logo_container{
-		max-width: 780px;
+		width: 780px;
 	}
 
 }
@@ -564,7 +565,7 @@ height: auto;
 @media screen and (min-width: 1500px){
 
 	.logo_container{
-		max-width: 950px;
+		width: 950px;
 	}
 
 	.circle_container img{

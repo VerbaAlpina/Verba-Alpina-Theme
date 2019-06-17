@@ -15,7 +15,7 @@
    version="1.1"
    id="svg4666"
    inkscape:version="0.92.3 (2405546, 2018-03-11)"
-   sodipodi:docname="VA_Version.svg">
+   sodipodi:docname="VA_Version_Vorlage.svg">
   <defs
      id="defs4660" />
   <sodipodi:namedview
@@ -62,7 +62,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -120,29 +120,29 @@
            height="41.47905"
            x="-8.3665133"
            y="-36.730167" /></flowRegion><flowPara
-         id="flowPara24">22</flowPara></flowRoot>    <g
-       aria-label="19"
-       transform="matrix(0.19118114,0,0,0.23525394,68.401066,49.961202)"
+         id="flowPara24">22</flowPara></flowRoot>    <flowRoot
+       xml:space="preserve"
+       id="flowRoot832"
        style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
-       id="flowRoot832">
-      <path
-         d="M 11.787927,6.3585911 11.757087,38.741012 8.7655678,39.32698 8.7964082,11.601459 0.68538273,16.381721 -0.3015101,14.130372 Z"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Kabel;-inkscape-font-specification:Kabel;fill:#ffffff;fill-opacity:1"
-         id="path837" />
-      <path
-         d="m 38.06931,19.126517 q 0,3.269083 -2.097148,7.216654 -1.171935,2.220509 -3.361603,5.119506 -1.54202,2.035467 -3.85505,4.410178 -1.727063,1.757903 -3.423285,3.238242 -1.449499,1.264456 -1.51118,1.264456 l -2.559753,-1.912105 q 2.035467,-1.449498 3.392444,-2.652274 1.202776,-1.048574 3.08404,-2.991519 1.017734,-1.048574 2.28219,-2.621434 1.54202,-1.942945 2.220509,-2.929838 -0.986893,0.678489 -2.683115,1.233616 -1.696222,0.555127 -3.114881,0.555127 -4.872783,0 -7.987663,-3.330763 -2.868158,-3.08404 -2.868158,-7.216654 0,-5.212028 3.423285,-8.5736314 3.207402,-3.1457209 7.555898,-3.1457209 5.119507,0 8.296068,3.4541253 3.207402,3.423284 3.207402,8.882035 z m -2.929839,-1.57286 q 0,-3.361604 -2.652274,-5.643794 -2.621434,-2.3130298 -6.16808,-2.3130298 -3.299923,0 -5.520432,2.6214338 -2.220509,2.590594 -2.220509,6.075559 0,3.330764 2.343871,5.674634 2.374711,2.31303 5.890516,2.31303 3.608327,0 5.952198,-2.559753 2.37471,-2.590594 2.37471,-6.16808 z"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Kabel;-inkscape-font-specification:Kabel;fill:#ffffff;fill-opacity:1"
-         id="path839" />
-    </g>
-    <g
-       aria-label="1"
-       transform="matrix(0.19118114,0,0,0.23525394,81.368483,49.992445)"
+       transform="matrix(0.19118114,0,0,0.23525394,68.401066,49.961202)"><flowRegion
+         id="flowRegion834"><rect
+           id="rect836"
+           width="81.426201"
+           height="51.613136"
+           x="-2.1210878"
+           y="1.4494113" /></flowRegion><flowPara
+         id="flowPara838"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Kabel;-inkscape-font-specification:Kabel;fill:#ffffff;fill-opacity:1">19</flowPara></flowRoot>    <flowRoot
+       xml:space="preserve"
+       id="flowRoot832-9"
        style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
-       id="flowRoot832-9">
-      <path
-         d="M 11.787927,6.3585911 11.757087,38.741012 8.7655678,39.32698 8.7964082,11.601459 0.68538273,16.381721 -0.3015101,14.130372 Z"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Kabel;-inkscape-font-specification:Kabel;fill:#ffffff;fill-opacity:1"
-         id="path842" />
-    </g>
-  </g>
+       transform="matrix(0.19118114,0,0,0.23525394,81.368483,49.992445)"><flowRegion
+         id="flowRegion834-6"><rect
+           id="rect836-6"
+           width="81.426201"
+           height="51.613136"
+           x="-2.1210878"
+           y="1.4494113" /></flowRegion><flowPara
+         id="flowPara838-9"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Kabel;-inkscape-font-specification:Kabel;fill:#ffffff;fill-opacity:1">1</flowPara></flowRoot>  </g>
 </svg>

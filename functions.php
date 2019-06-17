@@ -216,6 +216,7 @@ function va_nav_menu (){
 			if ($page->post_title == 'CS_MITMACHEN'){
 				//Crowdsourcing
 				$curr_page .= '<li class="page_item"><a href="' . $cslink . '">' . 'Crowdsourcing' . '</a></li>';
+				$curr_page .= '<li class="page_item"><a href="https://www.zooniverse.org/projects/filip-hr/verbaalpina">' . 'Zooniverse' . '</a></li>';
 			}
 			$curr_page .= '</ul>';
 		}
@@ -277,15 +278,16 @@ function va_questionnaire_sub_page ($num_page, $post_id = NULL){
 					
 				case 'Auswahl':
 					$options = explode(PHP_EOL, $question['fb_details']['fb_cb_optionen']);
+					$multiple = $question['fb_details']['fb_cb_multiple'];
 					if(count($options) <= 15){
 						echo '<input type="hidden" class="fb_question fb_pseudo' . ($question['fb_details']['fb_necessary']? ' fb_necessary' : '') . '" value="fb_radio' . $num_radio . '" />';
 						foreach ($options as $option){
-							echo '<input type="radio" data-text="' . htmlentities(trim($option)) . '" style="margin-right: 5px;" autocomplete="off" name="fb_radio' . $num_radio . '" />' . $option . '<br />';
+							echo '<input type="' . ($multiple? 'checkbox': 'radio') . '" data-text="' . htmlentities(trim($option)) . '" style="margin-right: 5px;" autocomplete="off" name="fb_radio' . $num_radio . '" />' . $option . '<br />';
 						}
 						$num_radio++;
 					}
 					else {
-						echo '<select class="va_fb_select fb_question' . ($question['fb_details']['fb_necessary']? ' fb_necessary' : '') . '" autocomplete="off"><option value="###EMPTY###" />';
+						echo '<select style="min-width: 300px;"' . ($multiple? ' multiple': '') . ' class="va_fb_select fb_question' . ($question['fb_details']['fb_necessary']? ' fb_necessary' : '') . '" autocomplete="off"><option value="###EMPTY###" />';
 						foreach ($options as $option){
 							echo '<option>' . htmlentities($option) . '</option>';
 						}
