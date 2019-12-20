@@ -124,7 +124,6 @@ function va_get_version_options ($fromDate = null){
 	$col_old = "#e6e6e6";
 	
 	$xxx_name = 'XXX  (' . $Ue['ARBEITSVERSION'] . ')';
-	$xxx_url = is_user_logged_in()? remove_query_arg('db') : add_query_arg('db', 'xxx');
 	
 	echo '<option value="xxx" style="background: ' . $col_current . '" ' . ('va_xxx' == $va_current_db_name? 'selected ': '') . '>' .$xxx_name . '</option>';
 

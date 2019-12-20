@@ -45,7 +45,7 @@ html{
 
 body { 
 
-  background: url(<?php echo get_site_url(1);?>/wp-content/uploads/19_2_titel.jpg) no-repeat center center fixed; 
+  background: url(<?php echo get_site_url(1);?>/wp-content/uploads/19_1_titel.jpg) no-repeat center center fixed; 
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -412,7 +412,7 @@ background: -webkit-linear-gradient(top, rgba(255,255,255,0.7) 0%,rgba(255,255,2
 background: linear-gradient(to bottom, rgba(255,255,255,0.7) 0%,rgba(255,255,255,0) 43%); 
 filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b3ffffff', endColorstr='#00ffffff',GradientType=0 ); */
 background: black;
-opacity: 0.55;
+opacity: 0.45;
 }
 
 .circle_container{

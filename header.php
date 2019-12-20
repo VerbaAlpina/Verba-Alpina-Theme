@@ -121,9 +121,10 @@ box-shadow: 0px 1px 12px 5px rgba(0,0,0,0.15);
 	width: 100%;
 	height: 100%;
 	top: 0;
-	background: url(<?php echo get_site_url(1);?>/wp-content/uploads/19_1_titel.jpg) no-repeat center center fixed; 
+	background: url(<?php echo get_site_url(1);?>/wp-content/uploads/19_2_titel.jpg) no-repeat center center fixed; 
 	opacity: 0.1;
 	z-index: -2;
+  background-size: cover;
 }
 
 .lmu_signum_bg{
@@ -195,7 +196,7 @@ if($post){
 
 
 if($post){
-	$version_pages = array('KARTE', 'METHODOLOGIE', 'KOMMENTARE', 'WISS_PUBLIKATIONEN');
+	$version_pages = array('KARTE', 'METHODOLOGIE', 'KOMMENTARE', 'WISS_PUBLIKATIONEN', 'Home');
 	$single_post = $post && $post->post_type == 'post' && is_single();
 	$show_edit_post = ($single_post && current_user_can('edit_post', $post->ID)) || ($admin && $post->post_type == 'page');
 	$show_db_logo = ($post && $post->post_type == 'page' && in_array($post->post_title, $version_pages)) || $single_post;
@@ -279,8 +280,6 @@ else {
 
            <div class="social_icon_container">
 
-
-
                   <a class="fb_link" href="https://www.facebook.com/verbaalpina/">
                     <div>
                         <i class="fab fa-facebook-square" aria-hidden="true"></i><span>Facebook</span>
@@ -293,25 +292,12 @@ else {
                     </div>
                   </a>
 
-
-                  <a class="google_link" href="">
-                    <div>
-                        <i class="fab fa-google-plus-square" aria-hidden="true"></i><span>Google Plus</span>             
-                    </div>
-                  </a>
-
-                      <a class="mail_link" href="">
+                 <a class="mail_link" href="">
                     <div>
                          <i class="fa fa-envelope" aria-hidden="true"></i><span>Mail</span>             
                     </div>
                   </a>
 
-                   
-                <a class="youtube_link" href="https://www.youtube.com/watch?v=hxbtXzxa5LY"> 
-                    <div>
-                        <i class="fab fa-youtube-square" aria-hidden="true"></i><span>YouTube</span>         
-                    </div>
-                  </a>
 
             </div> 
 

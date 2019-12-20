@@ -9,9 +9,9 @@
    xmlns="http://www.w3.org/2000/svg"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   width="16.947287mm"
+   width="17.218466mm"
    height="10.828129mm"
-   viewBox="0 0 16.947287 10.828129"
+   viewBox="0 0 17.218466 10.828129"
    version="1.1"
    id="svg4666"
    inkscape:version="0.92.3 (2405546, 2018-03-11)"
@@ -26,8 +26,8 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="8.4862118"
-     inkscape:cx="3.7807645"
-     inkscape:cy="22.6717"
+     inkscape:cx="-16.569937"
+     inkscape:cy="22.436026"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -44,12 +44,12 @@
      showguides="true"
      inkscape:guide-bbox="true">
     <sodipodi:guide
-       position="-3.1627408,1.4965442"
+       position="-2.3695296,1.4341887"
        orientation="0,1"
        id="guide70"
        inkscape:locked="false" />
     <sodipodi:guide
-       position="5.0059031,9.1039832"
+       position="5.7991136,9.0416271"
        orientation="0,1"
        id="guide72"
        inkscape:locked="false" />
@@ -70,7 +70,7 @@
      inkscape:label="Ebene 1"
      inkscape:groupmode="layer"
      id="layer1"
-     transform="translate(-68.343423,-49.74353)">
+     transform="translate(-67.550212,-49.681174)">
     <g
        id="g4591"
        transform="translate(-210.49474,5.4368969)">
@@ -128,21 +128,21 @@
       <path
          d="M 11.787927,6.3585911 11.757087,38.741012 8.7655678,39.32698 8.7964082,11.601459 0.68538273,16.381721 -0.3015101,14.130372 Z"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Kabel;-inkscape-font-specification:Kabel;fill:#ffffff;fill-opacity:1"
-         id="path5134" />
+         id="path837" />
       <path
          d="m 38.06931,19.126517 q 0,3.269083 -2.097148,7.216654 -1.171935,2.220509 -3.361603,5.119506 -1.54202,2.035467 -3.85505,4.410178 -1.727063,1.757903 -3.423285,3.238242 -1.449499,1.264456 -1.51118,1.264456 l -2.559753,-1.912105 q 2.035467,-1.449498 3.392444,-2.652274 1.202776,-1.048574 3.08404,-2.991519 1.017734,-1.048574 2.28219,-2.621434 1.54202,-1.942945 2.220509,-2.929838 -0.986893,0.678489 -2.683115,1.233616 -1.696222,0.555127 -3.114881,0.555127 -4.872783,0 -7.987663,-3.330763 -2.868158,-3.08404 -2.868158,-7.216654 0,-5.212028 3.423285,-8.5736314 3.207402,-3.1457209 7.555898,-3.1457209 5.119507,0 8.296068,3.4541253 3.207402,3.423284 3.207402,8.882035 z m -2.929839,-1.57286 q 0,-3.361604 -2.652274,-5.643794 -2.621434,-2.3130298 -6.16808,-2.3130298 -3.299923,0 -5.520432,2.6214338 -2.220509,2.590594 -2.220509,6.075559 0,3.330764 2.343871,5.674634 2.374711,2.31303 5.890516,2.31303 3.608327,0 5.952198,-2.559753 2.37471,-2.590594 2.37471,-6.16808 z"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Kabel;-inkscape-font-specification:Kabel;fill:#ffffff;fill-opacity:1"
-         id="path5136" />
+         id="path839" />
     </g>
     <g
-       aria-label="2"
+       aria-label="1"
        transform="matrix(0.19118114,0,0,0.23525394,81.368483,49.992445)"
        style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
        id="flowRoot832-9">
       <path
-         d="m 20.515761,35.780334 -0.74017,2.960678 H -0.23982929 L 10.708513,27.607627 q 2.127988,-2.158828 3.145721,-3.330763 1.696222,-1.973786 2.498072,-3.546646 1.017734,-1.973786 1.017734,-3.85505 0,-2.898998 -2.066307,-5.026986 -2.035467,-2.1588276 -4.934464,-2.1588276 -2.9298385,0 -5.1195069,1.9737856 -2.1588281,1.942945 -2.1588281,4.811103 0,3.238242 2.2513493,5.242868 2.5289128,2.251349 5.0269857,2.251349 L 7.9945578,26.374011 Q 7.0385053,26.065607 6.4833781,25.880565 4.7563157,25.263757 3.9853056,24.677789 2.6900088,23.690896 1.6105948,21.994674 -0.05478689,19.3424 -0.05478689,16.350881 q 0,-4.225135 3.26908249,-7.000771 3.0223593,-2.5597533 7.0932924,-2.5597533 4.194294,0 7.062452,2.5289129 3.08404,2.7139554 3.08404,7.0624514 0,2.343871 -1.110255,4.749422 -0.894371,1.973786 -2.744795,4.255975 -1.418659,1.757903 -3.299923,3.577487 l -7.1241329,6.815729 z"
+         d="M 11.787927,6.3585911 11.757087,38.741012 8.7655678,39.32698 8.7964082,11.601459 0.68538273,16.381721 -0.3015101,14.130372 Z"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Kabel;-inkscape-font-specification:Kabel;fill:#ffffff;fill-opacity:1"
-         id="path5131" />
+         id="path842" />
     </g>
   </g>
 </svg>

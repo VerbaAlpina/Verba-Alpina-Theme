@@ -45,7 +45,7 @@ html{
 
 body { 
 
-  background: url(<?php echo get_site_url(1);?>/wp-content/uploads/19_2_titel.jpg) no-repeat center center fixed; 
+  background: url(<?php echo get_site_url(1);?>/wp-content/uploads/18_2_titel_normal.JPG) no-repeat center center fixed; 
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -430,26 +430,26 @@ opacity: 0.55;
 	height: 10%;*/
 	position: relative;
 	transition: all .1s ease-in-out; 
-	cursor: pointer;
 }
 
 .circle_container img:last-child{
 	margin-right: 0px;
 }
 
-.circle_container img:not(.active):hover{
+.circle_container img:hover{
 	/*opacity: 0.85;*/
+	cursor: pointer;
 	transform: scale(1.12);
 }
 
 
-
-#logoSVG {
-    position: relative;
-    display: flex;
-    justify-content: center;
-    width: 100%;
-    margin-top: -83px;
+#logoSVG{
+	text-align: center;
+	width: 100%;
+	position: relative;
+	top: 50%;
+	transform: translateY(-50%);
+	margin-top: -40px;
 }
 
 #logoSVG > img{
@@ -457,17 +457,16 @@ width: 100%;
 height: auto;
 }
 
-.logo_container_outer {
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    top: 0;
-    display: flex;
-    align-items: center;
+.logo_container_outer{
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 0;
 }
 
-.logo_container {
-    padding-left: 50px;
+.logo_container{
+    margin: 0 auto;
+   	padding-left: 50px;
     padding-right: 50px;
 }
 
@@ -493,7 +492,7 @@ height: auto;
 @media screen and (min-width: 768px){
 
 	.logo_container{
-		width: 780px;
+		max-width: 780px;
 	}
 
 }
@@ -565,7 +564,7 @@ height: auto;
 @media screen and (min-width: 1500px){
 
 	.logo_container{
-		width: 950px;
+		max-width: 950px;
 	}
 
 	.circle_container img{
@@ -621,227 +620,208 @@ height: auto;
 
 <script type="text/javascript">
 
-	if (window.location.hash == "#crowdsourcing"){
-		window.location.replace("https://www.verba-alpina.gwi.uni-muenchen.de/en?page_id=1741");
-	}
-	else {
+	var image_w = 2255;
+	var image_h = 1899;
 	
-		var urlEN = "<?php echo get_site_url(8);?>";
-		var page_id = "<?php 
-			if(is_multisite())
-				switch_to_blog(8);
-			echo get_page_by_title("Crowdsourcing")->ID;
-			if(is_multisite())
-				restore_current_blog();
-		?>";
+	var right_dist = 0.01;
+	var top_dist = 0.005;
+	
+	var logo_w = 80;
+	var logo_h = 40;
+	
+	// change logo size
+	var percX = 0.32;
+
+	var percY = image_w * percX / (logo_w * image_h) * logo_h;
+	
+	
+	var resImage = parseFloat(image_w) / image_h;
+
+
+	var urlEN = "<?php echo get_site_url(8);?>";
+	var page_id = "<?php 
+		if(is_multisite())
+			switch_to_blog(8);
+		echo get_page_by_title("Crowdsourcing")->ID;
+		if(is_multisite())
+			restore_current_blog();
+	?>";
+	
+	var start_slogan_texts = ["Parlons la langue des Alpes!","Parliamo la lingua delle Alpi!","Govori jezik Alp!","Sprich die Sprache der Alpen!"];
+	var join_texts =["Participer!","Partecipare!","Sodeluj!","Mitmachen!"]
+
+	jQuery(document).ready(function (){
+
+		jQuery('.circle_container img').on('click',function(){
+			var data = jQuery(this).data();
+			window.location = data.link;
+		});
+
+
+    jQuery('#flyer_modal').on('show.bs.modal', function (e) {
+      showCustomModalBackdrop();
+
+      jQuery('#flyer_modal .modal-content').on('click',function(){
+      	 window.location = urlEN +"?page_id="+page_id;
+      })
+
+
+      jQuery('#flyer_modal .flyer_custom_close').on('click',function(e){
+      	 jQuery('#flyer_modal .modal-content').off();
+      	 jQuery('#flyer_modal').modal('hide');
+      })
+
+      // jQuery('#flyer_modal .social_icon').on('click',function(e){
+      // 	 jQuery('#flyer_modal .modal-content').off();
+      // 	 jQuery('#flyer_modal').modal('hide');
+      // })
+
+ 	jQuery('#flyer_modal #twitter_icon').on('click',function(e){
+      	 jQuery('#flyer_modal .modal-content').off();
+      	  window.location = "https://twitter.com/VerbaAlpina";
+
+      })
+
+ 		jQuery('#flyer_modal #facebook_icon').on('click',function(e){
+      	 jQuery('#flyer_modal .modal-content').off();
+      	 window.location = "https://www.facebook.com/verbaalpina/";
+      })
+
+
+       jQuery('#flyer_modal #youtube_icon').on('click',function(e){
+      	 jQuery('#flyer_modal .modal-content').off();
+      	 window.location = "https://www.youtube.com/watch?v=hxbtXzxa5LY";
+      })	
+
+
+    })
+
+
+   jQuery('#flyer_modal').on('shown.bs.modal', function (e) {
+   	adjustSlogan();
+   	jQuery('.slogan_div').fadeIn();
+
+
+   			jQuery('#flyer_modal #first_slider').on('slide.bs.carousel', function (e) {
+  				var slogan = start_slogan_texts[jQuery(".active", e.target).index()];
+  				var join = join_texts[jQuery(".active", e.target).index()];
+
+  				jQuery(".slogan_div").fadeOut(function() {
+ 				 jQuery(this).text(slogan)
+				}).fadeIn();
+
+				jQuery(".join_span").fadeOut(function() {
+ 				 jQuery(this).text(join)
+				}).fadeIn();
+
+			})
+
+   })
+
+
+ 
+
+     jQuery('#flyer_modal').on('hidden.bs.modal', function (e) {
+       jQuery('#custom_modal_backdrop').fadeOut(function(){jQuery(this).remove()})  
+    })
+
+
+
+
+
+
+	jQuery('#svg_object')[0].addEventListener('load', function() {
+
 		
-		var start_slogan_texts = ["Parlons la langue des Alpes!","Parliamo la lingua delle Alpi!","Govori jezik Alp!","Sprich die Sprache der Alpen!"];
-		var join_texts =["Participer!","Partecipare!","Sodeluj!","Mitmachen!"]
+			var last = 0; // timestamp of the last render() call
+			var delay = 1600;
+
+			function render(now) {
+
+			    if(now - last >= delay) {
+			        last = now;
+			        performSwitch();
+			    }
+			    requestAnimationFrame(render);
+			};
+
+			setTimeout(function() {
+				render();
+			}, delay);
+			
+
+
+		    adjustSizesRelativeToWindow();   
+	}, true);
+
+});
+
 	
-		jQuery(document).ready(function (){
+jQuery(window).resize(function (){
+	 adjustSizesRelativeToWindow();
+});
+
+
+function performSwitch(){
+
+	var old = jQuery('.contribute_container .active');
+	var _new = old.next();
+
+	if(_new.length==0)_new =  jQuery('.contribute_container img:first-child');
+
+	old.fadeOut(800,function(){
+		_new.fadeIn(800,function(){
+			_new.addClass('active');
+			old.removeClass('active');
+		});
+	})
+
+}
+
 	
-			jQuery('.circle_container img').on('click',function(){
-				var data = jQuery(this).data();
-				window.location = data.link;
-			});
+	function adjustSizesRelativeToWindow (){
+		var widthW = window.innerWidth;
+		var heightW = window.innerHeight;
+		var resBG = parseFloat(widthW) /  heightW;
 
-
-			var start;
-			var end;
-			var delta;
-
-			jQuery('.circle_container img').on('mousedown',function(){
-				jQuery(this).addClass('active');
-
-				start = new Date();
-
-				// setTimeout(function() {
-				// }, 60);
 		
-			});
+				var trans_val= -58 + (widthW-1200)*0.05;
+				if( trans_val<-78) trans_val = -78;
+				if(trans_val>-52) trans_val = -52;
 
-
-			jQuery('.circle_container img').on('mouseup',function(){
-
-				  end = new Date();
-      			  delta = (end - start) / 1000.0;
-
-      			  if(delta<0.07){
-      			  	setTimeout(function() {
-						jQuery('.circle_container img.active').removeClass('active');
-					}, 75);
-      			  }
-      			  else {
-      			  	jQuery(this).removeClass('active');
-      			  }
-			});
-	
-	
-	    jQuery('#flyer_modal').on('show.bs.modal', function (e) {
-	      showCustomModalBackdrop();
-	
-	      jQuery('#flyer_modal .modal-content').on('click',function(){
-	      	 window.location = urlEN +"?page_id="+page_id;
-	      })
-	
-	
-	      jQuery('#flyer_modal .flyer_custom_close').on('click',function(e){
-	      	 jQuery('#flyer_modal .modal-content').off();
-	      	 jQuery('#flyer_modal').modal('hide');
-	      })
-	
-	      // jQuery('#flyer_modal .social_icon').on('click',function(e){
-	      // 	 jQuery('#flyer_modal .modal-content').off();
-	      // 	 jQuery('#flyer_modal').modal('hide');
-	      // })
-	
-	 	jQuery('#flyer_modal #twitter_icon').on('click',function(e){
-	      	 jQuery('#flyer_modal .modal-content').off();
-	      	  window.location = "https://twitter.com/VerbaAlpina";
-	
-	      })
-	
-	 		jQuery('#flyer_modal #facebook_icon').on('click',function(e){
-	      	 jQuery('#flyer_modal .modal-content').off();
-	      	 window.location = "https://www.facebook.com/verbaalpina/";
-	      })
-	
-	
-	       jQuery('#flyer_modal #youtube_icon').on('click',function(e){
-	      	 jQuery('#flyer_modal .modal-content').off();
-	      	 window.location = "https://www.youtube.com/watch?v=hxbtXzxa5LY";
-	      })	
-	
-	
-	    })
-	
-	
-	   jQuery('#flyer_modal').on('shown.bs.modal', function (e) {
-	   	adjustSlogan();
-	   	jQuery('.slogan_div').fadeIn();
-	
-	
-	   			jQuery('#flyer_modal #first_slider').on('slide.bs.carousel', function (e) {
-	  				var slogan = start_slogan_texts[jQuery(".active", e.target).index()];
-	  				var join = join_texts[jQuery(".active", e.target).index()];
-	
-	  				jQuery(".slogan_div").fadeOut(function() {
-	 				 jQuery(this).text(slogan)
-					}).fadeIn();
-	
-					jQuery(".join_span").fadeOut(function() {
-	 				 jQuery(this).text(join)
-					}).fadeIn();
-	
-				})
-	
-	   })
-	
-	
-	 
-	
-	     jQuery('#flyer_modal').on('hidden.bs.modal', function (e) {
-	       jQuery('#custom_modal_backdrop').fadeOut(function(){jQuery(this).remove()})  
-	    })
-	
-	
-	
-	
-	
-	
-		jQuery('#svg_object')[0].addEventListener('load', function() {
-	
-			
-				var last = 0; // timestamp of the last render() call
-				var delay = 1600;
-	
-				function render(now) {
-	
-				    if(now - last >= delay) {
-				        last = now;
-				        performSwitch();
-				    }
-				    requestAnimationFrame(render);
-				};
-	
-				setTimeout(function() {
-					render();
-				}, delay);
-				
-	
-	
-			    adjustSizesRelativeToWindow();   
-		}, true);
-	
-	});
-
-
-	
-	jQuery(window).resize(function (){
-		 adjustSizesRelativeToWindow();
-	});
-	
-	
-	function performSwitch(){
-	
-		var old = jQuery('.contribute_container .active');
-		var _new = old.next();
-	
-		if(_new.length==0)_new =  jQuery('.contribute_container img:first-child');
-	
-		old.fadeOut(800,function(){
-			_new.fadeIn(800,function(){
-				_new.addClass('active');
-				old.removeClass('active');
-			});
-		})
-	
-	}
-	
+				jQuery('.lmu_signum > img').css('transform','translateX('+trans_val+'%)')
 		
-		function adjustSizesRelativeToWindow (){
-			var widthW = window.innerWidth;
-			var heightW = window.innerHeight;
-			var resBG = parseFloat(widthW) /  heightW;
-	
-			
-					var trans_val= -58 + (widthW-1200)*0.05;
-					if( trans_val<-78) trans_val = -78;
-					if(trans_val>-52) trans_val = -52;
-	
-					jQuery('.lmu_signum > img').css('transform','translateX('+trans_val+'%)')
-			
-	
-					// var a = document.getElementById("svg_object");
-					// var svgDoc = a.contentDocument;
-					// var svgItem = svgDoc.getElementById("va_slogan");
-	
-	
-					// if(widthW<=500){
-					// 		svgItem.setAttribute("visibility", "hidden");
-					// }
-	
-					// else{
-					// 	svgItem.setAttribute("visibility", "visible");
-	
-					// }
-	
-		}
-	
-	
-		function showCustomModalBackdrop(){
-	
-			var custom_backdrop = jQuery('<div id="custom_modal_backdrop"></div>');
-			jQuery('body').append(custom_backdrop);
-			jQuery('#custom_modal_backdrop').fadeIn('fast');
-	    }
-	
-	
-	    function adjustSlogan(){
-	     var top = 	Math.ceil(jQuery('.slogan_wrapper').height()*0.55)+3;
-		 jQuery('.slogan_div').css('top',top);
-	    }
+
+				// var a = document.getElementById("svg_object");
+				// var svgDoc = a.contentDocument;
+				// var svgItem = svgDoc.getElementById("va_slogan");
+
+
+				// if(widthW<=500){
+				// 		svgItem.setAttribute("visibility", "hidden");
+				// }
+
+				// else{
+				// 	svgItem.setAttribute("visibility", "visible");
+
+				// }
+
 	}
+
+
+	function showCustomModalBackdrop(){
+
+		var custom_backdrop = jQuery('<div id="custom_modal_backdrop"></div>');
+		jQuery('body').append(custom_backdrop);
+		jQuery('#custom_modal_backdrop').fadeIn('fast');
+    }
+
+
+    function adjustSlogan(){
+     var top = 	Math.ceil(jQuery('.slogan_wrapper').height()*0.55)+3;
+	 jQuery('.slogan_div').css('top',top);
+    }
+
 
 </script>
 

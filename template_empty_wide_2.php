@@ -1,7 +1,7 @@
 <?php
 
 /*
- * Template Name: Empty Page Wide
+ * Template Name: Empty Page Wide 2
 * Description: Shows the page without footer
 */
 

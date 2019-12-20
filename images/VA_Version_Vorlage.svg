@@ -9,9 +9,9 @@
    xmlns="http://www.w3.org/2000/svg"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   width="17.218466mm"
+   width="16.947287mm"
    height="10.828129mm"
-   viewBox="0 0 17.218466 10.828129"
+   viewBox="0 0 16.947287 10.828129"
    version="1.1"
    id="svg4666"
    inkscape:version="0.92.3 (2405546, 2018-03-11)"
@@ -26,8 +26,8 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="8.4862118"
-     inkscape:cx="-16.569937"
-     inkscape:cy="22.436026"
+     inkscape:cx="3.7807645"
+     inkscape:cy="22.6717"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -44,12 +44,12 @@
      showguides="true"
      inkscape:guide-bbox="true">
     <sodipodi:guide
-       position="-2.3695296,1.4341887"
+       position="-3.1627408,1.4965442"
        orientation="0,1"
        id="guide70"
        inkscape:locked="false" />
     <sodipodi:guide
-       position="5.7991136,9.0416271"
+       position="5.0059031,9.1039832"
        orientation="0,1"
        id="guide72"
        inkscape:locked="false" />
@@ -62,7 +62,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title />
+        <dc:title></dc:title>
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -70,7 +70,7 @@
      inkscape:label="Ebene 1"
      inkscape:groupmode="layer"
      id="layer1"
-     transform="translate(-67.550212,-49.681174)">
+     transform="translate(-68.343423,-49.74353)">
     <g
        id="g4591"
        transform="translate(-210.49474,5.4368969)">
@@ -144,5 +144,5 @@
            x="-2.1210878"
            y="1.4494113" /></flowRegion><flowPara
          id="flowPara838-9"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Kabel;-inkscape-font-specification:Kabel;fill:#ffffff;fill-opacity:1">1</flowPara></flowRoot>  </g>
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Kabel;-inkscape-font-specification:Kabel;fill:#ffffff;fill-opacity:1">2</flowPara></flowRoot>  </g>
 </svg>

@@ -451,7 +451,7 @@ width: 80%;
 
 
 .social_icon_container > a:last-child >div{
-	border:none;
+	padding-bottom: 0px;
 }
 
 
@@ -619,4 +619,13 @@ width: 80%;
 
 #lebenslauf table tr td:first-child {
 	width: 120px !important;
+}
+
+header h1 {
+	margin-bottom: 10px;
+}
+
+.va_authors {
+	margin-bottom: 7px;
+	display: block;
 }
