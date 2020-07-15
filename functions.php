@@ -1,5 +1,7 @@
 <?php
 
+add_filter ('wp_mail_from', function ($from){ return get_option('admin_email'); });
+
 add_action( 'wp_enqueue_scripts', 'va_theme_enqueue_scripts' );
 
 function va_theme_enqueue_scripts() {
@@ -22,14 +24,14 @@ function va_theme_enqueue_scripts() {
 
 add_action( 'twentytwelve_credits' , 'mh_footer_info' , 25 );
 function mh_footer_info() {
-	if($GLOBALS['pagenow'] != 'wp-signup.php'){
+	if($GLOBALS['pagenow'] != 'wp-signup.php' && function_exists('va_get_glossary_link_and_title')){
 		global $lang;
 		global $Ue;
 		
 		$impressum = get_page_by_title('IMPRESSUM');
 		$datenschutz = get_page_by_title('DATENSCHUTZ');
 		$kontakt = get_page_by_title('KONTAKT');
-		$license = va_get_glossary_link_and_title(41);
+		$license = get_option('va_external')? null: va_get_glossary_link_and_title(41);
 		
 		$output = '<div id="fusszeile" style="float: right">';
 		
@@ -44,7 +46,7 @@ function mh_footer_info() {
 		if($kontakt)
 			$link_list[] .= '<a href="' . get_permalink($kontakt).'">' . $Ue['KONTAKT'] . '</a>';
 		
-		if($license[0])
+		if($license)
 			$link_list[] .= '<a href="' . $license[0] .'">' . $license[1] . '</a>';
 		
 		

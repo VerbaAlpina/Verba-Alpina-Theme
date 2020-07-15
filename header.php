@@ -121,7 +121,7 @@ box-shadow: 0px 1px 12px 5px rgba(0,0,0,0.15);
 	width: 100%;
 	height: 100%;
 	top: 0;
-	background: url(<?php echo get_site_url(1);?>/wp-content/uploads/19_2_titel.jpg) no-repeat center center fixed; 
+	background: url(<?php echo get_site_url(1);?>/wp-content/uploads/20_1_titel.jpg) no-repeat center center fixed; 
 	opacity: 0.1;
 	z-index: -2;
   background-size: cover;
@@ -196,7 +196,7 @@ if($post){
 
 
 if($post){
-	$version_pages = array('KARTE', 'METHODOLOGIE', 'KOMMENTARE', 'WISS_PUBLIKATIONEN', 'Home');
+	$version_pages = array('KARTE', 'METHODOLOGIE', 'KOMMENTARE', 'WISS_PUBLIKATIONEN', 'Home', 'Fortschritt');
 	$single_post = $post && $post->post_type == 'post' && is_single();
 	$show_edit_post = ($single_post && current_user_can('edit_post', $post->ID)) || ($admin && $post->post_type == 'page');
 	$show_db_logo = ($post && $post->post_type == 'page' && in_array($post->post_title, $version_pages)) || $single_post;
@@ -349,7 +349,7 @@ else {
 						$list[] = 'Statistik';
 					}
 					
-					if(isDevTester()){
+					if(function_exists('isDevTester') && isDevTester()){
     					$user_key = get_user_meta(get_current_user_id(), 'va_kuerzel', true);
     					if ($user_key == 'FZ'){
     					    $list[] = 'Todos';
@@ -579,7 +579,7 @@ else {
 				jQuery('.lmu_signum_bg > img').css('top',top+"px");
 
 				if(widthW < 1050) {
-					jQuery('.bg_image').hide();
+					// jQuery('.bg_image').hide();
 					jQuery('.lmu_signum_bg').hide();
 				}
 				else{

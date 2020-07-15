@@ -9,7 +9,12 @@
  * @since Twenty Twelve 1.0
  */
 
-	$post_id = va_get_post_version_id(get_the_ID());
+	if (function_exists('va_get_post_version_id')){
+		$post_id = va_get_post_version_id(get_the_ID());
+	}
+	else {
+		$post_id = get_the_ID();
+	}
 
 	global $Ue;
 	?>
@@ -53,7 +58,11 @@
 					$alist = explode(',', $authors);
 					$alist = array_map('trim', $alist);
 					echo '<span class="va_authors">' . implode(' | ', $alist) . '</span>';
-				}?>
+				}
+				else {
+					echo '<span class="va_authors">' . get_the_author_meta('display_name') . '</span>';
+				}
+				?>
 				
 			<?php else : ?>
 			<h1 class="entry-title">
@@ -72,8 +81,11 @@
 			$content = str_replace( ']]>', ']]&gt;', $content );
 			
 			global $Ue;
-			$num_words = va_count_words($content);
-			echo '<span class="va_post_word_count">(' . $num_words . ' ' . ($num_words == 1? $Ue['WORT'] : $Ue['WOERTER']) . ')</span>';?>
+			if (function_exists('va_count_words')){
+				$num_words = va_count_words($content);
+				echo '<span class="va_post_word_count">(' . $num_words . ' ' . ($num_words == 1? $Ue['WORT'] : $Ue['WOERTER']) . ')</span>';
+			}	
+			?>
 			
 			<?php if ( comments_open() ) : ?>
 				<div class="comments-link">

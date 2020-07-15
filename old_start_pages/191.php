@@ -21,17 +21,30 @@ include_once '191_header.php';
 
       	<object id="svg_object" type="image/svg+xml" width="100%" data="<?php echo $url?>/wp-content/themes/verba-alpina/images/VA_LOGO_SVG_triangles.svg"></object>
 
+  
        <div class="circle_container">
-          <img title="Deutsch" data-link="<?php echo get_site_url(1) . '?page_id=162&db=191'; ?>" class="lang_circle" src="<?php echo $url?>/wp-content/themes/verba-alpina/images/circle_de.svg.png">
-          <img title="Français" data-link="<?php echo get_site_url(1) . '/fr/?page_id=4&db=191'; ?>" class="lang_circle" src="<?php echo $url?>/wp-content/themes/verba-alpina/images/circle_fr.svg.png">
-          <img title="Italiano" data-link="<?php echo get_site_url(1) . '/it/?page_id=10&db=191'; ?>" class="lang_circle" src="<?php echo $url?>/wp-content/themes/verba-alpina/images/circle_it.svg.png">
-          <img title="Slovenščina" data-link="<?php echo get_site_url(1) . '/si/?page_id=5&db=191'; ?>" class="lang_circle" src="<?php echo $url?>/wp-content/themes/verba-alpina/images/circle_sl.svg.png">
-          <img title="Rumantsch Grischun" data-link="<?php echo get_site_url(1) . '/rg/?page_id=162&db=191'; ?>" class="lang_circle" src="<?php echo $url?>/wp-content/themes/verba-alpina/images/circle_rg.svg.png">
-          <img title="English" data-link="<?php echo get_site_url(1) . '/en/?page_id=162&db=191'; ?>" class="lang_circle" src="<?php echo $url?>/wp-content/themes/verba-alpina/images/circle_en.svg.png">
+          <button class="langbtn">
+            <img title="Deutsch" data-link="<?php echo get_site_url(1) . '?page_id=162'; ?>" class="lang_circle" src="<?php echo $url?>/wp-content/themes/verba-alpina/images/circle_de.svg.png">
+          </button>  
+          <button class="langbtn">
+            <img title="Français" data-link="<?php echo get_site_url(1) . '/fr/?page_id=4'; ?>" class="lang_circle" src="<?php echo $url?>/wp-content/themes/verba-alpina/images/circle_fr.svg.png">
+          </button>    
+          <button class="langbtn">  
+            <img title="Italiano" data-link="<?php echo get_site_url(1) . '/it/?page_id=10'; ?>" class="lang_circle" src="<?php echo $url?>/wp-content/themes/verba-alpina/images/circle_it.svg.png">
+           </button>     
+          <button class="langbtn">  
+            <img title="Slovenščina" data-link="<?php echo get_site_url(1) . '/si/?page_id=5'; ?>" class="lang_circle" src="<?php echo $url?>/wp-content/themes/verba-alpina/images/circle_sl.svg.png">
+          </button>    
+          <button class="langbtn">  
+            <img title="Rumantsch Grischun" data-link="<?php echo get_site_url(1) . '/rg/?page_id=162'; ?>" class="lang_circle" src="<?php echo $url?>/wp-content/themes/verba-alpina/images/circle_rg.svg.png">
+          </button>    
+          <button class="langbtn">  
+            <img title="English" data-link="<?php echo get_site_url(1) . '/en/?page_id=162'; ?>" class="lang_circle" src="<?php echo $url?>/wp-content/themes/verba-alpina/images/circle_en.svg.png">
+          </button>    
       
         </div>
 
-    </div>
+
 
   </div>
 </div>

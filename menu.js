@@ -180,10 +180,14 @@ function performMenuClick(_this){
 
 		if(_this.hasClass('toggled-on')){
 
-		//open
+		//open	
+
 
          	var mobile_menu_bg = jQuery('<div class="mobile_menu_bg"></div>');
 	    	jQuery('body').append(mobile_menu_bg);
+
+	    	
+			mobile_menu_bg.fadeIn();
 
 	    	mobile_menu_bg.off().hammer().bind("tap", function(e){
 
@@ -193,7 +197,7 @@ function performMenuClick(_this){
 
 		    jQuery('.va-menu-list')
 		    .css('visibility','visible')
-		    .css('min-width','240px');
+		    .css('min-width',window_width+'px');
 
 			jQuery('.page_item_has_children > ul').hide();
 
@@ -287,7 +291,7 @@ function performMenuClick(_this){
 		    	jQuery('.nav-menu.toggled-on >li>a').css('font-size','14px');
 		    	jQuery('.logo_area_bar').css('border-bottom','1px solid #efefef');
 
-		    	mobile_menu_bg.fadeIn();
+		    	
 
 		    }
 		    else{
@@ -461,19 +465,26 @@ function checkNavBar(){
 	}
 
 	var dfglogo = jQuery('.logo_area_right');
-		var dfglogo_bottom = jQuery('.bottom_logo_dfg');
+	var dfglogo_bottom = jQuery('.bottom_logo_dfg');
+
+	if(dfglogo){
 
 	dfglogo.show();
 
-	if(dfglogo.offset().top-scrollposition>0){
-		dfglogo.css('visibility','hidden').hide();
-		dfglogo_bottom.show();
-	}
-	else{
-		dfglogo.css('visibility','visible');
-		dfglogo_bottom.hide();
-	}
+	if(dfglogo.offset()){	
 
+		if(dfglogo.offset().top-scrollposition>0){
+			dfglogo.css('visibility','hidden').hide();
+			dfglogo_bottom.show();
+		}
+		else{
+			dfglogo.css('visibility','visible');
+			dfglogo_bottom.hide();
+		}
+
+		}
+
+	}
 
 
 		 if(window_width<=470){
@@ -490,7 +501,7 @@ function checkNavBar(){
 	    }
 
 	    else{
-	    	jQuery('.toolbar').css('right','8%');
+	    	jQuery('.toolbar').css('right','100px');
 	    }
 
 

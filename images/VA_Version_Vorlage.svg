@@ -14,7 +14,7 @@
    viewBox="0 0 16.947287 10.828129"
    version="1.1"
    id="svg4666"
-   inkscape:version="0.92.3 (2405546, 2018-03-11)"
+   inkscape:version="0.92.1 r15371"
    sodipodi:docname="VA_Version_Vorlage.svg">
   <defs
      id="defs4660" />
@@ -26,7 +26,7 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="8.4862118"
-     inkscape:cx="3.7807645"
+     inkscape:cx="-50.660488"
      inkscape:cy="22.6717"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
@@ -36,8 +36,8 @@
      fit-margin-right="0"
      fit-margin-bottom="0"
      inkscape:pagecheckerboard="true"
-     inkscape:window-width="1920"
-     inkscape:window-height="1137"
+     inkscape:window-width="2560"
+     inkscape:window-height="1377"
      inkscape:window-x="-8"
      inkscape:window-y="-8"
      inkscape:window-maximized="1"
@@ -62,7 +62,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -73,7 +73,7 @@
      transform="translate(-68.343423,-49.74353)">
     <g
        id="g4591"
-       transform="translate(-210.49474,5.4368969)">
+       transform="translate(-208.59288,5.4368969)">
       <g
          id="g4611"
          transform="translate(18.167404,41.132496)">
@@ -132,11 +132,11 @@
            x="-2.1210878"
            y="1.4494113" /></flowRegion><flowPara
          id="flowPara838"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Kabel;-inkscape-font-specification:Kabel;fill:#ffffff;fill-opacity:1">19</flowPara></flowRoot>    <flowRoot
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Kabel;-inkscape-font-specification:Kabel;fill:#ffffff;fill-opacity:1">20</flowPara></flowRoot>    <flowRoot
        xml:space="preserve"
        id="flowRoot832-9"
        style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
-       transform="matrix(0.19118114,0,0,0.23525394,81.368483,49.992445)"><flowRegion
+       transform="matrix(0.19118114,0,0,0.23525394,82.459714,49.992445)"><flowRegion
          id="flowRegion834-6"><rect
            id="rect836-6"
            width="81.426201"
@@ -144,5 +144,5 @@
            x="-2.1210878"
            y="1.4494113" /></flowRegion><flowPara
          id="flowPara838-9"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Kabel;-inkscape-font-specification:Kabel;fill:#ffffff;fill-opacity:1">2</flowPara></flowRoot>  </g>
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Kabel;-inkscape-font-specification:Kabel;fill:#ffffff;fill-opacity:1">1</flowPara></flowRoot>  </g>
 </svg>

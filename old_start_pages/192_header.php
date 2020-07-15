@@ -45,7 +45,7 @@ html{
 
 body { 
 
-  background: url(<?php echo get_site_url(1);?>/wp-content/uploads/19_1_titel.jpg) no-repeat center center fixed; 
+  background: url(<?php echo get_site_url(1);?>/wp-content/uploads/19_2_titel.jpg) no-repeat center center fixed; 
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -412,7 +412,7 @@ background: -webkit-linear-gradient(top, rgba(255,255,255,0.7) 0%,rgba(255,255,2
 background: linear-gradient(to bottom, rgba(255,255,255,0.7) 0%,rgba(255,255,255,0) 43%); 
 filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b3ffffff', endColorstr='#00ffffff',GradientType=0 ); */
 background: black;
-opacity: 0.45;
+opacity: 0.55;
 }
 
 .circle_container{
@@ -437,30 +437,11 @@ opacity: 0.45;
 	margin-right: 0px;
 }
 
-
-.langbtn {
-  border: none;
-  background: transparent;
-  cursor: pointer; 
-  transition: all .1s ease-in-out;
+.circle_container img:not(.active):hover{
+	/*opacity: 0.85;*/
+	transform: scale(1.12);
 }
 
-.langbtn:hover{
-background: transparent;
-transform: scale(1.12);
-}
-
-.langbtn:active{
-	transform: scale(1.0);
-	background: transparent;
-	box-shadow: none;
-}
-
-.langbtn:focus{
-	border: none;
-	background: transparent;
-	outline:0;
-}
 
 
 #logoSVG {
@@ -659,11 +640,42 @@ height: auto;
 	
 		jQuery(document).ready(function (){
 	
-			jQuery('.circle_container .langbtn').on('click',function(){
-				var data = jQuery(this).find('img').data();
+			jQuery('.circle_container img').on('click',function(){
+				var data = jQuery(this).data();
 				window.location = data.link;
 			});
 
+
+			var start;
+			var end;
+			var delta;
+
+			jQuery('.circle_container img').on('mousedown',function(){
+				jQuery(this).addClass('active');
+
+				start = new Date();
+
+				// setTimeout(function() {
+				// }, 60);
+		
+			});
+
+
+			jQuery('.circle_container img').on('mouseup',function(){
+
+				  end = new Date();
+      			  delta = (end - start) / 1000.0;
+
+      			  if(delta<0.07){
+      			  	setTimeout(function() {
+						jQuery('.circle_container img.active').removeClass('active');
+					}, 75);
+      			  }
+      			  else {
+      			  	jQuery(this).removeClass('active');
+      			  }
+			});
+	
 	
 	    jQuery('#flyer_modal').on('show.bs.modal', function (e) {
 	      showCustomModalBackdrop();

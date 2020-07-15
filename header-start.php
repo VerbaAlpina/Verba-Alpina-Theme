@@ -45,7 +45,7 @@ html{
 
 body { 
 
-  background: url(<?php echo get_site_url(1);?>/wp-content/uploads/19_2_titel.jpg) no-repeat center center fixed; 
+  background: url(<?php echo get_site_url(1);?>/wp-content/uploads/20_1_titel.jpg) no-repeat center center fixed; 
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -412,7 +412,7 @@ background: -webkit-linear-gradient(top, rgba(255,255,255,0.7) 0%,rgba(255,255,2
 background: linear-gradient(to bottom, rgba(255,255,255,0.7) 0%,rgba(255,255,255,0) 43%); 
 filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b3ffffff', endColorstr='#00ffffff',GradientType=0 ); */
 background: black;
-opacity: 0.55;
+opacity: 0.3;
 }
 
 .circle_container{
@@ -421,6 +421,7 @@ opacity: 0.55;
   padding-right: 8px;
   display: flex;
   justify-content: space-between;
+  max-width: 100vw
 }
 
 .circle_container img{
@@ -437,19 +438,37 @@ opacity: 0.55;
 	margin-right: 0px;
 }
 
-.circle_container img:not(.active):hover{
-	/*opacity: 0.85;*/
-	transform: scale(1.12);
+.langbtn {
+  border: none;
+  background: transparent;
+  cursor: pointer; 
+  transition: all .1s ease-in-out;
+}
+
+.langbtn:hover{
+background: transparent;
+transform: scale(1.12);
+}
+
+.langbtn:active{
+	transform: scale(1.0);
+	background: transparent;
+	box-shadow: none;
+}
+
+.langbtn:focus{
+	border: none;
+	background: transparent;
+	outline:0;
 }
 
 
-
 #logoSVG {
-    position: relative;
+    position: fixed;
     display: flex;
     justify-content: center;
     width: 100%;
-    margin-top: -83px;
+    margin-top: -20px;
 }
 
 #logoSVG > img{
@@ -512,14 +531,24 @@ height: auto;
 
 
 	.logo_container{
-		padding-left: 15px;
-	    padding-right: 15px;
+		padding-left: 10px;
+		padding-right: 10px;
 	}
 
+	.circle_container{
+		display: block;
+		text-align: center;
+		padding-left: 2px;
+	}
 
 	.contribute_container img{
 		max-height: 28px;
         margin-left: -12.5px;
+	}
+
+	.langbtn{
+		padding-left: 4px;
+		padding-right: 4px;
 	}
 
 	.contribute_container{
@@ -536,6 +565,10 @@ height: auto;
 		height: 50px;
    }
 
+   .logo_container_outer{
+   	position: fixed;
+   }
+
 }
 
 @media screen and (max-width: 628px){
@@ -548,8 +581,6 @@ height: auto;
 
 @media screen and (max-width: 400px){
 
-
-
 	.contribute_container{
 		padding-top: 13px;
 		padding-bottom: 16px;
@@ -559,6 +590,17 @@ height: auto;
 		margin-left: 0px;
 	}
 
+}
+
+@media screen and (max-width: 450px){
+
+	.circle_container img{
+
+		width: 42px;
+		height: 42px;
+		margin-right: 0px;
+		margin-top: -4px;
+	}
 
 }
 
@@ -575,39 +617,38 @@ height: auto;
 
 }
 
-@media screen and (max-width: 387px){
 
-		.circle_container img{
 
-		width: 45px;
-		height: 45px;
-		margin-right: 0px;
-		margin-top: -4px;
-	}
-
-	#logoSVG{
-		 margin-left: 2px;
-	}
-}
-
-@media screen and (max-height: 350px){
+@media screen and (max-height: 354px){
 
 	#logoSVG{
 		 margin-top: 0px;
 	}
 
 
-.contribute_container{
-	background-color: rgba(0,0,0,0.85);
-}
+	.contribute_container{
+		background-color: rgba(0,0,0,0.85);
+	}
 
 }
 
-@media screen and (max-width: 300px){
+@media screen and (max-width: 354px){
 
 	.contribute_container img{
 		/*margin-left: -25px;*/
 		max-height: 22px;
+	}
+
+	.circle_container{
+		width: 250px;
+		text-align: center;
+		margin: 0 auto;
+		display: block;
+		padding-top: 0;
+	}
+
+	.circle_container img{
+		margin-top: 5px;
 	}
 }
 
@@ -615,6 +656,33 @@ height: auto;
     .version_div{
     	display: none;
     }
+}
+
+@media screen and (max-width: 250px){
+
+	.circle_container img{
+		width: 32px;
+		height: 32px;
+	}
+
+	.circle_container{
+		width: 220px;
+	}
+
+}
+
+@media screen and (max-width: 200px){
+
+	.lmu_signum{
+		position: fixed;
+	}
+	.contribute_container{
+		position: fixed;
+	}
+	.logo_container{
+		padding-right: 5px;
+		padding-left: 5px;
+	}
 }
 
 </style>
@@ -640,40 +708,9 @@ height: auto;
 	
 		jQuery(document).ready(function (){
 	
-			jQuery('.circle_container img').on('click',function(){
-				var data = jQuery(this).data();
+			jQuery('.circle_container .langbtn').on('click',function(){
+				var data = jQuery(this).find('img').data();
 				window.location = data.link;
-			});
-
-
-			var start;
-			var end;
-			var delta;
-
-			jQuery('.circle_container img').on('mousedown',function(){
-				jQuery(this).addClass('active');
-
-				start = new Date();
-
-				// setTimeout(function() {
-				// }, 60);
-		
-			});
-
-
-			jQuery('.circle_container img').on('mouseup',function(){
-
-				  end = new Date();
-      			  delta = (end - start) / 1000.0;
-
-      			  if(delta<0.07){
-      			  	setTimeout(function() {
-						jQuery('.circle_container img.active').removeClass('active');
-					}, 75);
-      			  }
-      			  else {
-      			  	jQuery(this).removeClass('active');
-      			  }
 			});
 	
 	
