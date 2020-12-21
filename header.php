@@ -121,7 +121,7 @@ box-shadow: 0px 1px 12px 5px rgba(0,0,0,0.15);
 	width: 100%;
 	height: 100%;
 	top: 0;
-	background: url(<?php echo get_site_url(1);?>/wp-content/uploads/20_1_titel.jpg) no-repeat center center fixed; 
+	background: url(<?php echo get_site_url(1);?>/wp-content/uploads/20_2_titel.jpg) no-repeat center center fixed; 
 	opacity: 0.1;
 	z-index: -2;
   background-size: cover;
@@ -144,6 +144,42 @@ box-shadow: 0px 1px 12px 5px rgba(0,0,0,0.15);
     flex-direction: column;
   justify-content: center;
 }
+
+.version_warning{
+    position: absolute;
+    right: 5px;
+    top: 82px;
+    background: #b52525;
+    color: white;
+    border-radius: 4px;
+    font-size: 12px;
+    padding-top: 7px;
+    padding-bottom: 8px;
+    padding-left: 7px;
+    padding-right: 7px;
+    box-shadow: 0 2px 6px rgba(100, 100, 100, 0.3);
+    cursor: pointer;
+    z-index: -1;
+    display: none;
+  }
+
+.version_warning .arrow-up {
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-bottom: 5px solid #b52525;
+    position: absolute;
+    top: -5px;
+    right: 12px;
+}
+
+.version_warning .fa-times{
+    width: 11px;
+    text-align: center;
+    cursor: pointer;
+}
+
 
 @media screen and (min-width: 1400px){
 
@@ -196,7 +232,7 @@ if($post){
 
 
 if($post){
-	$version_pages = array('KARTE', 'METHODOLOGIE', 'KOMMENTARE', 'WISS_PUBLIKATIONEN', 'Home', 'Fortschritt');
+	$version_pages = array('KARTE', 'METHODOLOGIE', 'KOMMENTARE', 'WISS_PUBLIKATIONEN', 'Home', 'Fortschritt', 'LexAlp');
 	$single_post = $post && $post->post_type == 'post' && is_single();
 	$show_edit_post = ($single_post && current_user_can('edit_post', $post->ID)) || ($admin && $post->post_type == 'page');
 	$show_db_logo = ($post && $post->post_type == 'page' && in_array($post->post_title, $version_pages)) || $single_post;
@@ -344,7 +380,6 @@ else {
 					
 					if ($admin || $va_mitarbeiter){
 						$list[] = 'Datenbank-Dokumentation';
-						$list[] = 'CSGRAPH';
 						$list[] = 'DizMT Eingabe';
 						$list[] = 'Statistik';
 					}
@@ -406,7 +441,7 @@ else {
           <div class="db_select_head"> <?php echo ucfirst($Ue['DATENBANK_VERSION']);?>:</div>
 
             <select id="va_version_select">
-              <?php va_get_version_options($post? $post->post_date: null); ?>
+              <?php va_get_version_options($single_post? $post->post_date: null); ?>
             </select>
 
           </div>
@@ -428,7 +463,6 @@ else {
 			</div> -->
 
 		<nav id="site-navigation" class="main-nav main-navigation" role="navigation">
-		
 
       <div class="logo_area_bar">
               <a href="<?php echo esc_url( home_url( '/' ) ); ?>"><img class="top_logo_left" src="<?php echo get_stylesheet_directory_uri();?>/images/va_logo_klein.svg" /></a>
@@ -447,6 +481,8 @@ else {
     <div class="logo_area_right">
       <a href="http://gepris.dfg.de/gepris/projekt/253900505" target="_blank"><img class="top_logo_dfg" src="<?php echo get_stylesheet_directory_uri();?>/images/dfg_logo_blau_4c.svg" /></a>
     </div>  
+
+    <div class="version_warning"><i class="fa fa-times"></i> <?php echo ucfirst($Ue['TO_CURRENT_VERSION']);?> <div class="arrow-up"></div></div>
 
 		</nav><!-- #site-navigation -->
 
@@ -563,7 +599,35 @@ else {
 				 adjustSizesRelativeToWindow();
 			});
 
+     handleVersionWarning();
+
 		});
+
+
+
+   function handleVersionWarning(){
+
+    var is_current_version = false;
+    var version_page = false;
+
+    if(ajax_object.db == "xxx" || ajax_object.db == ajax_object.max_db) is_current_version = true;
+    if(jQuery('.ver_tb .fa-caret-down').length>0)version_page = true;
+
+    if(!is_current_version && version_page) {
+
+        jQuery('.version_warning').show();
+
+        jQuery('.version_warning .fa-times').on('click',function(){
+          jQuery(this).parent().remove();
+        })
+
+        jQuery('.version_warning').on('click',function(){
+            //change version?
+        })
+
+      }
+
+   } 
 
 	function adjustSizesRelativeToWindow (){
 		var widthW = window.innerWidth;

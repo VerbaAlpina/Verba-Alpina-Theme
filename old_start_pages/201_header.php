@@ -45,7 +45,7 @@ html{
 
 body { 
 
-  background: url(<?php echo get_site_url(1);?>/wp-content/uploads/20_2_titel.jpg) no-repeat center center fixed; 
+  background: url(<?php echo get_site_url(1);?>/wp-content/uploads/20_1_titel.jpg) no-repeat center center fixed; 
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -412,7 +412,7 @@ background: -webkit-linear-gradient(top, rgba(255,255,255,0.7) 0%,rgba(255,255,2
 background: linear-gradient(to bottom, rgba(255,255,255,0.7) 0%,rgba(255,255,255,0) 43%); 
 filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b3ffffff', endColorstr='#00ffffff',GradientType=0 ); */
 background: black;
-opacity: 0.35;
+opacity: 0.3;
 }
 
 .circle_container{
@@ -468,7 +468,7 @@ transform: scale(1.12);
     display: flex;
     justify-content: center;
     width: 100%;
-    margin-top: -50px;
+    margin-top: -20px;
 }
 
 #logoSVG > img{

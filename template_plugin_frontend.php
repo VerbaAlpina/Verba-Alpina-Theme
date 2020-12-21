@@ -1,7 +1,7 @@
 <?php
 /**
- * Template Name: Plugin Fullscreen Template
- * Description: Display Plugin in Fullscreen
+ * Template Name: Plugin Fullscreen Template CS
+ * Description: Display Plugin in Fullscreen CS
  *
  * 
  * 
@@ -16,9 +16,7 @@
 	<!--[if lt IE 9]>
 	<script src="<?php echo esc_url( get_template_directory_uri() ); ?>/js/html5.js"></script>
 	<![endif]-->
-			<script  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC28XHFNL1oOwEhotnCqyb_LkuYh1U6aVo&libraries=geometry" type="text/javascript"></script>
-			
-
+		
 	<?php wp_head(); ?>
 
 	<style>

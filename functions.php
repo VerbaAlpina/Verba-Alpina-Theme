@@ -266,7 +266,7 @@ function va_questionnaire_sub_page ($num_page, $post_id = NULL){
 		foreach ($pages[$num_page]['fb_frage'] as $question){
 			
 			if($question['fb_details']['fb_necessary']){
-				echo '<span style="color: red; display: inline-block; margin-right: 5px; vertical-align: top; margin-top: 30px;">*</span>';
+				echo '<span style="color: red; /*display: inline-block;*/ margin-right: 5px; vertical-align: top; margin-top: 30px;">*</span>';
 			}
 			
 			echo '<div style="display: inline-block">' . $question['fb_uberschrift'] . '</div><br />';
@@ -280,11 +280,17 @@ function va_questionnaire_sub_page ($num_page, $post_id = NULL){
 				case 'Auswahl':
 					$options = explode(PHP_EOL, $question['fb_details']['fb_cb_optionen']);
 					$multiple = $question['fb_details']['fb_cb_multiple'];
-					if(count($options) <= 15){
+					if(count($options) <= 15 || $question['fb_details']['fb_cb_user_input']){
 						echo '<input type="hidden" class="fb_question fb_pseudo' . ($question['fb_details']['fb_necessary']? ' fb_necessary' : '') . '" value="fb_radio' . $num_radio . '" />';
 						foreach ($options as $option){
 							echo '<input type="' . ($multiple? 'checkbox': 'radio') . '" data-text="' . htmlentities(trim($option)) . '" style="margin-right: 5px;" autocomplete="off" name="fb_radio' . $num_radio . '" />' . $option . '<br />';
 						}
+						
+						if ($question['fb_details']['fb_cb_user_input']){
+							$label = $question['fb_details']['fb_cb_user_input_label'];
+							echo '<input class="user_input_radio" type="' . ($multiple? 'checkbox': 'radio') . '" data-text="' . htmlentities(trim($label)) . '" style="margin-right: 5px;" autocomplete="off" name="fb_radio' . $num_radio . '" />' . $label . ': <input class="user_input_text" id="fb_radio' . $num_radio . '_user_text" type="text" value="" autocomplete="off" /><br />';
+						}
+						
 						$num_radio++;
 					}
 					else {
@@ -298,7 +304,7 @@ function va_questionnaire_sub_page ($num_page, $post_id = NULL){
 					
 				case 'Karte':
 					$details = $question['fb_details'];
-					echo ' <div class="fb_map fb_question' . ($question['fb_details']['fb_necessary']? ' fb_necessary' : '') . '" id="fb_map' . $num_map++ . '" style="height: 500px;" data-zoom="' . $details['fb_map_zoom'] . '" data-lat="' . $details['fb_map_center']['fb_map_lat'] . '" data-lng="' . $details['fb_map_center']['fb_map_lng'] . '"></div>';
+					echo ' <div class="fb_map fb_question' . ($details['fb_necessary']? ' fb_necessary' : '') . '" id="fb_map' . $num_map++ . '" style="height: 500px;" data-zoom="' . $details['fb_map_zoom'] . '" data-lat="' . $details['fb_map_center']['fb_map_lat'] . '" data-lng="' . $details['fb_map_center']['fb_map_lng'] . '" data-type="' . $details['fb_map_selection_type'] . '" data-map-type="' . $details['fb_map_type'] . '"></div>';
 					break;
 			}
 			

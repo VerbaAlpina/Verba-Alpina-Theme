@@ -27,29 +27,134 @@ wp_head();
 			VALUES (%d, NULL, (SELECT * FROM (SELECT IFNULL(max(user_id) + 1, 0) FROM va_wp.questionnaire_results) x), NULL, NULL, NULL)', get_the_ID()));
 		echo $wpdb->get_var($wpdb->prepare('SELECT user_id FROM questionnaire_results WHERE id_result = %d', $wpdb->insert_id));
 	?>;
+	
+	var emptyMapStyle = [
+	  {
+		"elementType": "labels",
+		"stylers": [
+		  {
+			"visibility": "off"
+		  }
+		]
+	  },
+	  {
+		"featureType": "administrative",
+		"elementType": "geometry",
+		"stylers": [
+		  {
+			"visibility": "off"
+		  }
+		]
+	  },
+	  {
+		"featureType": "administrative.land_parcel",
+		"stylers": [
+		  {
+			"visibility": "off"
+		  }
+		]
+	  },
+	  {
+		"featureType": "administrative.neighborhood",
+		"stylers": [
+		  {
+			"visibility": "off"
+		  }
+		]
+	  },
+	  {
+		"featureType": "poi",
+		"stylers": [
+		  {
+			"visibility": "off"
+		  }
+		]
+	  },
+	  {
+		"featureType": "road",
+		"stylers": [
+		  {
+			"visibility": "off"
+		  }
+		]
+	  },
+	  {
+		"featureType": "road",
+		"elementType": "labels.icon",
+		"stylers": [
+		  {
+			"visibility": "off"
+		  }
+		]
+	  },
+	  {
+		"featureType": "transit",
+		"stylers": [
+		  {
+			"visibility": "off"
+		  }
+		]
+	  }
+	];
 
 	function init (){
 		jQuery(".fb_map").each(function (){
 			var that = this;
 			
-			var map = new google.maps.Map(this, {
+			var mapOptions = {
 				center : new google.maps.LatLng(jQuery(this).data("lat"), jQuery(this).data("lng")),
-			    zoom : jQuery(this).data("zoom")
-			});
+			    zoom : jQuery(this).data("zoom"),
+			};
+			
+			if (jQuery(this).data("map-type") === "E"){
+				mapOptions.styles = emptyMapStyle;
+				mapOptions.mapTypeId = "terrain"
+			}
+			
+			var map = new google.maps.Map(this, mapOptions);
+			
+			jQuery(that).data("markers", []);
+			
+			switch (jQuery(this).data("type")){
+				case "S":
+					map.addListener("click", function (options){
+						var markers = jQuery(that).data("markers");
+						if (markers.length > 0){
+							markers[0].setMap(null);
+						}
 
-			map.addListener("click", function (options){
-				var marker = jQuery(that).data("marker");
-				if (marker){
-					marker.setMap(null);
-				}
+						marker = new google.maps.Marker({
+							position: options["latLng"],
+							map: this
+						});
+						
+						marker.addListener("click", function (){removeMarker(this, that)});
+						
+						jQuery(that).data("markers", [marker]);
+					});
+				break;
+				
+				case "M":
+					map.addListener("click", function (options){
+						marker = new google.maps.Marker({
+							position: options["latLng"],
+							map: this
+						});
 
-				marker = new google.maps.Marker({
-			   		position: options["latLng"],
-			  		map: this
-			    });
-			    
-				jQuery(that).data("marker", marker);
-			});
+						marker.addListener("click", function (){removeMarker(this, that)});
+						
+						let markers = jQuery(that).data("markers");	
+						jQuery(that).data("markers", markers.concat([marker]));
+					});
+					
+				break;
+			}
+
+			
+		});
+		
+		jQuery(".user_input_text").focus(function (){
+			jQuery(this).prevAll(".user_input_radio").prop("checked", true);
 		});
 
 		jQuery(".va_fb_select").select2();
@@ -76,6 +181,19 @@ wp_head();
 			}
 		});
 	}
+	
+	function removeMarker (marker, map){
+		marker.setMap(null);
+							
+		let markers = jQuery(map).data("markers");
+		for (let i = 0; i < markers.length; i++){
+			if (markers[i] == marker){
+				markers.splice(i, 1);
+				break;
+			}
+		}
+		jQuery(map).data("markers", markers);
+	}
 
 	function getAnswers (){
 		var result = [];
@@ -84,22 +202,29 @@ wp_head();
 			var value;
 			
 			if (jQuery(this).hasClass("fb_map")){
-				var marker = jQuery(this).data("marker");
-				if(marker) {
-					value = "POINT(" + marker.getPosition().lng() + " " + marker.getPosition().lat() + ")";
+				var markers = jQuery(this).data("markers");
+				if(markers.length > 0) {
+					value = markers.map(marker => "POINT(" + marker.getPosition().lng() + " " + marker.getPosition().lat() + ")");
 				}
 				else {
 					value = null;
 				}
 			}
-			else if (jQuery(this).hasClass("fb_pseudo")){ //Used for radio buttons
-				value = [];
-				jQuery("input[name=" + jQuery(this).val() + "]:checked").each(function (){
-					value.push(jQuery(this).data("text"));
+			else if (jQuery(this).hasClass("fb_pseudo")){ //Used for radio buttons and checkboxes
+				var value = [];
+				let optionName = jQuery(this).val();
+				
+				jQuery("input[name=" + optionName + "]:checked").each(function (){
+					if (jQuery(this).hasClass("user_input_radio")){
+						value.push(jQuery("input#" + optionName + "_user_text").val());
+					}
+					else {
+						value.push(jQuery(this).data("text"));
+					}
 				});
-
+				
 				if (value.length == 0){
-					value = "";
+					value = null;
 				}
 				else if (value.length == 1){
 					value = value[0];

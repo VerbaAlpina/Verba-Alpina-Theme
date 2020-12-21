@@ -18,6 +18,10 @@ get_header();
 ?>
 
 <script type="text/javascript">
+	jQuery(function (){
+		jQuery("table").css("max-width", "100%");
+	});
+
 	function openSection(id) {
 		if (jQuery(id).css("display") == "none")
 			jQuery(id).css("display", "block");

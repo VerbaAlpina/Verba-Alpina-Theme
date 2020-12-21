@@ -53,6 +53,13 @@ var prevent_click = false;
 					else  jQuery('.share_modal_main').modal('hide');
 				});
 			}
+			else if(ajax_object.page_title == "LexAlp" && (ajax_object.db != "xxx" || ajax_object.va_staff == "1")){
+				produceLexURL(function (link){
+					currentURL = link;
+					if(!jQuery('.share_modal_main').hasClass('in')) jQuery('.share_modal_main').modal();
+					else  jQuery('.share_modal_main').modal('hide');
+				});
+			}
 			else {
 				currentURL = window.location.href;
 				if(!jQuery('.share_modal_main').hasClass('in'))  jQuery('.share_modal_main').modal();
