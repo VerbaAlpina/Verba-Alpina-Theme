@@ -21,11 +21,17 @@ wp_head();
 	var ajaxurl = "<?php echo admin_url( 'admin-ajax.php' ); ?>";
 	var errorText = <?php echo json_encode(get_field('fb_error_text')) ?>;
 	var userID = <?php 
-		global $wpdb;
-		$wpdb->query($wpdb->prepare('
-			INSERT INTO va_wp.questionnaire_results (post_id, page, user_id, question, question_text, answer) 
-			VALUES (%d, NULL, (SELECT * FROM (SELECT IFNULL(max(user_id) + 1, 0) FROM va_wp.questionnaire_results) x), NULL, NULL, NULL)', get_the_ID()));
-		echo $wpdb->get_var($wpdb->prepare('SELECT user_id FROM questionnaire_results WHERE id_result = %d', $wpdb->insert_id));
+	
+		if (get_field('fb_block') == 0){
+			global $wpdb;
+			$wpdb->query($wpdb->prepare('
+				INSERT INTO va_wp.questionnaire_results (post_id, page, user_id, question, question_text, answer) 
+				VALUES (%d, NULL, (SELECT * FROM (SELECT IFNULL(max(user_id) + 1, 0) FROM va_wp.questionnaire_results) x), NULL, NULL, NULL)', get_the_ID()));
+			echo $wpdb->get_var($wpdb->prepare('SELECT user_id FROM questionnaire_results WHERE id_result = %d', $wpdb->insert_id));
+		}
+		else {
+			echo 0;
+		}
 	?>;
 	
 	var emptyMapStyle = [
@@ -171,12 +177,14 @@ wp_head();
 					"query" : "nextPage",
 					"page" : currentPage,
 					"post" : <?php echo get_the_ID(); ?>,
-					"answers" : answers
+					"answers" : answers,
+					"save": <?php echo get_field('fb_block') == 0? 'true': 'false'; ?>
 				},
 				function (response){
 					jQuery("#qdiv").html(response);
 					currentPage++;
 					init();
+					scroll(0,0);
 				});
 			}
 		});
@@ -229,6 +237,18 @@ wp_head();
 				else if (value.length == 1){
 					value = value[0];
 				}
+			}
+			else if (jQuery(this).is("table")){ // Sub questions
+				value = {};
+				var questionObject = this;
+				jQuery(this).find(".fb_sub_question").each(function (){
+					var cval = jQuery(this).val();
+					if(!cval && jQuery(questionObject).hasClass("fb_necessary")){
+						value = false;
+						return false;
+					}
+					value[jQuery(this).data("text")] = cval;
+				});
 			}
 			else {
 				value = jQuery(this).val();

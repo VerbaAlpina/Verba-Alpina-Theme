@@ -3,17 +3,12 @@
  * Template Name: Start page
  */
 
-if (isset($_REQUEST['db']) && file_exists(__DIR__  . '/old_start_pages/' . $_REQUEST['db'] . '.php')){
-	include_once __DIR__  . '/old_start_pages/' . $_REQUEST['db'] . '.php';
-	die;
-}
-
- get_header('start');
+include_once '202_header.php';
  
  $url = get_site_url(1);
 ?>
 
-<div class="version_div"> <object type="image/svg+xml" width="35px" data="<?php echo $url?>/wp-content/themes/verba-alpina/images/VA_Version.svg"></object></div>
+<div class="version_div"> <object type="image/svg+xml" width="35px" data="<?php echo $url?>/wp-content/themes/verba-alpina/old_start_pages/202_version.svg"></object></div>
 
 <div class="info_div langbtn" title ="<?php echo $Ue['BILDMATERIAL'] ?>"> <a href="<?php echo va_get_glossary_link(200); ?>"><img src="<?php echo $url?>/wp-content/themes/verba-alpina/images/VA_Infobutton.png"></img></a></div>
 

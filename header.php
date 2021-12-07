@@ -50,6 +50,9 @@
 	margin-top: 60px;
 }
 
+.version_span{
+    margin-right: 5px;
+}
 
 
 @media screen and (max-width: 959px){
@@ -91,23 +94,19 @@
     width: 44px;
     height: 28px;
     margin-right: -3px;
-    float: left;
     position: relative;
 }
 
 .toolbar_right{
-    background: transparent url(<?php echo get_stylesheet_directory_uri();?>/images/waveborder_r.png) no-repeat 0 0;
+      background: transparent url(<?php echo get_stylesheet_directory_uri();?>/images/waveborder_r.png) no-repeat 0 0;
     width: 44px;
     height: 28px;
-    margin-left: -14px;
-    float: right;
-
+    margin-left: -1px;
   }
 
 .toolbar_center{
     background: rgb(251,251,251);
     height: 28px;
-    float:left;
     text-align: center;
 
 -webkit-box-shadow:0px 1px 12px 5px rgba(0,0,0,0.15);
@@ -121,11 +120,11 @@ box-shadow: 0px 1px 12px 5px rgba(0,0,0,0.15);
 	width: 100%;
 	height: 100%;
 	top: 0;
-	background: url(<?php echo get_site_url(1);?>/wp-content/uploads/20_2_titel.jpg) no-repeat center center fixed; 
 	opacity: 0.1;
 	z-index: -2;
-  background-size: cover;
+  background-size: cover !important;
 }
+
 
 .lmu_signum_bg{
 	position: fixed;
@@ -180,6 +179,16 @@ box-shadow: 0px 1px 12px 5px rgba(0,0,0,0.15);
     cursor: pointer;
 }
 
+
+#qrcode{
+    margin-top: 15px;
+    text-align: center;
+}
+#qrcode canvas{
+    box-shadow: 4px 4px 9px 0px rgb(0 0 0 / 22%);
+    position: relative;
+    left: -3px;
+}
 
 @media screen and (min-width: 1400px){
 
@@ -236,12 +245,16 @@ if($post){
 	$single_post = $post && $post->post_type == 'post' && is_single();
 	$show_edit_post = ($single_post && current_user_can('edit_post', $post->ID)) || ($admin && $post->post_type == 'page');
 	$show_db_logo = ($post && $post->post_type == 'page' && in_array($post->post_title, $version_pages)) || $single_post;
+    $help_pages = array('LexAlp');
+    $show_help_icon = ($post && $post->post_type == 'page' && in_array($post->post_title, $help_pages));
 }
 else {
 	$version_pages = false;
 	$single_post = false;
 	$show_edit_post = false;
 	$show_db_logo = false;
+    $help_pages = false;
+    $show_help_icon = false;
 }
 
 
@@ -312,6 +325,8 @@ else {
           
           <textarea  type="text" id="share_url_text"></textarea>
 
+          <div id="qrcode"></div>
+
        </div>
 
            <div class="social_icon_container">
@@ -328,11 +343,19 @@ else {
                     </div>
                   </a>
 
+
+                 <a class="insta_link"  href="https://www.instagram.com/verba.alpina/">
+                  <div>
+                       <i class="fab fa-instagram" aria-hidden="true"></i><span>Instagram</span>             
+                  </div>
+                </a>
+
                  <a class="mail_link" href="">
                     <div>
                          <i class="fa fa-envelope" aria-hidden="true"></i><span>Mail</span>             
                     </div>
                   </a>
+
 
 
             </div> 
@@ -486,14 +509,7 @@ else {
 
 		</nav><!-- #site-navigation -->
 
-    <div class="toolbar" style="width: <?php 
-    	if($show_db_logo || $show_edit_post){
-    		echo '198px';
-    	}
-    	else {
-    		echo '172px';
-    	}
-    ?>">   
+    <div class="toolbar">   
         <div class="toolbar_section toolbar_left"></div>  
 
         <div class="toolbar_section toolbar_center">
@@ -532,6 +548,8 @@ else {
             
 
             </div>
+
+            <!-- 
             <?php 
             if ($show_db_logo && !$show_edit_post){
             ?>
@@ -541,6 +559,8 @@ else {
             <?php 
             }
             ?>
+             -->
+
             <div class="tb_i_container tb_share_menu" title="<?php echo ucfirst($Ue['SHARE_TEXT']);?>">
             	<i class="tb_icon fa fa-share-alt" aria-hidden="true"></i>
             </div>
@@ -550,6 +570,16 @@ else {
             ?>
               <div class="tb_i_container tb_db_menu pencil">
                 <a href="<?php echo get_edit_post_link($post->ID) ?>"> <i class="tb_icon fas fa-pencil-alt" aria-hidden="true" ></i> </a>
+              </div>
+            <?php 
+            } ?>
+
+          <!--  TODO: ADD CHECK WHEN TO SHOW HELP -->
+           <?php 
+            if ($show_help_icon){
+            ?>
+              <div class="tb_i_container help">
+                <i class="tb_icon fas fa-question" aria-hidden="true" ></i>
               </div>
             <?php 
             } ?>
@@ -591,6 +621,8 @@ else {
 
 <script type="text/javascript">
 
+stylesheet_directory = "<?php echo get_stylesheet_directory_uri(); ?>"
+
 		jQuery(document).ready(function (){ 
 
 			adjustSizesRelativeToWindow();
@@ -609,11 +641,12 @@ else {
 
     var is_current_version = false;
     var version_page = false;
+    var is_tk = (window.location.href.indexOf("tk=")==-1) ? false : true;
 
     if(ajax_object.db == "xxx" || ajax_object.db == ajax_object.max_db) is_current_version = true;
     if(jQuery('.ver_tb .fa-caret-down').length>0)version_page = true;
 
-    if(!is_current_version && version_page) {
+    if(!is_current_version && version_page && !is_tk) {
 
         jQuery('.version_warning').show();
 
@@ -622,7 +655,8 @@ else {
         })
 
         jQuery('.version_warning').on('click',function(){
-            //change version?
+            var url = window.location.href.split("db=")[0] + "db="+ajax_object.max_db;
+            window.location.href = url;
         })
 
       }
@@ -651,7 +685,30 @@ else {
 					jQuery('.lmu_signum_bg').show();
 				}
 
+        setBackgroundImageVersion()
 	}
+
+  function setBackgroundImageVersion(){
+
+    var image_version = (ajax_object.db == "xxx") ? ajax_object.max_db : ajax_object.db;
+    var last =  parseInt(image_version.substr(image_version.length - 1)); 
+    var first = parseInt(image_version.substring(0, image_version.length - 1));
+
+    //set image to next version if version = xxx
+    if(ajax_object.db == "xxx"){
+        if(last==2){
+           first +=1;
+            last  =1;
+        }
+        else{
+            last +=1;
+        }
+    }
+
+    var url =  "<?php echo get_site_url(1);?>/wp-content/uploads/"+first+"_"+last+"_titel.jpg"; 
+    jQuery('.bg_image').css("background",'url("'+url+'") no-repeat center center fixed');
+  }
+
 </script>	
 
 <div id="page" class="hfeed site">

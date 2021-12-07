@@ -13,7 +13,6 @@ im_create_map(0);
 
 html{
 	margin-top: 0!important;
-	overflow: hidden;
 }
 
 @media screen and (min-width: 600px) {

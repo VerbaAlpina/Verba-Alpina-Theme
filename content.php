@@ -9,8 +9,13 @@
  * @since Twenty Twelve 1.0
  */
 
+	global $va_post_not_existing;
+	$va_post_not_existing = false;
 	if (function_exists('va_get_post_version_id')){
 		$post_id = va_get_post_version_id(get_the_ID());
+		if (!$post_id){
+			$va_post_not_existing = true;
+		}
 	}
 	else {
 		$post_id = get_the_ID();
@@ -19,6 +24,18 @@
 	global $Ue;
 	?>
 	
+	<?php if ($va_post_not_existing) :
+	
+	$first_v = va_get_first_post_version(get_the_ID());
+	$req = $_REQUEST;
+	$req['db'] = $first_v;
+	if ($first_v == 'xxx'){
+		echo 'This post was not versioned, yet. It can only be accessed within the current <a href="?' . http_build_query($req) . '">working version</a>.'; 
+	}
+	else {
+		echo 'This post does not exist in this version. The first applicable version is <a href="?' . http_build_query($req) . '">VA_' . $first_v . '</a>.'; 
+	}
+	else: ?>
 	
 	<script type="text/javascript">
 	jQuery(function() {
@@ -46,7 +63,7 @@
 				if($va_current_db_name != 'va_xxx'){
 					$cite_text = va_create_post_citation($post_id, $Ue);
 					$bibtex = va_create_post_bibtex($post_id, $Ue, true);
-					echo ' <span class="quote" data-plain="' . $cite_text . '" data-bibtex="' . $bibtex . '" style="font-size: 50%; cursor : pointer; color : grey;">(' . $Ue['ZITIEREN'] . ')</span>';
+					echo ' <span class="quote" data-plain="' . htmlentities($cite_text) . '" data-bibtex="' . $bibtex . '" style="font-size: 50%; cursor : pointer; color : grey;">(' . $Ue['ZITIEREN'] . ')</span>';
 				}
 				
 				
@@ -132,3 +149,4 @@
 			<?php endif; ?>
 		</footer><!-- .entry-meta -->
 	</article><!-- #post -->
+<?php endif; ?><!-- Not existing -->

@@ -45,7 +45,7 @@ html{
 
 body { 
 
-  background: url(<?php echo get_site_url(1);?>/wp-content/uploads/21_1_titel.jpg) no-repeat center center fixed; 
+  background: url(<?php echo get_site_url(1);?>/wp-content/uploads/20_2_titel.jpg) no-repeat center center fixed; 
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;

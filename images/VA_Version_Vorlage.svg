@@ -2,20 +2,20 @@
 <!-- Created with Inkscape (http://www.inkscape.org/) -->
 
 <svg
-   xmlns:dc="http://purl.org/dc/elements/1.1/"
-   xmlns:cc="http://creativecommons.org/ns#"
-   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-   xmlns:svg="http://www.w3.org/2000/svg"
-   xmlns="http://www.w3.org/2000/svg"
-   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
-   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    width="18.555893mm"
    height="10.828129mm"
    viewBox="0 0 18.555893 10.828129"
    version="1.1"
    id="svg4666"
-   inkscape:version="0.92.1 r15371"
-   sodipodi:docname="VA_Version_Vorlage.svg">
+   inkscape:version="1.1 (c68e22c387, 2021-05-23)"
+   sodipodi:docname="VA_Version_Vorlage.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:dc="http://purl.org/dc/elements/1.1/">
   <defs
      id="defs4660" />
   <sodipodi:namedview
@@ -26,8 +26,8 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="8.4862118"
-     inkscape:cx="19.944349"
-     inkscape:cy="22.671696"
+     inkscape:cx="19.973576"
+     inkscape:cy="22.683855"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -62,7 +62,6 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -73,7 +72,7 @@
      transform="translate(-68.355215,-49.74353)">
     <g
        id="g4591"
-       transform="translate(-208.59288,5.4368969)">
+       transform="translate(-209.21644,5.4368969)">
       <g
          id="g4611"
          transform="translate(18.167404,41.132496)">
@@ -93,19 +92,19 @@
            transform="translate(-4.4555994,-2.377545)">
           <g
              id="flowRoot4737"
-             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:39.17893219px;line-height:1.25;font-family:Kabel;-inkscape-font-specification:'Kabel, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;display:inline;fill:#000000;fill-opacity:1;stroke:none"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:39.1789px;line-height:1.25;font-family:Kabel;-inkscape-font-specification:'Kabel, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;display:inline;fill:#000000;fill-opacity:1;stroke:none"
              transform="matrix(0.20021203,0,0,0.23450186,168.91361,-69.295563)"
              aria-label="1" />
           <g
              id="flowRoot4737-2"
-             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:39.17893219px;line-height:1.25;font-family:Kabel;-inkscape-font-specification:'Kabel, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;display:inline;fill:#000000;fill-opacity:1;stroke:none"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:39.1789px;line-height:1.25;font-family:Kabel;-inkscape-font-specification:'Kabel, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;display:inline;fill:#000000;fill-opacity:1;stroke:none"
              transform="matrix(0.20021203,0,0,0.23450186,172.32954,-69.375925)"
              aria-label="8" />
         </g>
         <g
            aria-label="1"
            transform="matrix(0.1763101,0,0,0.23450186,151.13219,-72.100519)"
-           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:41.75025177px;line-height:1.25;font-family:Kabel;-inkscape-font-specification:'Kabel, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;display:inline;fill:#000000;fill-opacity:1;stroke:none"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:41.7503px;line-height:1.25;font-family:Kabel;-inkscape-font-specification:'Kabel, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;display:inline;fill:#000000;fill-opacity:1;stroke:none"
            id="flowRoot4795" />
       </g>
     </g>
@@ -120,7 +119,8 @@
            height="41.47905"
            x="-8.3665133"
            y="-36.730167" /></flowRegion><flowPara
-         id="flowPara24">22</flowPara></flowRoot>    <flowRoot
+         id="flowPara24">22</flowPara></flowRoot>
+    <flowRoot
        xml:space="preserve"
        id="flowRoot832"
        style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
@@ -132,11 +132,12 @@
            x="-2.1210878"
            y="1.4494113" /></flowRegion><flowPara
          id="flowPara838"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Kabel;-inkscape-font-specification:Kabel;fill:#ffffff;fill-opacity:1">20</flowPara></flowRoot>    <flowRoot
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Kabel;-inkscape-font-specification:Kabel;fill:#ffffff;fill-opacity:1">21</flowPara></flowRoot>
+    <flowRoot
        xml:space="preserve"
        id="flowRoot832-9"
        style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
-       transform="matrix(0.19118114,0,0,0.23525394,82.988881,49.992445)"><flowRegion
+       transform="matrix(0.19118114,0,0,0.23525394,83.425374,49.992445)"><flowRegion
          id="flowRegion834-6"><rect
            id="rect836-6"
            width="81.426201"
@@ -144,5 +145,6 @@
            x="-2.1210878"
            y="1.4494113" /></flowRegion><flowPara
          id="flowPara838-9"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Kabel;-inkscape-font-specification:Kabel;fill:#ffffff;fill-opacity:1">2</flowPara></flowRoot>  </g>
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Kabel;-inkscape-font-specification:Kabel;fill:#ffffff;fill-opacity:1">1</flowPara></flowRoot>
+  </g>
 </svg>

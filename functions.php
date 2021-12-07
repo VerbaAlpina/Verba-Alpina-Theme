@@ -28,12 +28,16 @@ function mh_footer_info() {
 		global $lang;
 		global $Ue;
 		
+		$output = '';
+		
 		$impressum = get_page_by_title('IMPRESSUM');
 		$datenschutz = get_page_by_title('DATENSCHUTZ');
 		$kontakt = get_page_by_title('KONTAKT');
 		$license = get_option('va_external')? null: va_get_glossary_link_and_title(41);
 		
-		$output = '<div id="fusszeile" style="float: right">';
+		$output .= '<div style="display: inline-block;">' . ucfirst(str_replace('...', 2015, $Ue['ONLINE'])) . '</div>';
+		
+		$output .= '<div id="fusszeile" style="float: right; display: inline-block">';
 		
 		$link_list = array();
 		
@@ -274,7 +278,16 @@ function va_questionnaire_sub_page ($num_page, $post_id = NULL){
 			switch ($question['fb_typ']){
 				
 				case 'Text':
-					echo '<input type="text" class="fb_question' . ($question['fb_details']['fb_necessary']? ' fb_necessary' : '') . '" autocomplete="off" />';
+				    if ($question['fb_details']['fb_text_parts']){
+				        echo '<table class="fb_question ' . ($question['fb_details']['fb_necessary']? ' fb_necessary' : '') . '">';
+				        foreach ($question['fb_details']['fb_text_parts'] as $question_part){
+				            echo '<tr><td>' . $question_part['fb_question_part'] . '</td><td><input type="text" data-text="' . htmlspecialchars($question_part['fb_question_part']) . '" class="fb_sub_question" autocomplete="off" /></td>';
+				        }
+				        echo '</table>';
+				    }
+				    else {
+					   echo '<input type="text" class="fb_question' . ($question['fb_details']['fb_necessary']? ' fb_necessary' : '') . '" autocomplete="off" />';
+				    }
 					break;
 					
 				case 'Auswahl':
@@ -313,7 +326,9 @@ function va_questionnaire_sub_page ($num_page, $post_id = NULL){
 		}
 		
 		if($num_page == $num_pages - 1){
-			echo '<input type="button" value="' . get_field('fb_finish_button', $post_id) . '" id="fb_submit_button" />';
+			if (!get_field('fb_block', $post_id)){
+				echo '<input type="button" value="' . get_field('fb_finish_button', $post_id) . '" id="fb_submit_button" />';
+			}
 		}
 		else {
 			echo '<input type="button" value="' . get_field('fb_continue_button', $post_id) . '" id="fb_submit_button" />';

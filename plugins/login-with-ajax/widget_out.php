@@ -42,8 +42,8 @@
 	        	<span class="lwa-status"></span>
 	            <table>
 	                <tr class="lwa-username">
-	                    <td class="username_label">
-	                        <label class="label_username">Username</label>
+	                    <td class="username_label"  style="padding-bottom: 10px">
+	                        <label style="padding-right: 10px" class="label_username">Username</label>
 	                    </td>
 	                    <td class="username_input">
 	                       <div> <input type="text"  name="log" id="lwa_user_login" style="background-color:white;" class="input form-control"/> </div>
@@ -51,7 +51,7 @@
 	                </tr>
 	                <tr class="lwa-password">
 	                    <td class="password_label">
-	                        <label class="label_password">Password</label>
+	                        <label style="padding-right: 10px" class="label_password">Password</label>
 	                    </td>
 	                    <td class="password_input">
 	                        <input type="password" name="pwd" id="lwa_user_pass" class="input form-control" value="" />
@@ -160,6 +160,9 @@
 							<input type="hidden" name="login-with-ajax" value="register" />
 
 							<button type="button" class="send_anonymous_btn btn" onclick="send_anonymous_data();" tabindex="100"  /><i class="fa fa-check" aria-hidden="true" style="padding-right: 5px"></i>Daten anonym schicken</button>
+
+							<button type="button" onclick="jQuery('#register_modal').modal('hide');" class="dont_send_btn btn" onclick="" tabindex="100"  /><i class="fa fa-arrow-right" aria-hidden="true" style="padding-right: 5px"></i>Fortfahren</button>
+
 	                    </td>
 	                </tr>
 	            </table>

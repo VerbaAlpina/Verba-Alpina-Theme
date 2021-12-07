@@ -167,8 +167,15 @@ var prevent_click = false;
 	   jQuery(this).find('.mail_link').attr('href','mailto:?body='+currentURL);
 	   jQuery(this).find('#share_url_text').val(currentURL);	
 
+         jQuery('#qrcode').empty(); 
+         createQRCode(currentURL);
+
 
 	});
+
+    jQuery(".share_modal_main").on("hidden.bs.modal", function (){
+	    jQuery('#qrcode').empty(); 
+    })
 
     jQuery(".top_menu_modal").on("hide.bs.modal", function (){
 		 prevent_click = true;
@@ -183,8 +190,6 @@ function performMenuClick(_this){
 	var window_width = window.innerWidth;
 	var window_height = window.innerHeight;
 
-
-
 		if(_this.hasClass('toggled-on')){
 
 		//open	
@@ -194,7 +199,7 @@ function performMenuClick(_this){
 	    	jQuery('body').append(mobile_menu_bg);
 
 	    	
-			mobile_menu_bg.fadeIn();
+		mobile_menu_bg.fadeIn();
 
 	    	mobile_menu_bg.off().hammer().bind("tap", function(e){
 
@@ -295,16 +300,15 @@ function performMenuClick(_this){
 		    if(window_width<=470){
 		    	jQuery('.main-nav').css('height','auto');
 		    	jQuery('.toolbar').css('top','initial');
-		    	jQuery('.nav-menu.toggled-on >li>a').css('font-size','14px');
+	    		jQuery('.toolbar').css('bottom','-27px');
+		    /*	jQuery('.nav-menu.toggled-on >li>a').css('font-size','14px');*/
 		    	jQuery('.logo_area_bar').css('border-bottom','1px solid #efefef');
-
-		    	
-
 		    }
+
 		    else{
 		    	jQuery('.va-menu-list').css('box-shadow','6px 6px 12px rgba(0,0,0,0.15)');
 		   		jQuery('.va-menu-list').css('-webkit-box-shadow','6px 6px 12px rgba(0,0,0,0.15)');
-		   			jQuery('.nav-menu.toggled-on >li>a').css('font-size','13px');
+		   		/*	jQuery('.nav-menu.toggled-on >li>a').css('font-size','13px');*/
 		   			jQuery('.nav-menu.toggled-on >li>a').css('text-transform','initial');
 		    }
 
@@ -375,7 +379,7 @@ function performMenuClick(_this){
 
 		    jQuery('.main-nav').css('height','45px');
 
-		    jQuery('.va-menu-list li a').css('font-size','12px');
+		  //  jQuery('.va-menu-list li a').css('font-size','12px');
 
 			jQuery('.page_item').find('.res_menu_col_icon').remove();
 			jQuery('.page_item_has_children > ul').show();
@@ -424,6 +428,21 @@ function checkFloatingObjects(){
 }
 
 
+function createQRCode(url){
+
+	var qrcode = new QRCode(document.getElementById("qrcode"), {
+	    width: 140,
+	    height: 140,
+	    text: url,
+	    logo: stylesheet_directory+'/images/va_share_logo.png',
+	    logoWidth: undefined,
+	    logoHeight: undefined,
+	    logoBackgroundColor: '#ffffff',
+	    logoBackgroundTransparent: false
+	});
+
+}
+
 
 function checkNavBar(){
 
@@ -453,22 +472,27 @@ function checkNavBar(){
 		jQuery('.va-menu-list').hide();
 		jQuery('#togglebtn').css('display','block');
 		jQuery(".va-menu-list > ul > li").css('display','list-item');
-		jQuery('.logo_area_bar').css('display','block');
-		jQuery('.toolbar').css('top','10px');
+		jQuery('.logo_area_bar').css('display','block').css('top','0px');
+		jQuery('.toolbar').css('top','13px');
 		jQuery('.toolbar_center:not(.ver_tb)').css('box-shadow','initial');
 		jQuery('.toolbar_center:not(.ver_tb)').css('webkit-box-shadow','initial');
+		jQuery('nav').addClass('toggled');
+	
 
 	}
 	else{
 		jQuery('.va-menu-list').css('visibility','visible');
 		jQuery('#togglebtn').hide();
 		jQuery(".va-menu-list > ul > li").css('display','inline-block');
-	    jQuery('.logo_area_bar').css('display','inline-block');
-	    jQuery('.toolbar').css('top','');
+	    	jQuery('.logo_area_bar').css('display','inline-block').css('top','-4px');;
+	    	jQuery('.toolbar').css('top','');
 
 	    jQuery('.toolbar_center:not(.ver_tb)')
 	    .css('box-shadow','')
 	    .css('webkit-box-shadow','');
+
+	    jQuery('nav').removeClass('toggled');
+
 	}
 
 	var dfglogo = jQuery('.logo_area_right');

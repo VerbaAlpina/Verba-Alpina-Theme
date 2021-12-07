@@ -15,6 +15,9 @@ get_header(); ?>
 			<?php while ( have_posts() ) : the_post(); ?>
 
 				<?php get_template_part( 'content', get_post_format() ); ?>
+				
+				<?php global $va_post_not_existing; ?>
+				<?php if (!$va_post_not_existing):?>
 
 				<nav class="nav-single">
 					<h3 class="assistive-text"><?php _e( 'Post navigation', 'twentytwelve' ); ?></h3>
@@ -23,6 +26,8 @@ get_header(); ?>
 				</nav><!-- .nav-single -->
 
 				<?php comments_template( '', true ); ?>
+				
+				<?php endif;?>
 
 			<?php endwhile; // end of the loop. ?>
 
