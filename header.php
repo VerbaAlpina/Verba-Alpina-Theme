@@ -241,11 +241,16 @@ if($post){
 
 
 if($post){
-	$version_pages = array('KARTE', 'METHODOLOGIE', 'KOMMENTARE', 'WISS_PUBLIKATIONEN', 'Home', 'Fortschritt', 'LexAlp');
+	$version_pages = array('KARTE', 'METHODOLOGIE', 'Methodologie NEU', 'KOMMENTARE', 'WISS_PUBLIKATIONEN', 'Home', 'Fortschritt', 'LexAlp');
 	$single_post = $post && $post->post_type == 'post' && is_single();
 	$show_edit_post = ($single_post && current_user_can('edit_post', $post->ID)) || ($admin && $post->post_type == 'page');
 	$show_db_logo = ($post && $post->post_type == 'page' && in_array($post->post_title, $version_pages)) || $single_post;
-    $help_pages = array('LexAlp');
+    $help_pages = [];
+	if ((!function_exists('va_is_municipality_list') || !va_is_municipality_list()) &&
+        (!function_exists('va_is_methodology') || !va_is_methodology())
+        ){
+		$help_pages[] = 'LexAlp';
+	}		
     $show_help_icon = ($post && $post->post_type == 'page' && in_array($post->post_title, $help_pages));
 }
 else {
@@ -405,6 +410,7 @@ else {
 						$list[] = 'Datenbank-Dokumentation';
 						$list[] = 'DizMT Eingabe';
 						$list[] = 'Statistik';
+						$list[] = 'ToDos bei Projektende';
 					}
 					
 					if(function_exists('isDevTester') && isDevTester()){
@@ -538,7 +544,7 @@ else {
                          <span class="fa-stack">
 
                          <i class="fa fa-circle fa-stack-1x" aria-hidden="true" style="color:#fbfbfb; font-size: 9px;"></i>
-                         <i class="fa fa-check-circle fa-stack-1x" style="color:green" aria-hidden="true"></i>
+                         <i class="fa fa-check-circle fa-stack-1x" style="left:-2px; color:green" aria-hidden="true"></i>
                      </span>
                   </span>  
 
@@ -574,7 +580,6 @@ else {
             <?php 
             } ?>
 
-          <!--  TODO: ADD CHECK WHEN TO SHOW HELP -->
            <?php 
             if ($show_help_icon){
             ?>

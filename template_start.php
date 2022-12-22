@@ -13,7 +13,7 @@ if (isset($_REQUEST['db']) && file_exists(__DIR__  . '/old_start_pages/' . $_REQ
  $url = get_site_url(1);
 ?>
 
-<div class="version_div"> <object type="image/svg+xml" width="35px" data="<?php echo $url?>/wp-content/themes/verba-alpina/images/VA_Version.svg"></object></div>
+<div class="version_div"> <img type="image/svg+xml" width="35px" src="<?php echo $url?>/wp-content/themes/verba-alpina/images/VA_Version.svg"></img></div>
 
 <div class="info_div langbtn" title ="<?php echo $Ue['BILDMATERIAL'] ?>"> <a href="<?php echo va_get_glossary_link(200); ?>"><img src="<?php echo $url?>/wp-content/themes/verba-alpina/images/VA_Infobutton.png"></img></a></div>
 
@@ -27,7 +27,7 @@ if (isset($_REQUEST['db']) && file_exists(__DIR__  . '/old_start_pages/' . $_REQ
 
     <div class="logo_container">
 
-      <object id="svg_object" type="image/svg+xml" width="100%" data="<?php echo $url?>/wp-content/themes/verba-alpina/images/VA_LOGO_SVG_triangles.svg"></object>
+      <img id="svg_object" type="image/svg+xml" width="100%" src="<?php echo $url?>/wp-content/themes/verba-alpina/images/VA_LOGO_SVG_triangles.svg"></img>
     
       <div class="circle_container">
           <button class="langbtn">

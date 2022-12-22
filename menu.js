@@ -45,7 +45,6 @@ var prevent_click = false;
 		  e.preventDefault();
 
 		if(!prevent_click){
-
 			if(ajax_object.page_title == "KARTE" && (ajax_object.db != "xxx" || ajax_object.va_staff == "1")){
 				categoryManager.produceMapURL(function (link){
 					currentURL = link;
@@ -53,7 +52,7 @@ var prevent_click = false;
 					else  jQuery('.share_modal_main').modal('hide');
 				});
 			}
-			else if(ajax_object.page_title == "LexAlp" && (ajax_object.db != "xxx" || ajax_object.va_staff == "1")){
+			else if((ajax_object.page_title == "LexAlp" || ajax_object.page_title == "METHODOLOGIE"|| ajax_object.page_title == "Methodologie NEU") && (ajax_object.db != "xxx" || ajax_object.va_staff == "1")){
 				produceLexURL(function (link){
 					currentURL = link;
 					if(!jQuery('.share_modal_main').hasClass('in')) jQuery('.share_modal_main').modal();

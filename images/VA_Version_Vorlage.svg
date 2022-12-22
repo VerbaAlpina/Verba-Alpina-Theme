@@ -7,7 +7,7 @@
    viewBox="0 0 18.555893 10.828129"
    version="1.1"
    id="svg4666"
-   inkscape:version="1.1 (c68e22c387, 2021-05-23)"
+   inkscape:version="1.2 (dc2aedaf03, 2022-05-15)"
    sodipodi:docname="VA_Version_Vorlage.svg"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
@@ -26,8 +26,8 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="8.4862118"
-     inkscape:cx="19.973576"
-     inkscape:cy="22.683855"
+     inkscape:cx="19.914657"
+     inkscape:cy="22.742774"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -42,7 +42,9 @@
      inkscape:window-y="-8"
      inkscape:window-maximized="1"
      showguides="true"
-     inkscape:guide-bbox="true">
+     inkscape:guide-bbox="true"
+     inkscape:showpageshadow="2"
+     inkscape:deskcolor="#d1d1d1">
     <sodipodi:guide
        position="-3.1745327,1.4965431"
        orientation="0,1"
@@ -72,7 +74,7 @@
      transform="translate(-68.355215,-49.74353)">
     <g
        id="g4591"
-       transform="translate(-209.21644,5.4368969)">
+       transform="translate(-208.31313,5.4368969)">
       <g
          id="g4611"
          transform="translate(18.167404,41.132496)">
@@ -132,7 +134,7 @@
            x="-2.1210878"
            y="1.4494113" /></flowRegion><flowPara
          id="flowPara838"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Kabel;-inkscape-font-specification:Kabel;fill:#ffffff;fill-opacity:1">21</flowPara></flowRoot>
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Kabel;-inkscape-font-specification:Kabel;fill:#ffffff;fill-opacity:1">22</flowPara></flowRoot>
     <flowRoot
        xml:space="preserve"
        id="flowRoot832-9"

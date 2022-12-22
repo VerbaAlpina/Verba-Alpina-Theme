@@ -109,6 +109,15 @@ body{
 	transform:scale(0.95,1); /* W3C */
 }
 
+.modal-title i{
+	-webkit-transform:scale(1.05,1); /* Safari and Chrome */
+	-moz-transform:scale(1.05,1); /* Firefox */
+	-ms-transform:scale(1.05,1); /* IE 9 */
+	-o-transform:scale(1.05,1); /* Opera */
+	transform:scale(1.05,1); /* W3C */
+
+}
+
 .main-navigation li a{
 	    max-height: 45px;
 }
@@ -761,4 +770,28 @@ div.entry-content table:is(.vertical-border) td {
 	border-left: 1px solid #ededed;
 	border-right: 1px solid #ededed;
 	padding-left: 5px;
+}
+
+div.questionnaire-content p {
+	margin-bottom: 0px !important;
+}
+
+.ui-icon.ui-icon-close{
+	height: 14px;
+	width: 14px;
+    line-height: initial;
+    margin-top: 0px;
+    
+ }
+
+ .qtip-close {
+    display: flex;
+    justify-content: center;
+    justify-items: center;
+    align-items: center;
+
+}
+
+audio.wp-audio-shortcode {
+	min-width: 200px;
 }

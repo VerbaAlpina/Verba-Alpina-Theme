@@ -223,6 +223,10 @@ function va_nav_menu (){
 				$curr_page .= '<li class="page_item"><a href="' . $cslink . '">' . 'Crowdsourcing' . '</a></li>';
 				$curr_page .= '<li class="page_item"><a href="https://www.zooniverse.org/projects/filip-hr/verbaalpina">' . 'Zooniverse' . '</a></li>';
 			}
+			else if ($page->post_title == 'PUBLIKATIONEN'){
+				$lapage = get_page_by_title('LexAlp');
+				$curr_page .= '<li class="page_item"><a href="' . add_query_arg('list', 'municipalities', get_page_link($lapage)) . '">' . $Ue['GEMEINDELISTE'] . '</a></li>';
+			}
 			$curr_page .= '</ul>';
 		}
 		
@@ -250,7 +254,7 @@ function va_nav_menu (){
 
 function va_questionnaire_sub_page ($num_page, $post_id = NULL){
 
-	echo '<div class="entry-content">';
+	echo '<div class="entry-content questionnaire-content">';
 	
 	$pages = get_field('fb_seite', $post_id);
 	$num_pages = count($pages);
@@ -263,17 +267,25 @@ function va_questionnaire_sub_page ($num_page, $post_id = NULL){
 		if($num_page == 0){
 			echo do_shortcode(get_post($post_id)->post_content) . '<br /><br />';
 		}
-		
+
 		$num_map = 0;
 		$num_radio = 0;
 		
 		foreach ($pages[$num_page]['fb_frage'] as $question){
-			
-			if($question['fb_details']['fb_necessary']){
-				echo '<span style="color: red; /*display: inline-block;*/ margin-right: 5px; vertical-align: top; margin-top: 30px;">*</span>';
+
+			if ($question['fb_details']['fb_text_position'] == 'N'){
+				echo '<div style="display: flex;flex-direction: row;justify-content: flex-start;align-items: center;gap: 10px; flex-wrap: wrap;">';
+			}
+			else {
+				echo '<div>';
 			}
 			
-			echo '<div style="display: inline-block">' . $question['fb_uberschrift'] . '</div><br />';
+			
+			if($question['fb_details']['fb_necessary']){
+				echo '<span style="color: red; /*display: inline-block;*/ margin-right: 5px; vertical-align: top;">*</span>';
+			}
+			
+			echo '<div style="display: inline-block">' . $question['fb_uberschrift'] . '</div><br /><br />';
 
 			switch ($question['fb_typ']){
 				
@@ -281,12 +293,22 @@ function va_questionnaire_sub_page ($num_page, $post_id = NULL){
 				    if ($question['fb_details']['fb_text_parts']){
 				        echo '<table class="fb_question ' . ($question['fb_details']['fb_necessary']? ' fb_necessary' : '') . '">';
 				        foreach ($question['fb_details']['fb_text_parts'] as $question_part){
-				            echo '<tr><td>' . $question_part['fb_question_part'] . '</td><td><input type="text" data-text="' . htmlspecialchars($question_part['fb_question_part']) . '" class="fb_sub_question" autocomplete="off" /></td>';
+							if ($question['fb_details']['fb_text_answer_type'] == 'T'){
+								echo '<tr><td>' . $question_part['fb_question_part'] . '</td><td><textarea cols="' . $question['fb_details']['fb_text_answer_length'] . '" rows="5" data-text="' . htmlspecialchars($question_part['fb_question_part']) . '" class="fb_sub_question" autocomplete="off" ></textarea></td>';
+							}
+							else {
+								echo '<tr><td>' . $question_part['fb_question_part'] . '</td><td><input type="text" size="' . $question['fb_details']['fb_text_answer_length'] . '" data-text="' . htmlspecialchars($question_part['fb_question_part']) . '" class="fb_sub_question" autocomplete="off" /></td>';
+							}
 				        }
 				        echo '</table>';
 				    }
 				    else {
-					   echo '<input type="text" class="fb_question' . ($question['fb_details']['fb_necessary']? ' fb_necessary' : '') . '" autocomplete="off" />';
+						if ($question['fb_details']['fb_text_answer_type'] == 'T'){
+							echo '<textarea cols="' . $question['fb_details']['fb_text_answer_length'] . '" rows="5" class="fb_question' . ($question['fb_details']['fb_necessary']? ' fb_necessary' : '') . '" autocomplete="off"></textarea>';
+						}
+						else {
+							echo '<input type="text" size="' . $question['fb_details']['fb_text_answer_length'] . '" class="fb_question' . ($question['fb_details']['fb_necessary']? ' fb_necessary' : '') . '" autocomplete="off" />';
+						}
 				    }
 					break;
 					
@@ -319,7 +341,13 @@ function va_questionnaire_sub_page ($num_page, $post_id = NULL){
 					$details = $question['fb_details'];
 					echo ' <div class="fb_map fb_question' . ($details['fb_necessary']? ' fb_necessary' : '') . '" id="fb_map' . $num_map++ . '" style="height: 500px;" data-zoom="' . $details['fb_map_zoom'] . '" data-lat="' . $details['fb_map_center']['fb_map_lat'] . '" data-lng="' . $details['fb_map_center']['fb_map_lng'] . '" data-type="' . $details['fb_map_selection_type'] . '" data-map-type="' . $details['fb_map_type'] . '"></div>';
 					break;
+					
+				case 'Überschrift':
+					echo '<input type="hidden" class="fb_question" value="" />';
+				break;
 			}
+			
+			echo '</div>';
 			
 			echo '<br /><br />';
 	
@@ -333,8 +361,48 @@ function va_questionnaire_sub_page ($num_page, $post_id = NULL){
 		else {
 			echo '<input type="button" value="' . get_field('fb_continue_button', $post_id) . '" id="fb_submit_button" />';
 		}
+		
+		if ($num_pages > 1){
+			echo '<span style="float: right;">' . ($num_page + 1) . ' / ' . $num_pages . '</span>';
+		}
 	}
 	
 	echo '</div>';
 }
+
+
+
+function allow_iframes( $allowedposttags ){
+
+	$allowedposttags['iframe'] = array(
+		'align' => true,
+		'allow' => true,
+		'allowfullscreen' => true,
+		'class' => true,
+		'frameborder' => true,
+		'height' => true,
+		'id' => true,
+		'marginheight' => true,
+		'marginwidth' => true,
+		'name' => true,
+		'scrolling' => true,
+		'src' => true,
+		'style' => true,
+		'width' => true,
+		'allowFullScreen' => true,
+		'class' => true,
+		'frameborder' => true,
+		'height' => true,
+		'mozallowfullscreen' => true,
+		'src' => true,
+		'title' => true,
+		'webkitAllowFullScreen' => true,
+		'width' => true
+	);
+
+	return $allowedposttags;
+}
+
+add_filter( 'wp_kses_allowed_html', 'allow_iframes', 1 );
+
 ?>

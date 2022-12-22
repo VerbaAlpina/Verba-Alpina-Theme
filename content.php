@@ -70,10 +70,15 @@
 				
 				?></h1>
 				
-				<?php $authors = get_field('autoren');
-				if ($authors){
-					$alist = explode(',', $authors);
-					$alist = array_map('trim', $alist);
+				<?php
+				if( have_rows('autoren_neu')){
+					$alist = [];
+					while(have_rows('autoren_neu')){
+						the_row();
+						
+						$alist[] = get_sub_field('vorname') . ' ' . get_sub_field('nachname');
+					}
+					
 					echo '<span class="va_authors">' . implode(' | ', $alist) . '</span>';
 				}
 				else {

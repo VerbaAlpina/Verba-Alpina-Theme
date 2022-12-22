@@ -151,6 +151,33 @@
 	                    </td>
 
 	                </tr>
+					
+					<?php
+					// if (class_exists('ReallySimpleCaptcha')){
+						// $wpud = wp_upload_dir();
+						
+						// $captcha_instance = new ReallySimpleCaptcha();
+						// $captcha_instance->tmp_dir = $wpud['path'] . '/captcha/';
+					
+						// $word = $captcha_instance->generate_random_word();
+						
+						// $prefix = mt_rand();
+						// $file = $captcha_instance->generate_image( $prefix, $word );
+						// echo '<tr><td><img src="' . $wpud['url'] . '/captcha/' . $file . '"><label for="captcha"></label></td></tr>';
+					?>
+					<!--<tr class="lwa-captcha">
+	                    <td>  
+	                    	<div>
+	                        <?php $msg = __('Please type the characters you see in the picture above.','login-with-ajax'); ?>
+	                        <input type="text" class="form-control" name="captcha" id="captcha"  value="<?php echo esc_attr($msg); ?>" />
+	                        </div> 
+	                    </td>
+
+	                </tr>-->
+					
+					<?php
+					// }
+					?>
 
 	                <tr>
 	    
